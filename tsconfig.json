@@ -1,22 +1,38 @@
 {
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
     "target": "es5",
-    "lib": ["es5", "es2016", "dom", "dom.iterable"],
-    "module": "es6",
-    "sourceMap": true,
-    "outDir": "dist",
-    "rootDir": "src",
     "jsx": "react",
+    "importHelpers": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "strict": true,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "skipLibCheck": true,
-    "removeComments": true,
+    "declaration": false,
+    "sourceMap": false,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "paths": {
+      "*": ["./src/*"]
+    },
+    "typeRoots": ["typings/**/*.d.ts", "node_modules/@types"],
   },
   "include": [
-    "**/*"
+    "src",
+    "typings/**/*.d.ts",
+    "./node_modules/@types"
   ],
   "exclude": [
-    "**/*.spec.ts",
-    "node_modules",
-    "dist"
+    "**/*.js"
   ]
 }
