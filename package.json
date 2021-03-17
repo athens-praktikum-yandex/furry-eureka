@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development --open --hot",
     "build": "webpack --mode production",
-    "test": "mocha -r ignore-styles",
+    "test": "jest",
     "prettier": "prettier --write src",
     "lint": "eslint src --fix",
     "precommit": "npm-run-all lint prettier"
