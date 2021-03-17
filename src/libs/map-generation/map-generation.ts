@@ -31,7 +31,7 @@ const isCellInMap = (cell: Cell, screenSize: number): boolean => {
   return isCellCoordinateMoreOrEqualZero && isCellCoordinateLessThenMapSideSize;
 };
 
-const generateRandomDirection = (): Direction => Math.round(Math.random() * 3) as Direction;
+const generateRandomDirection = (): Direction => Math.floor(Math.random() * 4) as Direction;
 
 const generateNextCell = (currentCell: Cell, screenSize: number, map: Cell[]): Cell => {
   let nextCell = currentCell;
