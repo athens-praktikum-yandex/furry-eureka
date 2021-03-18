@@ -13,6 +13,7 @@ module.exports = {
   ],
   rules: {
     'linebreak-style': 0,
+    'no-trailing-spaces': 0,
     '@typescript-eslint/space-infix-ops': 0,
     '@typescript-eslint/object-curly-spacing': 0,
     'import/prefer-default-export': 0,
