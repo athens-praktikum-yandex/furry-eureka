@@ -25,7 +25,7 @@ const move = (currentCell: Cell, direction: Direction): Cell => {
 const isCellAlreadyExist = (cell: Cell, cells: Cell[]): boolean => cells
   .findIndex((c: Cell) => c.x === cell.x && c.y === cell.y) !== -1;
 
-const isCellInMap = (cell: Cell, screenSize: number): boolean => {
+export const isCellInMap = (cell: Cell, screenSize: number): boolean => {
   const isCellCoordinateMoreOrEqualZero = cell.y >= 0 && cell.x >=0;
   const isCellCoordinateLessThenMapSideSize = cell.x < screenSize && cell.y < screenSize;
   return isCellCoordinateMoreOrEqualZero && isCellCoordinateLessThenMapSideSize;
