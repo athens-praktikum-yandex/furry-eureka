@@ -7,9 +7,10 @@
     "start": "webpack serve --mode development --open --hot",
     "build": "webpack --mode production",
     "test": "jest",
+    "build:ts": "tsc",
     "prettier": "prettier --write src",
     "lint": "eslint src --fix",
-    "precommit": "npm-run-all lint prettier"
+    "precommit": "npm-run-all lint prettier build:ts"
   },
   "husky": {
     "hooks": {
