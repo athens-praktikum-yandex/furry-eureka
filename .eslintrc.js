@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/ban-types': 1,
     'class-methods-use-this': 0,
-    'import/extensions': 1
+    'import/extensions': 0,
+    'no-underscore-dangle': 0
   }
 };

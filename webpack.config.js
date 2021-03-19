@@ -13,6 +13,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif|jp2|webp)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
+      },
+      {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
@@ -20,7 +27,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
-      }
+      },
     ]
   },
   plugins: [
