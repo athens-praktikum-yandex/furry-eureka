@@ -10,8 +10,11 @@ module.exports = {
   },
   ignorePatterns: '*.js',
   rules: {
-    'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': ['error', {'devDependencies': true}],
+
     '@typescript-eslint/ban-types': 1,
+
+    'import/prefer-default-export': 0,
     'class-methods-use-this': 0,
     'no-underscore-dangle': 0,
   }

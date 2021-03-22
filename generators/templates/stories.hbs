@@ -1,0 +1,16 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { {{properCase name}} } from './{{properCase name}}';
+
+const mainWrapper = { padding: '2rem' };
+const itemHeader = { marginBottom: '1rem', fontSize: '1.3em' };
+const itemWrapper = { marginBottom: '2rem', fontSize: '1.2em' };
+
+storiesOf('Basic', module).add('{{properCase name}}', () => (
+  <div style={mainWrapper}>
+    <h5 style={itemHeader}>{{properCase name}} component</h5>
+    <div style={itemWrapper}>
+      <{{properCase name}} />
+    </div>
+  </div>
+));
