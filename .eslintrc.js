@@ -9,9 +9,6 @@ module.exports = {
     node: true
   },
   ignorePatterns: '*.js',
-  plugins: [
-    'prettier'
-  ],
   rules: {
     'import/prefer-default-export': 0,
     '@typescript-eslint/ban-types': 1,
