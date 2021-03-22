@@ -13,13 +13,13 @@ describe('map generation', () => {
     });
 
     test('random cell count', () => {
-      const randomCellCount = Math.floor(Math.random() * screenSize**2);
+      const randomCellCount = Math.floor(Math.random() * screenSize ** 2);
       const map = generateMap(screenSize, randomCellCount);
       expect(map.length).toEqual(randomCellCount);
     });
 
     test('maximum cell count', () => {
-      const maximumCellCount = screenSize**2;
+      const maximumCellCount = screenSize ** 2;
       const map = generateMap(screenSize, maximumCellCount);
       expect(map.length).toEqual(maximumCellCount);
     });

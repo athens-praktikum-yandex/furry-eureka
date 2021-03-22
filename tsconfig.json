@@ -20,16 +20,18 @@
     "alwaysStrict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "baseUrl": ".",
     "outDir": "./dist",
+    "typeRoots": ["types/**/*.d.ts", "node_modules/@types"],
+    "baseUrl": "./src",
     "paths": {
-      "*": ["./src/*"]
+      "@components/*": ["components/*"],
+      "@libs/*": ["libs/*"],
+      "@pages/*": ["pages/*"]
     },
-    "typeRoots": ["typings/**/*.d.ts", "node_modules/@types"],
   },
   "include": [
     "src",
-    "typings/**/*.d.ts",
+    "types",
     "./node_modules/@types"
   ],
   "exclude": [

@@ -1,8 +1,0 @@
-{
-  "exclude": [
-    "./dist",
-    "./node_modules",
-    ".eslintrc.js"
-  ],
-  "extends": "./tsconfig.json"
-}
