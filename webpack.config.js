@@ -4,7 +4,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./src/index.tsx",
   resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@libs': path.resolve(__dirname, 'src/libs/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+    },
     extensions: ['.tsx', '.ts', '.js'],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'build'),
+    historyApiFallback: true,
   },
   output: {
     path: path.join(__dirname, "/dist"),
