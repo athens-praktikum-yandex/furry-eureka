@@ -26,14 +26,14 @@ export const Person = (props: Props) => {
         personSprites.idle = new Sprite(HeroIdleImg, [63, 41], [170, 96], 16,
           [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
         personSprites.walk = new Sprite(HeroWalkImg, [66, 41], [170, 96], 16,
-            [0, 1, 2, 3, 4, 5, 6, 7]);
+          [0, 1, 2, 3, 4, 5, 6, 7]);
         spritesRef.current = personSprites;
       }
       break;
     case 1:
       if (!spritesRef.current) {
         personSprites.idle = new Sprite(Enemy1IdleImg, [53, 36], [128, 128], 16,
-            [0, 1, 2, 3, 4, 5, 6, 7]);
+          [0, 1, 2, 3, 4, 5, 6, 7]);
         spritesRef.current = personSprites;
       }
       break;
