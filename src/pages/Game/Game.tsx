@@ -23,7 +23,8 @@ export const Game = () => {
   return (
     <div>
       <h1>Игра</h1>
-      <Person personType={0} action={PersonActions.WALK} time={time} />
+      <Person personType={0} action={PersonActions.WALK} position={[50, 50]} time={time} />
+      <Person personType={1} action={PersonActions.IDLE} position={[100, 50]} time={time} />
     </div>
   );
 };

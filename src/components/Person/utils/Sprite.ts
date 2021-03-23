@@ -45,7 +45,7 @@ export class Sprite {
     }
   }
 
-  render(ctx: CanvasRenderingContext2D | null, resources: Resources) {
+  render(ctx: CanvasRenderingContext2D | null, resources: Resources, position: number[]) {
     if (ctx) {
       let frame;
       if (this.speed && this.speed > 0) {
@@ -76,8 +76,8 @@ export class Sprite {
         y,
         this.size[0],
         this.size[1],
-        0,
-        0,
+        position[0],
+        position[1],
         this.size[0],
         this.size[1],
       );

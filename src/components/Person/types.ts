@@ -12,6 +12,7 @@ export enum PersonActions {
 
 export type OwnProps = {
   personType: PersonType;
+  position: number[];
   time: number;
   action: PersonActions;
 };
