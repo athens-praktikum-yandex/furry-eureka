@@ -8,6 +8,7 @@ module.exports = {
       '@components': path.resolve(__dirname, 'src/components/'),
       '@libs': path.resolve(__dirname, 'src/libs/'),
       '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@assets': path.resolve(__dirname, 'src/assets/'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

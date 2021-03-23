@@ -26,12 +26,13 @@
     "paths": {
       "@components/*": ["components/*"],
       "@libs/*": ["libs/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@assets/*": ["assets/*"]
     },
   },
   "include": [
-    "src",
-    "types",
+    "**/*.ts", 
+    "**/*.tsx",
     "./node_modules/@types"
   ],
   "exclude": [

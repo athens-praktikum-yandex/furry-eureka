@@ -3,7 +3,7 @@ import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { jsxDecorator } from 'storybook-addon-jsx';
 
-import '../src/components/App/App.css';
+import '../src/assets/styles/main.css';
 
 addDecorator((storyFn) => (
   <div style={{
