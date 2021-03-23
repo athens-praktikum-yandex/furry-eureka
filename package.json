@@ -20,7 +20,7 @@
       "eslint --fix",
       "bash -c tsc"
     ],
-    "*.css": "stylelint '**/*{.css,.scss}' --fix"
+    "*.css": "stylelint --fix"
   },
   "repository": {
     "type": "git",
