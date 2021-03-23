@@ -1,3 +1,4 @@
+import {Cell} from '@libs/map-generation';
 import { Resources } from '../../../utils/Resources';
 
 export class Sprite {
@@ -5,7 +6,9 @@ export class Sprite {
 
   private pos: number[] = [];
 
-  private size: number[] = [];
+  private frameSize: number[] = [];
+
+  private pictureSize: number[] = [];
 
   private speed?: number;
 
@@ -22,7 +25,8 @@ export class Sprite {
   constructor(
     url: string,
     pos: number[],
-    size: number[],
+    frameSize: number[],
+    pictureSize: number[],
     speed?: number,
     frames?: number[],
     dir?: string,
@@ -30,7 +34,8 @@ export class Sprite {
   ) {
     this.url = url;
     this.pos = pos;
-    this.size = size;
+    this.frameSize = frameSize;
+    this.pictureSize = pictureSize;
     this.speed = speed;
     this.frames = frames;
     this.dir = dir || 'horizontal';
@@ -45,7 +50,8 @@ export class Sprite {
     }
   }
 
-  render(ctx: CanvasRenderingContext2D | null, resources: Resources, position: number[]) {
+  render(ctx: CanvasRenderingContext2D | null, resources: Resources,
+         position: Cell, prevPosition: Cell | undefined) {
     if (ctx) {
       let frame;
       if (this.speed && this.speed > 0) {
@@ -65,21 +71,25 @@ export class Sprite {
       let y = this.pos[1];
 
       if (this.dir === 'vertical') {
-        y += frame * this.size[1];
+        y += frame * this.frameSize[1];
       } else {
-        x += frame * this.size[0];
+        x += frame * this.frameSize[0];
       }
-      ctx.clearRect(0, 0, 300, 300);
+      if (prevPosition) {
+        ctx.clearRect(prevPosition.x, prevPosition.y, this.pictureSize[0], this.pictureSize[1]);
+      } else {
+        ctx.clearRect(position.x, position.y, this.pictureSize[0], this.pictureSize[1]);
+      }
       ctx.drawImage(
         resources.get(this.url),
         x,
         y,
-        this.size[0],
-        this.size[1],
-        position[0],
-        position[1],
-        this.size[0],
-        this.size[1],
+        this.pictureSize[0],
+        this.pictureSize[1],
+        position.x,
+        position.y,
+        this.pictureSize[0],
+        this.pictureSize[1],
       );
     }
   }

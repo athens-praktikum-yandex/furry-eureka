@@ -1,3 +1,4 @@
+import {Cell} from '@libs/map-generation';
 import { Sprite } from './utils/Sprite';
 
 enum PersonType {
@@ -11,8 +12,10 @@ export enum PersonActions {
 }
 
 export type OwnProps = {
+  ctx: CanvasRenderingContext2D | null,
   personType: PersonType;
-  position: number[];
+  prevPosition?: Cell;
+  position: Cell;
   time: number;
   action: PersonActions;
 };

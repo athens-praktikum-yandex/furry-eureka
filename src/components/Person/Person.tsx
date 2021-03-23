@@ -19,20 +19,19 @@ const personSprites: PersonSprites = {
 
 export const Person = (props: Props) => {
   const spritesRef = useRef<PersonSprites>();
-  const refContainer = useRef<HTMLCanvasElement>(null);
   switch (props.personType) {
     case 0:
       if (!spritesRef.current) {
-        personSprites.idle = new Sprite(HeroIdleImg, [63, 41], [170, 96], 16,
+        personSprites.idle = new Sprite(HeroIdleImg, [63, 41], [170, 96], [35, 35], 16,
           [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-        personSprites.walk = new Sprite(HeroWalkImg, [66, 41], [170, 96], 16,
+        personSprites.walk = new Sprite(HeroWalkImg, [66, 41], [170, 96], [35, 35], 8,
           [0, 1, 2, 3, 4, 5, 6, 7]);
         spritesRef.current = personSprites;
       }
       break;
     case 1:
       if (!spritesRef.current) {
-        personSprites.idle = new Sprite(Enemy1IdleImg, [53, 36], [128, 128], 16,
+        personSprites.idle = new Sprite(Enemy1IdleImg, [53, 36], [128, 128], [25, 40], 8,
           [0, 1, 2, 3, 4, 5, 6, 7]);
         spritesRef.current = personSprites;
       }
@@ -43,11 +42,11 @@ export const Person = (props: Props) => {
   }
 
   function updateCanvas() {
-    if (refContainer.current && resources.fullyLoaded) {
-      const ctx = refContainer.current.getContext('2d');
+    if (props.ctx && resources.fullyLoaded) {
       if (spritesRef.current && spritesRef.current[props.action] !== null) {
         (spritesRef.current[props.action] as Sprite).update(props.time);
-        (spritesRef.current[props.action] as Sprite).render(ctx, resources, props.position);
+        (spritesRef.current[props.action] as Sprite).render(props.ctx,
+          resources, props.position, props.prevPosition);
       }
     }
   }
@@ -56,5 +55,5 @@ export const Person = (props: Props) => {
     updateCanvas();
   });
 
-  return <canvas ref={refContainer} width={300} height={300} />;
+  return <div />;
 };

@@ -1,6 +1,9 @@
+import {Cell} from '@libs/map-generation';
+
 type InputParameters = {
   dx: number,
   dy: number,
+  map: Cell[]
 };
 
 export class KeyboardCatcher {
@@ -8,14 +11,17 @@ export class KeyboardCatcher {
 
   private readonly dy: number = 0;
 
-  private position: number[] = [0, 0];
+  private readonly map: Cell[] = [];
 
-  private setPosition: ((value: (((prevState: number[]) =>
-  number[]) | number[])) => void) | undefined;
+  private position: Cell = {x: 0, y: 0};
+
+  private setPosition: ((value: (((prevState: Cell) =>
+  Cell) | Cell)) => void) | undefined;
 
   constructor(inputParameters: InputParameters) {
     this.dx = inputParameters.dx;
     this.dy = inputParameters.dy;
+    this.map = inputParameters.map;
   }
 
   init() {
@@ -24,32 +30,33 @@ export class KeyboardCatcher {
     });
   }
 
-  updatePosition(position: number[],
-    setPosition: ((value: (((prevState: number[]) => number[]) | number[])) => void)) {
+  updatePosition(position: Cell,
+    setPosition: ((value: (((prevState: Cell) => Cell) | Cell)) => void)) {
     this.position = position;
     this.setPosition = setPosition;
   }
 
   handleInput(event: KeyboardEvent) {
     const {code} = event;
-    const [x, y] = this.position;
+    const {x, y} = this.position;
+    console.log(this.map);
 
     if (this.setPosition) {
       switch (code) {
         case 'ArrowLeft':
-          this.setPosition([x - this.dx, y]);
+          this.setPosition({x: x - this.dx, y});
           break;
         case 'ArrowRight':
-          this.setPosition([x + this.dx, y]);
+          this.setPosition({x: x + this.dx, y});
           break;
         case 'ArrowUp':
-          this.setPosition([x, y - this.dy]);
+          this.setPosition({x, y: y - this.dy});
           break;
         case 'ArrowDown':
-          this.setPosition([x, y + this.dy]);
+          this.setPosition({x, y: y + this.dy});
           break;
         default: {
-          this.setPosition([0, 0]);
+          console.log('Wrong key');
         }
       }
     }
