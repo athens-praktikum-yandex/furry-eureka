@@ -1,4 +1,5 @@
-import { Resources } from '../../../utils/Resources';
+import { Resources } from '../resources';
+
 
 export class Sprite {
   private url: string = '';
