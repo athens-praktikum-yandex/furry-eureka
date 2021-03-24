@@ -17,10 +17,12 @@ export class MapView {
     const xStartPosition = cell.x * this.cellSideSize;
     const yStartPosition = cell.y * this.cellSideSize;
     const ctx = this.canvas.getContext('2d');
-    ctx.beginPath();
-    ctx.rect(xStartPosition, yStartPosition, this.cellSideSize, this.cellSideSize);
-    ctx.stroke();
-    ctx.fill();
-    ctx.closePath();
+    if (ctx) {
+      ctx.beginPath();
+      ctx.rect(xStartPosition, yStartPosition, this.cellSideSize, this.cellSideSize);
+      ctx.stroke();
+      ctx.fill();
+      ctx.closePath();
+    }
   }
 }
