@@ -8,8 +8,8 @@ export const Game = () => {
       <h1>Игра</h1>
       <canvas
         ref={canvasRef}
-        width={1000}
-        height={1000}
+        width={800}
+        height={800}
       />
     </div>
   );

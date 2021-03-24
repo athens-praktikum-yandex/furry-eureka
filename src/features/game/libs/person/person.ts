@@ -58,7 +58,7 @@ export class Person {
   }
 
   updateCanvas(time) {
-    if (this.canvas && this.resources.fullyLoaded) {
+    if (this.resources.fullyLoaded) {
       const ctx = this.canvas.getContext('2d');
       this.personSprites[this.action]?.update(time);
       this.personSprites[this.action]?.render(ctx, this.resources);
