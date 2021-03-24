@@ -1,0 +1,32 @@
+.button {
+  background: var(--color-thirdly);
+  border: 0;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.button_theme_circle {
+  border-radius: 50%;
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.button_theme_transparent {
+  background: none;
+  color: var(--color-gray);
+}
+
+.button_theme_transparent:hover {
+  color: var(--color-thirdly);
+}
+
+.button_theme_square {
+  border-radius: 8px;
+  min-width: 95px;
+  padding: 0.75rem;
+}
+
+.button__inner {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+}
