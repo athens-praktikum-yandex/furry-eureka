@@ -1,6 +1,3 @@
 {
-  "extends": "stylelint-config-standard",
-  "ignoreFiles": [
-    "build/*"
-  ]
+  "extends": "stylelint-config-standard"
 }
