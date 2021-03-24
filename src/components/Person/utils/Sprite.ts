@@ -1,5 +1,5 @@
 import {Cell} from '@libs/map-generation';
-import { Resources } from '../../../utils/Resources';
+import { Resources } from '@libs/resources/Resources';
 
 export class Sprite {
   private url: string = '';
@@ -51,7 +51,7 @@ export class Sprite {
   }
 
   render(ctx: CanvasRenderingContext2D | null, resources: Resources,
-         position: Cell, prevPosition: Cell | undefined) {
+    position: Cell, prevPosition: Cell | undefined) {
     if (ctx) {
       let frame;
       if (this.speed && this.speed > 0) {

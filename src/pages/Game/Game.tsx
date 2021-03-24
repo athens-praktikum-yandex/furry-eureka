@@ -1,17 +1,19 @@
 import { PersonActions, Person } from '@components/Person';
 import React, { useEffect, useRef, useState } from 'react';
 import {generateMap, Cell} from '@libs/map-generation';
-import {KeyboardCatcher} from '../../utils/KeyboardCatcher';
+import {KeyboardCatcher} from '@libs/keyboard-catcher';
 
-const SCREEN_SIZE = 700;
-const map = generateMap(SCREEN_SIZE, 10);
+const CELL_SIZE = 50;
+const map = generateMap(11, 11).map((item) => ({x: item.x * CELL_SIZE, y: item.y * CELL_SIZE}));
+console.log(map);
 const startCellIndex = Math.floor(Math.random() * map.length);
-const keyboardCatcher = new KeyboardCatcher({dx: 5, dy: 5, map});
+const keyboardCatcher = new KeyboardCatcher({dx: CELL_SIZE, dy: CELL_SIZE, map});
 keyboardCatcher.init();
 
 export const Game = () => {
   const [time, setTime] = useState(0);
   const [position, setPosition] = useState(map[startCellIndex]);
+  const [personAction, setPersonAction] = useState(PersonActions.WALK);
   const prevPositionRef = useRef<Cell>();
   useEffect(() => {
     prevPositionRef.current = position;
@@ -35,16 +37,27 @@ export const Game = () => {
     return () => cancelAnimationFrame(requestRef.current as number);
   }, []);
 
-  keyboardCatcher.updatePosition(position, setPosition);
+  keyboardCatcher.setData(position, setPosition, setPersonAction);
 
   return (
     <div>
       <h1>Игра</h1>
-      <canvas ref={refContainer} width={SCREEN_SIZE} height={SCREEN_SIZE} />
-      <Person ctx={ctx} personType={0} action={PersonActions.WALK}
-              prevPosition={prevPosition} position={position} time={time} />
-      <Person ctx={ctx} personType={1} action={PersonActions.IDLE}
-              position={map[map.length - startCellIndex]} time={time} />
+      <canvas ref={refContainer} width={600} height={600} />
+      <Person
+        ctx={ctx}
+        personType={0}
+        action={personAction}
+        prevPosition={prevPosition}
+        position={position}
+        time={time}
+      />
+      <Person
+        ctx={ctx}
+        personType={1}
+        action={PersonActions.IDLE}
+        position={map[map.length - startCellIndex]}
+        time={time}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
+import { Resources } from '@libs/resources/Resources';
 import { OwnProps, PersonSprites } from './types';
 import { Sprite } from './utils/Sprite';
-import { Resources } from '../../utils/Resources';
 import HeroIdleImg from './img/hero_idle.png';
 import HeroWalkImg from './img/hero_walk.png';
 import Enemy1IdleImg from './img/enemy1_idle.png';

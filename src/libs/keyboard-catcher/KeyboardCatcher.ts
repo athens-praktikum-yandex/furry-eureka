@@ -1,10 +1,6 @@
 import {Cell} from '@libs/map-generation';
-
-type InputParameters = {
-  dx: number,
-  dy: number,
-  map: Cell[]
-};
+import {PersonActions} from '@components/Person';
+import {PositionSetter, ActionSetter, InputParameters} from './types';
 
 export class KeyboardCatcher {
   private readonly dx: number = 0;
@@ -15,8 +11,9 @@ export class KeyboardCatcher {
 
   private position: Cell = {x: 0, y: 0};
 
-  private setPosition: ((value: (((prevState: Cell) =>
-  Cell) | Cell)) => void) | undefined;
+  private setPosition: PositionSetter | undefined;
+
+  private setPersonAction: ActionSetter | undefined;
 
   constructor(inputParameters: InputParameters) {
     this.dx = inputParameters.dx;
@@ -30,35 +27,43 @@ export class KeyboardCatcher {
     });
   }
 
-  updatePosition(position: Cell,
-    setPosition: ((value: (((prevState: Cell) => Cell) | Cell)) => void)) {
+  setData(position: Cell, setPosition: PositionSetter, setPersonAction: ActionSetter) {
     this.position = position;
     this.setPosition = setPosition;
+    this.setPersonAction = setPersonAction;
   }
 
   handleInput(event: KeyboardEvent) {
     const {code} = event;
     const {x, y} = this.position;
-    console.log(this.map);
 
-    if (this.setPosition) {
+    if (this.setPosition && this.setPersonAction) {
+      let position = null;
       switch (code) {
         case 'ArrowLeft':
-          this.setPosition({x: x - this.dx, y});
+          position = {x: x - this.dx, y};
           break;
         case 'ArrowRight':
-          this.setPosition({x: x + this.dx, y});
+          position = {x: x + this.dx, y};
           break;
         case 'ArrowUp':
-          this.setPosition({x, y: y - this.dy});
+          position = {x, y: y - this.dy};
           break;
         case 'ArrowDown':
-          this.setPosition({x, y: y + this.dy});
+          position = {x, y: y + this.dy};
           break;
         default: {
-          console.log('Wrong key');
+          position = {x, y};
         }
       }
+      if (this.isStepAvailable(position)) {
+        this.setPosition(position);
+        this.setPersonAction(PersonActions.WALK);
+      }
     }
+  }
+
+  isStepAvailable(position: Cell) {
+    return this.map.some((cell) => cell.x === position.x && cell.y === position.y);
   }
 }
