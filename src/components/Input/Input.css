@@ -1,0 +1,33 @@
+.input-wrapper {
+  position: relative;
+  margin-bottom: 0.9rem;
+}
+
+.input-wrapper__label {
+  font-size: var(--font-size-m);
+  line-height: 1.2rem;
+}
+
+.input-wrapper__input {
+  background: var(--color-primary);
+  border: 0;
+  border-radius: 5px;
+  color: var(--color-white);
+  display: block;
+  height: 30px;
+  padding-left: 0.7rem;
+  text-align: left;
+  width: 100%;
+}
+
+.input-wrapper__input_error {
+  border: 1px solid var(--color-thirdly);
+  color: var(--color-thirdly);
+}
+
+.input-wrapper__error {
+  position: absolute;
+  margin-top: 0.2rem;
+  font-size: var(--font-size-m);
+  color: var(--color-thirdly);
+}
