@@ -14,7 +14,7 @@ storiesOf('Basic', module).add('Input', () => {
       padding: 40,
     }}
     >
-      <Input value={value} error={error} label={label} />
+      <Input name="input" value={value} error={error} label={label} />
     </div>
   );
 });

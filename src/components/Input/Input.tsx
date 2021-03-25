@@ -12,23 +12,28 @@ export const Input: Props = ({
   classNameInput,
   label,
   error,
+  name,
   ...props
 }) => (
   <div className={cn('input-wrapper', classNameWrapper)}>
-    {label && (
+    <label htmlFor={name}>
+      {label && (
       <span className="input-wrapper__label">{label}</span>
-    )}
-    <input
-      className={cn(
-        'input-wrapper__input',
-        { 'input-wrapper__input_error': error },
-        classNameInput,
       )}
+      <input
+        id={name}
+        name={name}
+        className={cn(
+          'input-wrapper__input',
+          { 'input-wrapper__input_error': error },
+          classNameInput,
+        )}
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    />
-    {error && (
+        {...props}
+      />
+      {error && (
       <span className="input-wrapper__error">{error}</span>
-    )}
+      )}
+    </label>
   </div>
 );
