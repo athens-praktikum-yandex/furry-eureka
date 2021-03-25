@@ -1,4 +1,4 @@
-import {Cell} from '@libs/map-generation';
+import { Cell } from '@libs/map-generation';
 import { Resources } from '@libs/resources/Resources';
 
 export class Sprite {

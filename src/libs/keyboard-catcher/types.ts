@@ -1,5 +1,5 @@
-import {Cell} from '@libs/map-generation';
-import {PersonActions} from '@components/Person';
+import { Cell } from '@libs/map-generation';
+import { PersonActions } from '@components/Person';
 
 export type PositionSetter = ((value: (((prevState: Cell) =>
 Cell) | Cell)) => void);

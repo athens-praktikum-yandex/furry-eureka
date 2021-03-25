@@ -1,4 +1,4 @@
-import {ResourceCache} from './types';
+import { ResourceCache } from './types';
 
 export class Resources {
   private readyCallbacks: any[] = [];

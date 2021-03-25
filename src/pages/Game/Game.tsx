@@ -1,19 +1,22 @@
-import { PersonActions, Person } from '@components/Person';
+import { Person, PersonActions, PersonType } from '@components/Person';
 import React, { useEffect, useRef, useState } from 'react';
-import {generateMap, Cell} from '@libs/map-generation';
-import {KeyboardCatcher} from '@libs/keyboard-catcher';
+import { Cell, generateMap } from '@libs/map-generation';
+import { KeyboardCatcher } from '@libs/keyboard-catcher';
 
 const CELL_SIZE = 50;
-const map = generateMap(11, 11).map((item) => ({x: item.x * CELL_SIZE, y: item.y * CELL_SIZE}));
-console.log(map);
+const map = generateMap(11, 11).map((item) => ({ x: item.x * CELL_SIZE, y: item.y * CELL_SIZE }));
 const startCellIndex = Math.floor(Math.random() * map.length);
-const keyboardCatcher = new KeyboardCatcher({dx: CELL_SIZE, dy: CELL_SIZE, map});
+
+const keyboardCatcher = new KeyboardCatcher({ dx: CELL_SIZE, dy: CELL_SIZE, map });
 keyboardCatcher.init();
+
+const hero = new Person(PersonType.HERO);
+const enemyArcher = new Person(PersonType.ENEMY_ARCHER);
 
 export const Game = () => {
   const [time, setTime] = useState(0);
   const [position, setPosition] = useState(map[startCellIndex]);
-  const [personAction, setPersonAction] = useState(PersonActions.WALK);
+  const [action, setAction] = useState(PersonActions.IDLE);
   const prevPositionRef = useRef<Cell>();
   useEffect(() => {
     prevPositionRef.current = position;
@@ -37,27 +40,18 @@ export const Game = () => {
     return () => cancelAnimationFrame(requestRef.current as number);
   }, []);
 
-  keyboardCatcher.setData(position, setPosition, setPersonAction);
+  keyboardCatcher.setData(position, setPosition, setAction);
+  hero.updateCanvas({
+    ctx, action, position, prevPosition, time,
+  });
+  enemyArcher.updateCanvas({
+    ctx, action: PersonActions.IDLE, position: map[map.length - startCellIndex], time,
+  });
 
   return (
     <div>
       <h1>Игра</h1>
       <canvas ref={refContainer} width={600} height={600} />
-      <Person
-        ctx={ctx}
-        personType={0}
-        action={personAction}
-        prevPosition={prevPosition}
-        position={position}
-        time={time}
-      />
-      <Person
-        ctx={ctx}
-        personType={1}
-        action={PersonActions.IDLE}
-        position={map[map.length - startCellIndex]}
-        time={time}
-      />
     </div>
   );
 };

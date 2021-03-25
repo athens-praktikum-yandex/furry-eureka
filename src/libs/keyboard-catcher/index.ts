@@ -1,1 +1,1 @@
-export {KeyboardCatcher} from './KeyboardCatcher';
+export { KeyboardCatcher } from './KeyboardCatcher';

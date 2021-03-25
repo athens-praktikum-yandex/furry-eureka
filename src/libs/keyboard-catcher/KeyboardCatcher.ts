@@ -1,6 +1,6 @@
-import {Cell} from '@libs/map-generation';
-import {PersonActions} from '@components/Person';
-import {PositionSetter, ActionSetter, InputParameters} from './types';
+import { Cell } from '@libs/map-generation';
+import { PersonActions } from '@components/Person';
+import { PositionSetter, ActionSetter, InputParameters } from './types';
 
 export class KeyboardCatcher {
   private readonly dx: number = 0;
@@ -9,7 +9,7 @@ export class KeyboardCatcher {
 
   private readonly map: Cell[] = [];
 
-  private position: Cell = {x: 0, y: 0};
+  private position: Cell = { x: 0, y: 0 };
 
   private setPosition: PositionSetter | undefined;
 
@@ -34,26 +34,26 @@ export class KeyboardCatcher {
   }
 
   handleInput(event: KeyboardEvent) {
-    const {code} = event;
-    const {x, y} = this.position;
+    const { code } = event;
+    const { x, y } = this.position;
 
     if (this.setPosition && this.setPersonAction) {
       let position = null;
       switch (code) {
         case 'ArrowLeft':
-          position = {x: x - this.dx, y};
+          position = { x: x - this.dx, y };
           break;
         case 'ArrowRight':
-          position = {x: x + this.dx, y};
+          position = { x: x + this.dx, y };
           break;
         case 'ArrowUp':
-          position = {x, y: y - this.dy};
+          position = { x, y: y - this.dy };
           break;
         case 'ArrowDown':
-          position = {x, y: y + this.dy};
+          position = { x, y: y + this.dy };
           break;
         default: {
-          position = {x, y};
+          position = { x, y };
         }
       }
       if (this.isStepAvailable(position)) {
