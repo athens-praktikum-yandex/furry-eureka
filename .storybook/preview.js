@@ -4,6 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { jsxDecorator } from 'storybook-addon-jsx';
 
 import '../src/assets/styles/main.css';
+import '../www/assets/fontello/css/fontello.css';
 
 addDecorator((storyFn) => (
   <div style={{
