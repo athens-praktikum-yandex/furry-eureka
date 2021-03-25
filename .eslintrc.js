@@ -14,7 +14,5 @@ module.exports = {
     '@typescript-eslint/ban-types': 1,
     'class-methods-use-this': 0,
     'no-underscore-dangle': 0,
-    '@typescript-eslint/space-infix-ops': 0,
-    '@typescript-eslint/object-curly-spacing': 0
   }
 };
