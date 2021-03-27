@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs';
 import { Input } from './Input';
 
-storiesOf('Basic', module).add('Input', () => {
+storiesOf('UI', module).add('Input', () => {
   const value = text('value', '');
   const error = text('error', '');
   const label = text('label', '');

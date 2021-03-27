@@ -1,10 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, select, boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { Button } from './Button';
 import { ButtonTheme } from './types';
 
-storiesOf('Basic', module).add('Button', () => {
+storiesOf('UI', module).add('Button', () => {
   const theme = select('theme', {
     circle: ButtonTheme.circle,
     square: ButtonTheme.square,
@@ -15,5 +16,7 @@ storiesOf('Basic', module).add('Button', () => {
 
   const content = text('content', 'pencil');
 
-  return <Button theme={theme} content={content} isIcon={isIcon} />;
+  const onClick = action('clicked');
+
+  return <Button onClick={onClick} theme={theme} isIcon={isIcon}>{content}</Button>;
 });
