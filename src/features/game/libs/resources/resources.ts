@@ -1,6 +1,4 @@
-type ResourceCache = {
-  [k: string]: CanvasImageSource;
-};
+type ResourceCache = Record<string ,CanvasImageSource>;
 
 export class Resources {
   private readyCallbacks: any[] = [];
