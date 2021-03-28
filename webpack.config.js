@@ -7,6 +7,7 @@ module.exports = {
   resolve: {
     alias: {
       '@components': path.resolve(__dirname, 'src/components/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
       '@features': path.resolve(__dirname, 'src/features/'),
       '@libs': path.resolve(__dirname, 'src/libs/'),
       '@pages': path.resolve(__dirname, 'src/pages/'),
@@ -15,6 +16,7 @@ module.exports = {
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true,
