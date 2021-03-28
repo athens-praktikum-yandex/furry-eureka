@@ -5,6 +5,7 @@ import HeroIdleImg from './img/hero_idle.png';
 import HeroWalkImg from './img/hero_walk.png';
 import EnemyArcherIdleImg from './img/enemy_archer_idle.png';
 import { Cell } from '../map-generation';
+import { HERO, ENEMY_ARCHER } from './constants';
 
 export class Person {
   constructor(
@@ -15,23 +16,7 @@ export class Person {
     private readonly canvas: HTMLCanvasElement,
   ) {
     this.resources.load([HeroIdleImg, HeroWalkImg, EnemyArcherIdleImg]);
-    switch (this.personType) {
-      case 'hero':
-        this.personSprites.idle = new Sprite(HeroIdleImg, [63, 41], [170, 96], [35, 35], 16,
-          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-        this.personSprites.walk = new Sprite(HeroWalkImg, [66, 41], [170, 96], [35, 35], 8,
-          [0, 1, 2, 3, 4, 5, 6, 7]);
-        break;
-      case 'enemy_archer':
-        this.personSprites.idle = new Sprite(EnemyArcherIdleImg, [53, 36], [128, 128], [25, 40], 8,
-          [0, 1, 2, 3, 4, 5, 6, 7]);
-        break;
-      default:
-        this.personSprites = {
-          idle: null,
-          walk: null,
-        };
-    }
+    this.personSprites = this.personFactory(this.personType);
   }
 
   private readonly personSprites: PersonSprites = {
@@ -45,6 +30,25 @@ export class Person {
       x: position.x * cellSideSize + cellSideSize / 2,
       y: position.y * cellSideSize + cellSideSize / 2,
     };
+  }
+
+  personFactory(personType: PersonType) {
+    const mapping = {
+      hero: {
+        idle: new Sprite(HeroIdleImg, HERO.IDLE.picturePos, HERO.IDLE.frameSize,
+          HERO.IDLE.pictureSize, HERO.IDLE.speed, HERO.IDLE.frames),
+        walk: new Sprite(HeroWalkImg, HERO.WALK.picturePos, HERO.WALK.frameSize,
+          HERO.WALK.pictureSize, HERO.WALK.speed, HERO.WALK.frames),
+      },
+      enemy_archer: {
+        idle: new Sprite(EnemyArcherIdleImg, ENEMY_ARCHER.IDLE.picturePos,
+          ENEMY_ARCHER.IDLE.frameSize, ENEMY_ARCHER.IDLE.pictureSize, ENEMY_ARCHER.IDLE.speed,
+          ENEMY_ARCHER.IDLE.frames),
+        walk: null,
+      },
+    };
+
+    return mapping[personType];
   }
 
   updateCanvas(time: number) {
