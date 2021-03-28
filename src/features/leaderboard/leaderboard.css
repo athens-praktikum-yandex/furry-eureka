@@ -19,7 +19,7 @@
 
 .leaderboard__content {
   overflow: auto;
-  height: 88%;
+  height: calc(100% - 108px);
 }
 
 .leaderboard__header {
