@@ -1,3 +1,3 @@
 export * from './initialValues';
 export * from './validationSchema';
-export * from './fieldLabels';
+export * from './fields';
