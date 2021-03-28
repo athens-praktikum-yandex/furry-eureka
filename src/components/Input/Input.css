@@ -27,7 +27,8 @@
 
 .input-wrapper__error {
   position: absolute;
-  margin-top: 0.2rem;
-  font-size: var(--font-size-m);
+  right: 0;
+  margin-top: 0.1rem;
+  font-size: var(--font-size-s);
   color: var(--color-thirdly);
 }

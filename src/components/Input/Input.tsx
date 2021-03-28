@@ -1,13 +1,9 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, { FC } from 'react';
 import cn from 'classnames';
-import { OwnProps } from './types';
+import { ExtendedOwnProps } from './types';
 import './Input.css';
 
-type ExtendedOwnProps = OwnProps & InputHTMLAttributes<HTMLInputElement>;
-
-type Props = FC<ExtendedOwnProps>;
-
-export const Input: Props = ({
+export const Input: FC<ExtendedOwnProps> = ({
   classNameWrapper,
   classNameInput,
   label,
@@ -28,7 +24,6 @@ export const Input: Props = ({
           { 'input-wrapper__input_error': error },
           classNameInput,
         )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
       {error && (
