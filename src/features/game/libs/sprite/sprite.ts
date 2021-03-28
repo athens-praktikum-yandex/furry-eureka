@@ -1,22 +1,22 @@
-import { Cell } from '@libs/map-generation';
-import { Resources } from '@libs/resources/Resources';
+import { Resources } from '../resources';
+import { Cell } from '../map-generation';
 
 export class Sprite {
-  private url: string = '';
+  private readonly url: string = '';
 
-  private pos: number[] = [];
+  private readonly picturePos: number[] = [];
 
-  private frameSize: number[] = [];
+  private readonly frameSize: number[] = [];
 
-  private pictureSize: number[] = [];
+  private readonly pictureSize: number[] = [];
 
-  private speed?: number;
+  private readonly speed?: number;
 
-  private frames?: number[];
+  private readonly frames?: number[];
 
-  private dir?: string;
+  private readonly dir?: string;
 
-  private once?: boolean;
+  private readonly once?: boolean;
 
   private index: number = 0;
 
@@ -24,7 +24,7 @@ export class Sprite {
 
   constructor(
     url: string,
-    pos: number[],
+    picturePos: number[],
     frameSize: number[],
     pictureSize: number[],
     speed?: number,
@@ -33,7 +33,7 @@ export class Sprite {
     once?: boolean,
   ) {
     this.url = url;
-    this.pos = pos;
+    this.picturePos = picturePos;
     this.frameSize = frameSize;
     this.pictureSize = pictureSize;
     this.speed = speed;
@@ -50,8 +50,7 @@ export class Sprite {
     }
   }
 
-  render(ctx: CanvasRenderingContext2D | null, resources: Resources,
-    position: Cell, prevPosition: Cell | undefined) {
+  render(ctx: CanvasRenderingContext2D | null, resources: Resources, position: Cell) {
     if (ctx) {
       let frame;
       if (this.speed && this.speed > 0) {
@@ -67,18 +66,13 @@ export class Sprite {
         frame = 0;
       }
 
-      let x = this.pos[0];
-      let y = this.pos[1];
+      let x = this.picturePos[0];
+      let y = this.picturePos[1];
 
       if (this.dir === 'vertical') {
         y += frame * this.frameSize[1];
       } else {
         x += frame * this.frameSize[0];
-      }
-      if (prevPosition) {
-        ctx.clearRect(prevPosition.x, prevPosition.y, this.pictureSize[0], this.pictureSize[1]);
-      } else {
-        ctx.clearRect(position.x, position.y, this.pictureSize[0], this.pictureSize[1]);
       }
       ctx.drawImage(
         resources.get(this.url),

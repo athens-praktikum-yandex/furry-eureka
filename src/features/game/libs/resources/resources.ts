@@ -1,4 +1,4 @@
-import { ResourceCache } from './types';
+type ResourceCache = Record<string, CanvasImageSource>;
 
 export class Resources {
   private readyCallbacks: any[] = [];
@@ -66,7 +66,7 @@ export class Resources {
     return ready;
   }
 
-  onReady(func: object) {
+  onReady(func: void) {
     this.readyCallbacks.push(func);
   }
 }
