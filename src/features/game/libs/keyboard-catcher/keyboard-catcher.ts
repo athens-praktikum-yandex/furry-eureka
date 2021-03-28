@@ -1,21 +1,18 @@
 import { Cell } from '../map-generation';
-import { PersonActions } from '../person';
-import { PositionSetter, ActionSetter, PositionOffset } from './types';
+import { Person } from '../person';
+import { PositionOffset } from './types';
 
 export class KeyboardCatcher {
-  private readonly stepSize: number = 0;
-
-  private readonly cellCoordinates: Cell[] = [];
-
-  private position: Cell = { x: 0, y: 0 };
-
-  private setPosition: PositionSetter | undefined;
-
-  private setPersonAction: ActionSetter | undefined;
-
-  constructor(stepSize: number, cellCoordinates: Cell[]) {
+  constructor(
+    private readonly stepSize: number,
+    private readonly cellCoordinates: Cell[],
+    private readonly mainHero: Person,
+  ) {
     this.stepSize = stepSize;
-    this.cellCoordinates = cellCoordinates;
+    this.cellCoordinates = cellCoordinates.map((item) => ({
+      x: item.x * stepSize, y: item.y * stepSize,
+    }));
+    this.mainHero = mainHero;
   }
 
   init() {
@@ -24,32 +21,25 @@ export class KeyboardCatcher {
     });
   }
 
-  setData(position: Cell, setPosition: PositionSetter, setPersonAction: ActionSetter) {
-    this.position = position;
-    this.setPosition = setPosition;
-    this.setPersonAction = setPersonAction;
-  }
-
   handleInput(event: KeyboardEvent) {
     const { code } = event;
-    const { x, y } = this.position;
+    const { x, y } = this.mainHero.getPosition();
     const positionOffset: PositionOffset = {
       ArrowLeft: { x: x - this.stepSize, y },
       ArrowRight: { x: x + this.stepSize, y },
       ArrowUp: { x, y: y - this.stepSize },
       ArrowDown: { x, y: y + this.stepSize },
     };
-
-    if (this.setPosition && this.setPersonAction) {
-      const position = positionOffset[code];
-      if (this.isStepAvailable(position)) {
-        this.setPosition(position);
-        this.setPersonAction(PersonActions.WALK);
-      }
+    const position = positionOffset[code];
+    if (this.isStepAvailable(position)) {
+      this.mainHero.setPosition(position);
+      // this.setPersonAction(PersonActions.WALK);
     }
   }
 
   isStepAvailable(position: Cell) {
-    return this.cellCoordinates.some((cell) => cell.x === position.x && cell.y === position.y);
+    return (position)
+      ? this.cellCoordinates.some((cell) => cell.x === position.x && cell.y === position.y)
+      : false;
   }
 }

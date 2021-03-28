@@ -11,7 +11,7 @@ export class Person {
   constructor(
     private readonly personType: PersonType,
     private readonly action: PersonActions,
-    private readonly position: Cell,
+    private position: Cell,
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
   ) {
@@ -42,6 +42,14 @@ export class Person {
     };
 
     return mapping[personType];
+  }
+
+  setPosition(position: Cell) {
+    this.position = position;
+  }
+
+  getPosition() {
+    return this.position;
   }
 
   updateCanvas(time: number) {
