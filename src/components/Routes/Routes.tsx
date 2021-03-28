@@ -4,7 +4,7 @@ import { Game } from '@pages/Game';
 import { Forum } from '@pages/Forum';
 import { SignIn } from '@pages/SignIn';
 import { UserPage } from '@pages/UserPage';
-import { SignUpPage } from '@pages/SignUpPage';
+import { SignUpPage } from '@pages/SignUp';
 import { routes } from './constants';
 
 export const Routes = () => (
