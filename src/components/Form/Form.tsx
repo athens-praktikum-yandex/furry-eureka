@@ -23,9 +23,8 @@ export const Form: FC<ExtendedOwnProps> = ({
       <Button
         type="submit"
         className="form__submit"
-      >
-        {submitText}
-      </Button>
+        value={submitText}
+      />
       {link && (
         <Link to={link.to}>{link.value}</Link>
       )}

@@ -18,5 +18,5 @@ storiesOf('UI', module).add('Button', () => {
 
   const onClick = action('clicked');
 
-  return <Button onClick={onClick} theme={theme} isIcon={isIcon}>{content}</Button>;
+  return <Button onClick={onClick} theme={theme} isIcon={isIcon} value={content} />;
 });

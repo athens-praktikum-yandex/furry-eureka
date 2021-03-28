@@ -8,6 +8,7 @@ export enum ButtonTheme {
 
 type OwnProps = {
   theme?: ButtonTheme,
+  value: string,
   isIcon?: boolean,
 };
 
