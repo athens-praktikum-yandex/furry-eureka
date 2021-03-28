@@ -24,3 +24,12 @@ export const ENEMY_ARCHER = {
     frames: [0, 1, 2, 3, 4, 5, 6, 7],
   },
 };
+
+export const PICTURE = {
+  hero: {
+    size: HERO.IDLE.pictureSize,
+  },
+  enemy_archer: {
+    size: ENEMY_ARCHER.IDLE.pictureSize,
+  },
+};
