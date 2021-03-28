@@ -7,7 +7,7 @@ type Props = FC<ExtendedOwnProps>;
 
 export const Button: Props = ({
   className,
-  children,
+  value,
   theme = ButtonTheme.square,
   isIcon = false,
   ...props
@@ -22,9 +22,9 @@ export const Button: Props = ({
     {...props}
   >
     {isIcon ? (
-      <i className={`icon-${children}`} />
+      <i className={`icon-${value}`} />
     ) : (
-      <span className="button__inner">{children}</span>
+      <span className="button__inner">{value}</span>
     )}
   </button>
 );
