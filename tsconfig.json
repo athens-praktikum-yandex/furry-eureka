@@ -24,7 +24,9 @@
     "typeRoots": ["types/**/*.d.ts", "node_modules/@types"],
     "baseUrl": "./src",
     "paths": {
+      "@constants/*": ["constants/*"],
       "@components/*": ["components/*"],
+      "@features/*": ["features/*"],
       "@libs/*": ["libs/*"],
       "@pages/*": ["pages/*"],
       "@assets/*": ["assets/*"]
