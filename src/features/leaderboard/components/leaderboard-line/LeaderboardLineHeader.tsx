@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { LeaderboardLineHeaderOwnProps } from './type';
+import { LeaderboardLineHeaderOwnProps } from './types';
 import cn from 'classnames';
 
 type Props = FC<LeaderboardLineHeaderOwnProps>;

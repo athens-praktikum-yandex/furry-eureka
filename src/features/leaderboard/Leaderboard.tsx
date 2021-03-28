@@ -1,8 +1,8 @@
 import React from 'react';
 import { headers, leaderboardScores } from './constants';
-import { LeaderboardLine } from './components/leaderboard-line/LeaderboardLine';
+import { LeaderboardLine } from './components/leaderboard-line';
+import { LeaderboardLineHeader } from './components/leaderboard-line';
 import './leaderboard.css';
-import { LeaderboardLineHeader } from './components/leaderboard-line/LeaderboardLineHeader';
 
 export const Leaderboard = () => (
   <div className='leaderboard'>
@@ -30,4 +30,3 @@ export const Leaderboard = () => (
 
   </div>
 );
-

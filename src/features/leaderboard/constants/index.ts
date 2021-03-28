@@ -1,2 +1,3 @@
-export { leaderboardScores } from './fake-values';
-export { headers } from './headers';
+export * from './fake-values';
+export * from './headers';
+

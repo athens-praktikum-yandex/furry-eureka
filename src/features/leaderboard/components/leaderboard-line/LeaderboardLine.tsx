@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { LeaderboardLineOwnProps } from './type';
+import { LeaderboardLineOwnProps } from './types';
 import './leaderboard-line.css';
 import cn from 'classnames';
 
 type Props = FC<LeaderboardLineOwnProps>;
 
-export const LeaderboardLine: Props = ({username, time, index}) => {
-  return <div className='leaderboard-line'>
+export const LeaderboardLine: Props = ({username, time, index}) => (
+  <div className='leaderboard-line'>
     <div
       className={cn('leaderboard-line__data',
         'leaderboard-line__data_type_index'
@@ -29,4 +29,4 @@ export const LeaderboardLine: Props = ({username, time, index}) => {
       {time}
     </div>
   </div>
-};
+);
