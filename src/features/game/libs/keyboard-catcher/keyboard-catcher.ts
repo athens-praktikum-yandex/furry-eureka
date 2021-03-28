@@ -5,13 +5,11 @@ import { PositionOffset } from './types';
 export class KeyboardCatcher {
   constructor(
     private readonly stepSize: number,
-    private readonly cellCoordinates: Cell[],
+    private readonly scaledCells: Cell[],
     private readonly mainHero: Person,
   ) {
     this.stepSize = stepSize;
-    this.cellCoordinates = cellCoordinates.map((item) => ({
-      x: item.x * stepSize, y: item.y * stepSize,
-    }));
+    this.scaledCells = scaledCells;
     this.mainHero = mainHero;
   }
 
@@ -39,7 +37,7 @@ export class KeyboardCatcher {
 
   isStepAvailable(position: Cell) {
     return (position)
-      ? this.cellCoordinates.some((cell) => cell.x === position.x && cell.y === position.y)
+      ? this.scaledCells.some((cell) => cell.x === position.x && cell.y === position.y)
       : false;
   }
 }

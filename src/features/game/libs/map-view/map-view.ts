@@ -15,6 +15,12 @@ export class MapView {
     this.cellCoordinates.forEach(this.renderCell);
   }
 
+  get scaledCells() {
+    return this.cellCoordinates.map((cell) => ({
+      x: cell.x * this.cellSideSize, y: cell.y * this.cellSideSize,
+    }));
+  }
+
   private renderCell = (cell: Cell) => {
     const xStartPosition = cell.x * this.cellSideSize;
     const yStartPosition = cell.y * this.cellSideSize;
