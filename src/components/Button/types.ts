@@ -1,10 +1,14 @@
+import { ButtonHTMLAttributes } from 'react';
+
 export enum ButtonTheme {
   circle = 'circle',
   square = 'square',
   transparent = 'transparent',
 }
 
-export type OwnProps = {
+type OwnProps = {
   theme?: ButtonTheme,
   isIcon?: boolean,
 };
+
+export type ExtendedOwnProps = OwnProps & ButtonHTMLAttributes<HTMLButtonElement>;
