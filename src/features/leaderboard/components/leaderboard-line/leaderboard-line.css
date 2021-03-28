@@ -4,9 +4,8 @@
   height: 48px;
   display: flex;
   padding: 12px 8px;
-  margin-bottom: 4px;
-  border: 1px solid var(--color-thirdly);
-  border-radius: 4px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid var(--color-thirdly);
   font-size: 18px;
 }
 

@@ -14,15 +14,20 @@ export const Leaderboard = () => (
     <LeaderboardLineHeader
       {...headers}
     />
-    {
-      leaderboardScores.map((score, index) => (
-        <LeaderboardLine
-          key={score.username}
-          index={index}
-          {...score}
-        />
-      ))
-    }
+    <div
+      className='leaderboard__content'
+    >
+      {
+        leaderboardScores.map((score, index) => (
+          <LeaderboardLine
+            key={score.username}
+            index={index}
+            {...score}
+          />
+        ))
+      }
+    </div>
+
   </div>
 );
 

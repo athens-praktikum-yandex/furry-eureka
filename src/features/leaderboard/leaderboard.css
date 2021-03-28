@@ -17,6 +17,11 @@
   }
 }
 
+.leaderboard__content {
+  overflow: auto;
+  height: 88%;
+}
+
 .leaderboard__header {
   font-size: 24px;
   text-align: center;
