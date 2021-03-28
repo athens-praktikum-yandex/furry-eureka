@@ -1,0 +1,6 @@
+.leaderboard {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    padding: 10px 20%;
+}
