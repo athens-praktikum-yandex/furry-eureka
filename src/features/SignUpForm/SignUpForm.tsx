@@ -29,7 +29,7 @@ export const SignUpForm: Props = ({ className }) => (
       >
         <div className="sign-up-form__content">
           {Object.entries(fieldLabels).map(([name, label]) => (
-            <FormikField name={name} label={label} />
+            <FormikField key={name} name={name} label={label} />
           ))}
         </div>
       </Form>

@@ -6,7 +6,7 @@ import { OwnProps } from './types';
 type Props = FC<OwnProps>;
 
 export const FormikField: Props = ({ name, label }) => (
-  <Field key={name} name={name}>
+  <Field name={name}>
     {({ field, meta, form }: FieldProps) => (
       <Input
         {...field}
