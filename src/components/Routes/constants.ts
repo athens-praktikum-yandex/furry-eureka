@@ -3,5 +3,5 @@ export const routes = {
   game: '/',
   signIn: '/sign-in',
   signUp: '/sign-up',
-  userPage: '/settings',
+  userProfile: '/user-profile',
 };
