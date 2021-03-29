@@ -29,3 +29,7 @@
   text-align: center;
   font-weight: bold;
 }
+
+.form__content {
+  margin-bottom: 1.5rem;
+}
