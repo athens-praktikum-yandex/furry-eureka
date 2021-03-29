@@ -1,0 +1,11 @@
+import { InitialValues } from '../types';
+
+export const initialValues: InitialValues = {
+  email: '',
+  login: '',
+  first_name: '',
+  second_name: '',
+  phone: '',
+  password: '',
+  passwordAgain: '',
+};

@@ -24,14 +24,17 @@
     "typeRoots": ["types/**/*.d.ts", "node_modules/@types"],
     "baseUrl": "./src",
     "paths": {
+      "@constants/*": ["constants/*"],
       "@components/*": ["components/*"],
+      "@features/*": ["features/*"],
       "@libs/*": ["libs/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@assets/*": ["assets/*"]
     },
   },
   "include": [
-    "src",
-    "types",
+    "**/*.ts", 
+    "**/*.tsx",
     "./node_modules/@types"
   ],
   "exclude": [

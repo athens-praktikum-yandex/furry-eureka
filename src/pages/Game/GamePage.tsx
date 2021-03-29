@@ -1,8 +1,6 @@
 import React from 'react';
 import { Game } from '../../features/game';
 
-export const GamePage = () => {
-  return (
-    <Game/>
-  );
-};
+export const GamePage = () => (
+  <Game />
+);
