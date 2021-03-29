@@ -6,3 +6,8 @@ type OwnProps = {
 };
 
 export type ExtendedOwnProps = OwnProps & InputHTMLAttributes<HTMLInputElement>;
+
+export type FieldItem = {
+  label: string,
+  type?: string,
+};

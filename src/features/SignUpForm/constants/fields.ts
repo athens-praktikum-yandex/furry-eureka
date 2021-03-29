@@ -1,9 +1,5 @@
+import { FieldItem } from '@components/FormikField';
 import { InitialValues } from '../types';
-
-type FieldItem = {
-  label: string,
-  type?: string,
-};
 
 export const fields: Record<keyof InitialValues, FieldItem> = {
   email: {
