@@ -80,8 +80,8 @@ export class Sprite {
         y,
         this.pictureSize[0],
         this.pictureSize[1],
-        position.x,
-        position.y,
+        position.x - Math.floor(this.pictureSize[0] / 2),
+        position.y - Math.floor(this.pictureSize[1] / 2),
         this.pictureSize[0],
         this.pictureSize[1],
       );

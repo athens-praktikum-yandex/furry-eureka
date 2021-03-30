@@ -31,13 +31,13 @@ export class KeyboardCatcher {
     const position = positionOffset[code];
     if (this.isStepAvailable(position)) {
       this.mainHero.setPosition(position);
-      // this.setPersonAction(PersonActions.WALK);
     }
   }
 
   isStepAvailable(position: Cell) {
     return (position)
-      ? this.scaledCells.some((cell) => cell.x === position.x && cell.y === position.y)
+      ? this.scaledCells.some((cell) => cell.x === position.x - this.stepSize / 2
+        && cell.y === position.y - this.stepSize / 2)
       : false;
   }
 }
