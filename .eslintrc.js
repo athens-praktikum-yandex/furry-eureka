@@ -17,6 +17,7 @@ module.exports = {
     '@typescript-eslint/ban-types': 1,
 
     'import/prefer-default-export': 0,
+    'import/no-cycle': 0,
     'class-methods-use-this': 0,
     'no-underscore-dangle': 0,
     'react/prop-types': 0,

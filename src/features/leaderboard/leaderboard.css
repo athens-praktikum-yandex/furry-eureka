@@ -5,15 +5,15 @@
   padding: 10px 20%;
 }
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
   .leaderboard {
     padding: 10px 10%;
   }
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .leaderboard {
-      padding: 10px 0;
+    padding: 10px 0;
   }
 }
 

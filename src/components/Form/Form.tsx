@@ -18,14 +18,15 @@ export const Form: FC<ExtendedOwnProps> = ({
     {...props}
   >
     <h2 className="form__header">{title}</h2>
-    {children}
+    <div className="form__content">
+      {children}
+    </div>
     <div className="form__footer">
       <Button
         type="submit"
         className="form__submit"
-      >
-        {submitText}
-      </Button>
+        value={submitText}
+      />
       {link && (
         <Link to={link.to}>{link.value}</Link>
       )}

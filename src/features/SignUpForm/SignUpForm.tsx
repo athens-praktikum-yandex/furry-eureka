@@ -1,38 +1,42 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, FormikProps } from 'formik';
 import { Form } from '@components/Form';
 import { FormikField } from '@components/FormikField';
 import { InitialValues, OwnProps } from './types';
-import { fieldLabels, initialValues } from './constants';
-import { onSubmit } from './utils';
+import { fields, initialValues } from './constants';
 import { validationSchema } from './constants/validationSchema';
-import './SignUpForm.css';
+import { signUp } from './store/actions';
 
 type Props = FC<OwnProps>;
 
-export const SignUpForm: Props = ({ className }) => (
-  <Formik
-    initialValues={initialValues}
-    validationSchema={validationSchema}
-    onSubmit={onSubmit}
-  >
-    {(props: FormikProps<InitialValues>) => (
-      <Form
-        className={className}
-        title="Регистрация"
-        submitText="Зарегистрироваться"
-        link={{
-          to: '/sign-in',
-          value: 'Войти',
-        }}
-        onSubmit={props.handleSubmit}
-      >
-        <div className="sign-up-form__content">
-          {Object.entries(fieldLabels).map(([name, label]) => (
-            <FormikField key={name} name={name} label={label} />
+export const SignUpForm: Props = ({ className }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        dispatch(signUp(values));
+      }}
+    >
+      {(props: FormikProps<InitialValues>) => (
+        <Form
+          className={className}
+          title="Регистрация"
+          submitText="Зарегистрироваться"
+          link={{
+            to: '/sign-in',
+            value: 'Войти',
+          }}
+          onSubmit={props.handleSubmit}
+        >
+          {Object.entries(fields).map(([name, { label, type }]) => (
+            <FormikField key={name} name={name} label={label} type={type} />
           ))}
-        </div>
-      </Form>
-    )}
-  </Formik>
-);
+        </Form>
+      )}
+    </Formik>
+  );
+};

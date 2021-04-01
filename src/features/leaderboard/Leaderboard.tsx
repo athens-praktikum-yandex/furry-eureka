@@ -1,13 +1,13 @@
 import React from 'react';
 import { headers, leaderboardScores } from './constants';
-import { LeaderboardLine } from './components/leaderboard-line';
-import { LeaderboardLineHeader } from './components/leaderboard-line';
+import { LeaderboardLine, LeaderboardLineHeader } from './components/leaderboard-line';
+
 import './leaderboard.css';
 
 export const Leaderboard = () => (
-  <div className='leaderboard'>
+  <div className="leaderboard">
     <h1
-      className='leaderboard__header'
+      className="leaderboard__header"
     >
       Leaderboard
     </h1>
@@ -15,7 +15,7 @@ export const Leaderboard = () => (
       {...headers}
     />
     <div
-      className='leaderboard__content'
+      className="leaderboard__content"
     >
       {
         leaderboardScores.map((score, index) => (
