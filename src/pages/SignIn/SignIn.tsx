@@ -2,6 +2,6 @@ import React from 'react';
 
 export const SignIn = () => (
   <div>
-    <h1>Авторизация</h1>
+    <h1>Вход</h1>
   </div>
 );

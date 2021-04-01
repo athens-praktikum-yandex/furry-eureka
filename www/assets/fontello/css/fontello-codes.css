@@ -1,0 +1,8 @@
+
+.icon-gear:before { content: '\e800'; } /* '' */
+.icon-pencil:before { content: '\e801'; } /* '' */
+.icon-send:before { content: '\e802'; } /* '' */
+.icon-trash:before { content: '\e803'; } /* '' */
+.icon-rest:before { content: '\e804'; } /* '' */
+.icon-clip:before { content: '\e805'; } /* '' */
+.icon-delivered:before { content: '\e806'; } /* '' */

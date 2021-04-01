@@ -1,61 +1,61 @@
 :root {
-    --color-primary: #242222;
-    --color-secondary: #414040;
-    --color-thirdly: #fb6161;
-    --color-gray: #767676;
-    --color-white: #f0f0f0;
-    --font-size-s: 0.75em;
-    --font-size-m: 0.9em;
-    --font-size-l: 1em;
-    --font-size-xl: 1.2em;
-    --font-size-xxl: 1.6em;
-    --font-size-xxxl: 3.6em;
-    --z-index-1: 1010;
-    --z-index-2: 1009;
-    --z-index-3: 1008;
+  --color-primary: #242222;
+  --color-secondary: #414040;
+  --color-thirdly: #fb6161;
+  --color-gray: #767676;
+  --color-white: #f0f0f0;
+  --font-size-s: 0.75em;
+  --font-size-m: 0.9em;
+  --font-size-l: 1em;
+  --font-size-xl: 1.2em;
+  --font-size-xxl: 1.6em;
+  --font-size-xxxl: 3.6em;
+  --z-index-1: 1010;
+  --z-index-2: 1009;
+  --z-index-3: 1008;
 }
 
 body {
-    background: var(--color-primary);
-    color: var(--color-white);
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    overflow: hidden;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  overflow: hidden;
 }
 
 * {
-    box-sizing: border-box;
-    font-family: inherit;
-    font-weight: unset;
-    font-size: inherit;
-    margin: unset;
-    padding: unset;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: unset;
+  font-size: inherit;
+  margin: unset;
+  padding: unset;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 a:active,
 a:visited,
 a:link {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover {
-    color: var(--color-thirdly);
+  color: var(--color-thirdly);
 }
 
 button:focus,
 input:focus,
 textarea:focus,
 [contenteditable] {
-    outline: none;
+  outline: none;
 }
 
 [contenteditable][placeholder]:empty::before {
-    color: #808080;
-    content: attr(placeholder);
-    cursor: text;
+  color: #808080;
+  content: attr(placeholder);
+  cursor: text;
 }
