@@ -1,0 +1,29 @@
+.leaderboard {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px 20%;
+}
+
+@media (max-width: 1000px) {
+  .leaderboard {
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 600px) {
+  .leaderboard {
+    padding: 10px 0;
+  }
+}
+
+.leaderboard__content {
+  overflow: auto;
+  height: calc(100% - 108px);
+}
+
+.leaderboard__header {
+  font-size: 24px;
+  text-align: center;
+  margin: 20px;
+}

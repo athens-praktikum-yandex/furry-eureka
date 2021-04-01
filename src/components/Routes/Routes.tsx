@@ -5,6 +5,7 @@ import { Forum } from '@pages/Forum';
 import { SignInPage } from '@pages/SignIn';
 import { UserProfilePage } from '@pages/UserProfile';
 import { SignUpPage } from '@pages/SignUp';
+import { LeaderboardPage } from '@pages/leaderboard-page';
 import { routes } from './constants';
 
 export const Routes = () => (
@@ -14,5 +15,6 @@ export const Routes = () => (
     <Route path={routes.signIn} exact component={SignInPage} />
     <Route path={routes.signUp} exact component={SignUpPage} />
     <Route path={routes.userProfile} exact component={UserProfilePage} />
+    <Route path={routes.leaderBoard} exact component={LeaderboardPage} />
   </Switch>
 );
