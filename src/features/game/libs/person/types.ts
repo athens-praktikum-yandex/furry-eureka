@@ -1,8 +1,8 @@
 import { Sprite } from '../sprite';
 
 export enum PersonType {
-  HERO = 0,
-  ENEMY_1 = 1,
+  HERO = 'hero',
+  ENEMY_ARCHER = 'enemy_archer',
 }
 
 export enum PersonActions {

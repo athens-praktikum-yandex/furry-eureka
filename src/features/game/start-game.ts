@@ -4,12 +4,19 @@ import { Resources } from './libs/resources';
 import { GameEngine } from './libs/game-engine/game-engine';
 import { MapView } from './libs/map-view/map-view';
 import { generateMap } from './libs/map-generation';
+import { KeyboardCatcher } from './libs/keyboard-catcher';
+import { randomPosition } from './libs/person/utils';
 
 export const startGame = (canvas: HTMLCanvasElement) => {
   const cellCoordinates = generateMap(8, 14);
   const resources = new Resources();
-  const mainHero = new Person(PersonType.HERO, PersonActions.WALK, resources, canvas);
   const map = new MapView(cellCoordinates, canvas);
-  const gameEngine = new GameEngine([mainHero], map);
+  const mainHero = new Person(PersonType.HERO, PersonActions.IDLE,
+    randomPosition(map), resources, canvas);
+  const enemyArcher = new Person(PersonType.ENEMY_ARCHER, PersonActions.IDLE,
+    randomPosition(map), resources, canvas);
+  const keyboardCatcher = new KeyboardCatcher(map.cellSideSize, map.scaledCells, mainHero);
+  const gameEngine = new GameEngine([mainHero, enemyArcher], map);
+  keyboardCatcher.init();
   gameEngine.startGame();
 };

@@ -1,20 +1,22 @@
 import { Resources } from '../resources';
-
+import { Cell } from '../map-generation';
 
 export class Sprite {
-  private url: string = '';
+  private readonly url: string = '';
 
-  private pos: number[] = [];
+  private readonly picturePos: number[] = [];
 
-  private size: number[] = [];
+  private readonly frameSize: number[] = [];
 
-  private speed?: number;
+  private readonly pictureSize: number[] = [];
 
-  private frames?: number[];
+  private readonly speed?: number;
 
-  private dir?: string;
+  private readonly frames?: number[];
 
-  private once?: boolean;
+  private readonly dir?: string;
+
+  private readonly once?: boolean;
 
   private index: number = 0;
 
@@ -22,16 +24,18 @@ export class Sprite {
 
   constructor(
     url: string,
-    pos: number[],
-    size: number[],
+    picturePos: number[],
+    frameSize: number[],
+    pictureSize: number[],
     speed?: number,
     frames?: number[],
     dir?: string,
     once?: boolean,
   ) {
     this.url = url;
-    this.pos = pos;
-    this.size = size;
+    this.picturePos = picturePos;
+    this.frameSize = frameSize;
+    this.pictureSize = pictureSize;
     this.speed = speed;
     this.frames = frames;
     this.dir = dir || 'horizontal';
@@ -46,7 +50,7 @@ export class Sprite {
     }
   }
 
-  render(ctx: CanvasRenderingContext2D | null, resources: Resources) {
+  render(ctx: CanvasRenderingContext2D | null, resources: Resources, position: Cell) {
     if (ctx) {
       let frame;
       if (this.speed && this.speed > 0) {
@@ -62,25 +66,24 @@ export class Sprite {
         frame = 0;
       }
 
-      let x = this.pos[0];
-      let y = this.pos[1];
+      let x = this.picturePos[0];
+      let y = this.picturePos[1];
 
       if (this.dir === 'vertical') {
-        y += frame * this.size[1];
+        y += frame * this.frameSize[1];
       } else {
-        x += frame * this.size[0];
+        x += frame * this.frameSize[0];
       }
-      ctx.clearRect(0, 0, 300, 300);
       ctx.drawImage(
         resources.get(this.url),
         x,
         y,
-        this.size[0],
-        this.size[1],
-        0,
-        0,
-        this.size[0],
-        this.size[1],
+        this.pictureSize[0],
+        this.pictureSize[1],
+        position.x - Math.floor(this.pictureSize[0] / 2),
+        position.y - Math.floor(this.pictureSize[1] / 2),
+        this.pictureSize[0],
+        this.pictureSize[1],
       );
     }
   }

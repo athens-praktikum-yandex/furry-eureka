@@ -18,8 +18,8 @@ export class GameEngine {
     const now = Date.now();
     const dt = (now - this.lastTime) / 1000;
     this.map.render();
-    this.characters.forEach(ch => ch.updateCanvas(dt));
+    this.characters.forEach((ch) => ch.updateCanvas(dt));
     this.lastTime = now;
     requestAnimationFrame(this.loop);
-  }
+  };
 }
