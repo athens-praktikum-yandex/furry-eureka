@@ -1,0 +1,11 @@
+version: "2"
+services:
+  athens-game:
+    container_name: athens-game
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    environment:
+      NODE_ENV: production
