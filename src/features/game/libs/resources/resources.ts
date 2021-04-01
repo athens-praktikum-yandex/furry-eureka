@@ -66,7 +66,7 @@ export class Resources {
     return ready;
   }
 
-  onReady(func: void) {
+  onReady(func: () => void) {
     this.readyCallbacks.push(func);
   }
 }
