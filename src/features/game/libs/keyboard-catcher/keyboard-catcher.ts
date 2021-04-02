@@ -13,10 +13,16 @@ export class KeyboardCatcher {
     this.mainHero = mainHero;
   }
 
+  private readonly inputHandler = (e: KeyboardEvent) => {
+    this.handleInput(e);
+  };
+
   init() {
-    document.addEventListener('keydown', (e) => {
-      this.handleInput(e);
-    });
+    document.addEventListener('keydown', this.inputHandler);
+  }
+
+  exit() {
+    document.removeEventListener('keydown', this.inputHandler);
   }
 
   handleInput(event: KeyboardEvent) {
