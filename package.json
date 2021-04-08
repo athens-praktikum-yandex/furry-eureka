@@ -8,7 +8,9 @@
     "build": "webpack --mode production",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "new": "plop --plopfile generators/index.js"
+    "new": "plop --plopfile generators/index.js",
+    "fontello:open": "fontello-cli --config www/assets/fontello/config.json open",
+    "fontello:install": "fontello-cli --config www/assets/fontello/config.json install"
   },
   "husky": {
     "hooks": {
@@ -46,6 +48,7 @@
     "@storybook/addon-viewport": "6.1.21",
     "@storybook/addons": "6.1.21",
     "@storybook/react": "6.1.21",
+    "@svgr/webpack": "5.5.0",
     "@types/classnames": "2.2.11",
     "@types/jest": "26.0.21",
     "@types/node": "14.14.27",
@@ -64,6 +67,7 @@
     "eslint-plugin-react": "7.23.0",
     "eslint-plugin-react-hooks": "4.0.8",
     "file-loader": "6.2.0",
+    "fontello-cli": "0.6.2",
     "html-webpack-plugin": "5.3.1",
     "husky": "4.2.3",
     "jest": "26.6.3",
