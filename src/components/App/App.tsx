@@ -7,14 +7,18 @@ import { configureStore } from '@store/configureStore';
 import { ToastContainer } from 'react-toastify';
 import { history } from '@libs/history';
 import 'react-toastify/dist/ReactToastify.css';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from '@components/ErrorFallback';
 
 const { store } = configureStore();
 
 export const App = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Routes />
-      <ToastContainer />
-    </ConnectedRouter>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <ConnectedRouter history={history}>
+        <Routes />
+        <ToastContainer />
+      </ConnectedRouter>
+    </ErrorBoundary>
   </Provider>
 );
