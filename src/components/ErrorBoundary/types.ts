@@ -5,6 +5,6 @@ export interface Props {
 }
 
 export interface State {
-  error: Error | null;
-  errorInfo: ErrorInfo | null;
+  error?: Error;
+  errorInfo?: ErrorInfo;
 }
