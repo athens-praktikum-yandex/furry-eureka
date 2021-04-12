@@ -2030,7 +2030,7 @@
     deepmerge "^4.2.2"
     svgo "^1.2.2"
 
-"@svgr/webpack@^5.5.0":
+"@svgr/webpack@5.5.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@svgr/webpack/-/webpack-5.5.0.tgz#aae858ee579f5fa8ce6c3166ef56c6a1b381b640"
   integrity sha512-DOBOK255wfQxguUta2INKkzPj6AIS6iafZYiYmHn6W3pHlycSRRlvWKCfLDG10fXfLWqE3DJHgRUOyJYmARa7g==
@@ -6502,7 +6502,7 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
   integrity sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
 
-fontello-cli@^0.6.2:
+fontello-cli@0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/fontello-cli/-/fontello-cli-0.6.2.tgz#c1724f3b61c851a9bfae0c0943d958511e439433"
   integrity sha512-/85DkJNgbGOu0sh7sUAxWLbzq0cytWQtvn7WuRzpn6mcla6TEQz1JbYmpkAjX/PJiW867ujgoaFqm4CUoBBgwA==
