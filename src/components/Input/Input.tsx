@@ -5,7 +5,7 @@ import './Input.css';
 
 export const Input: FC<ExtendedOwnProps> = ({
   classNameWrapper,
-  classNameInput,
+  className,
   label,
   error,
   name,
@@ -22,7 +22,7 @@ export const Input: FC<ExtendedOwnProps> = ({
         className={cn(
           'input-wrapper__input',
           { 'input-wrapper__input_error': error },
-          classNameInput,
+          className,
         )}
         {...props}
       />
