@@ -1,0 +1,39 @@
+.topic-message {
+  font-size: var(--font-size-l);
+  line-height: 1.75rem;
+  margin: 2rem;
+  padding: 0.5rem 1rem;
+  list-style-type: none;
+}
+
+.topic-message_type_incoming {
+  background: var(--color-secondary);
+  border-radius: 0 5px 5px;
+}
+
+.topic-message_type_outgoing {
+  background: var(--color-thirdly);
+  border-radius: 5px 5px 0;
+  font-weight: bold;
+}
+
+.topic-message__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 0.25em;
+}
+
+.topic-message__author {
+  font-size: var(--font-size-l);
+  margin-right: 0.5rem;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topic-message__date {
+  white-space: nowrap;
+  font-size: var(--font-size-m);
+}
