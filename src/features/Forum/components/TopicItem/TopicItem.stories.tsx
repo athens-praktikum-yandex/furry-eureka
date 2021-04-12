@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, text } from '@storybook/addon-knobs';
-import { Topic } from './Topic';
+import { TopicItem } from './TopicItem';
 
-storiesOf('Forum', module).add('Topic', () => {
+storiesOf('Forum', module).add('TopicItem', () => {
   const title = text('title', 'Topic theme');
   const time = text('time', '10:00');
   const textValue = text('text', 'Last message in topic');
@@ -17,7 +17,7 @@ storiesOf('Forum', module).add('Topic', () => {
         width: 300,
       }}
     >
-      <Topic
+      <TopicItem
         title={title}
         time={time}
         text={textValue}

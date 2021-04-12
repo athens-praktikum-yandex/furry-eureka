@@ -1,6 +1,5 @@
-import { OwnProps as TopicProps } from '../Topic';
+import { OwnProps as TopicProps } from '../TopicItem';
 
 export type OwnProps = {
-  userName: string,
-  topics: TopicProps[],
+  topicList: TopicProps[],
 };

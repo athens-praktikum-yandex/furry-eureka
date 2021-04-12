@@ -2,12 +2,12 @@ import React, { FC, useState } from 'react';
 import { Button, ButtonTextSize, ButtonTheme } from '@components/Button';
 import { Input } from '@components/Input';
 import { OwnProps } from './types';
-import { Topic } from '../Topic';
+import { TopicItem } from '../TopicItem';
 import './Sidebar.css';
 
 type Props = FC<OwnProps>;
 
-export const Sidebar: Props = ({ topics }) => {
+export const Sidebar: Props = ({ topicList }) => {
   const [selectedTopic, setSelectedTopic] = useState<number | null>(null);
 
   return (
@@ -23,10 +23,10 @@ export const Sidebar: Props = ({ topics }) => {
       </div>
 
       <ul>
-        {topics.map(({
+        {topicList.map(({
           text, time, title, id,
         }, idx) => (
-          <Topic
+          <TopicItem
             text={text}
             time={time}
             title={title}
