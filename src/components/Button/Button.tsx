@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import cn from 'classnames';
-import { ButtonTheme, ExtendedOwnProps } from './types';
+import { ButtonTextSize, ButtonTheme, ExtendedOwnProps } from './types';
 import './Button.css';
 
 type Props = FC<ExtendedOwnProps>;
@@ -10,6 +10,7 @@ export const Button: Props = ({
   value,
   theme = ButtonTheme.square,
   isIcon = false,
+  textSize = ButtonTextSize.xl,
   ...props
 }) => (
   <button
@@ -22,9 +23,21 @@ export const Button: Props = ({
     {...props}
   >
     {isIcon ? (
-      <i className={`icon-${value}`} />
+      <i
+        className={cn(
+          `icon-${value}`,
+          `button_text-size_${textSize}`,
+        )}
+      />
     ) : (
-      <span className="button__inner">{value}</span>
+      <span
+        className={cn(
+          'button__inner',
+          `button_text-size_${textSize}`,
+        )}
+      >
+        {value}
+      </span>
     )}
   </button>
 );
