@@ -7,14 +7,17 @@ import { configureStore } from '@store/configureStore';
 import { ToastContainer } from 'react-toastify';
 import { history } from '@libs/history';
 import 'react-toastify/dist/ReactToastify.css';
+import { ErrorBoundary } from '@components/ErrorBoundary';
 
 const { store } = configureStore();
 
 export const App = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Routes />
-      <ToastContainer />
-    </ConnectedRouter>
+    <ErrorBoundary>
+      <ConnectedRouter history={history}>
+        <Routes />
+        <ToastContainer />
+      </ConnectedRouter>
+    </ErrorBoundary>
   </Provider>
 );
