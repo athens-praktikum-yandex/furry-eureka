@@ -3,27 +3,27 @@ import { call, put, takeLeading } from '@redux-saga/core/effects';
 import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
-import { signUp as signUpAction } from '../actions';
+import { changeUserProfile as changeUserProfileAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
-function* signUp({ type, payload: data }: ReturnType<typeof signUpAction>) {
+function* changeUserProfile({ type, payload: data }: ReturnType<typeof changeUserProfileAction>) {
   try {
     yield put(uiActions.request(type));
 
     yield call(ajax, {
-      method: 'POST',
-      url: URL.signUp,
+      method: 'PUT',
+      url: URL.changeProfile,
       data,
     });
 
     yield put(uiActions.success(type));
-    toast.success('Регистрация прошла успешно');
+    toast.success('Данные пользователя обновлены');
   } catch (e) {
     yield put(uiActions.error(type));
     toast.error(`${e.name}: ${e.message}`);
   }
 }
 
-export function* signUpListener() {
-  yield takeLeading(ActionTypes.SIGN_UP, signUp);
+export function* changeUserProfileListener() {
+  yield takeLeading(ActionTypes.CHANGE_USER_PROFILE, changeUserProfile);
 }
