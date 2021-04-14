@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { InitialValues, OwnProps } from './types';
 import { fields, initialValues } from './constants';
 import { validationSchema } from './constants/validationSchema';
-import { getUserProfile } from './store/actions';
+import { getUserProfile, changePassword, changeUserProfile } from './store/actions';
 
 type Props = FC<OwnProps>;
 
@@ -21,7 +21,14 @@ export const UserProfileForm: Props = ({ className }) => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        console.log(values);
+        dispatch(changeUserProfile(values));
+
+        if (values.oldPassword && values.newPassword) {
+          dispatch(changePassword({
+            oldPassword: values.oldPassword,
+            newPassword: values.newPassword,
+          }));
+        }
       }}
     >
       {(props: FormikProps<InitialValues>) => (
