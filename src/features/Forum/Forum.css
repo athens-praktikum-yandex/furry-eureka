@@ -1,3 +1,4 @@
 .forum {
   display: flex;
+  max-height: 100vh;
 }

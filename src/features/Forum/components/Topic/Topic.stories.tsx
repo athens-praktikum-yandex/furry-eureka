@@ -8,6 +8,13 @@ storiesOf('Forum', module).add('Topic', () => {
   const topicListMessage = object('topicMessageList', topicMessageList[0]);
 
   return (
-    <Topic topicMessageList={topicListMessage} />
+    <div
+      style={{
+        width: 600,
+        height: 600,
+      }}
+    >
+      <Topic topicMessageList={topicListMessage} />
+    </div>
   );
 });

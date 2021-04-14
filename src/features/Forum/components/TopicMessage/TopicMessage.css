@@ -1,7 +1,6 @@
 .topic-message {
   font-size: var(--font-size-l);
   line-height: 1.75rem;
-  margin: 2rem;
   padding: 0.5rem 1rem;
   list-style-type: none;
 }

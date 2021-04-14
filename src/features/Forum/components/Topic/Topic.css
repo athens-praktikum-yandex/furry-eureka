@@ -1,4 +1,30 @@
 .topic {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
   overflow: auto;
-  max-height: 100vh;
+}
+
+.topic__list {
+  overflow: auto;
+}
+
+.topic__message {
+  margin: 2rem;
+}
+
+.topic__message:last-child {
+  margin-bottom: 0;
+}
+
+.topic__textbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+.topic__textbox {
+  margin-right: 2rem;
+  flex: 1;
 }

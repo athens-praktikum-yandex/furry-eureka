@@ -6,13 +6,14 @@ import './TopicMessage.css';
 type Props = FC<OwnProps>;
 
 export const TopicMessage: Props = ({
-  author, date, content, isOutgoing,
+  author, date, content, isOutgoing, className,
 }) => (
   <li
     className={cn(
       'topic-message',
       { 'topic-message_type_outgoing': isOutgoing },
       { 'topic-message_type_incoming': !isOutgoing },
+      className,
     )}
   >
     <div className="topic-message__header">
