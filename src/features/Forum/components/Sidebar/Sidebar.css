@@ -1,0 +1,25 @@
+.sidebar {
+  background: var(--color-secondary);
+  border-right: 1px solid var(--color-gray);
+  display: flex;
+  flex-direction: column;
+  width: 17.5rem;
+  height: 100vh;
+}
+
+.sidebar__header {
+  padding: 1.5rem 0.6rem 0.5rem;
+  display: flex;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.sidebar__search {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.sidebar__new-button {
+  min-width: 0;
+  padding: 0 0.5rem;
+  height: 1.9rem;
+}
