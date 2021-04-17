@@ -2,9 +2,10 @@ import React, { FC, useEffect } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { Form } from '@components/Form';
 import { FormikField } from '@components/FormikField';
-import { useDispatch, useSelector } from 'react-redux';
-import { InitialValues, OwnProps, UserProfileState } from './types';
-import { fields, initialValues } from './constants';
+import { useDispatch } from 'react-redux';
+import { useInitialValues } from '@features/UserProfileForm/hooks/useInitialValues';
+import { InitialValues, OwnProps } from './types';
+import { fields } from './constants';
 import { validationSchema } from './constants/validationSchema';
 import { getUserProfile, changePassword, changeUserProfile } from './store/actions';
 
@@ -12,7 +13,7 @@ type Props = FC<OwnProps>;
 
 export const UserProfileForm: Props = ({ className }) => {
   const dispatch = useDispatch();
-  const userProfile = useSelector((state: UserProfileState) => state.userProfile);
+  const initialValues = useInitialValues();
 
   useEffect(() => {
     dispatch(getUserProfile());
@@ -20,7 +21,8 @@ export const UserProfileForm: Props = ({ className }) => {
 
   return (
     <Formik
-      initialValues={Object.assign(initialValues, userProfile)}
+      enableReinitialize
+      initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values) => {
         dispatch(changeUserProfile(values));
