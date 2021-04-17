@@ -20,7 +20,7 @@ export const UserProfileForm: Props = ({ className }) => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={Object.assign(initialValues, userProfile)}
       validationSchema={validationSchema}
       onSubmit={(values) => {
         dispatch(changeUserProfile(values));
@@ -46,7 +46,6 @@ export const UserProfileForm: Props = ({ className }) => {
               name={name}
               label={label}
               type={type}
-              value={userProfile[name as keyof typeof userProfile]}
             />
           ))}
         </Form>
