@@ -6,15 +6,16 @@ import { SignInPage } from '@pages/SignIn';
 import { UserProfilePage } from '@pages/UserProfile';
 import { SignUpPage } from '@pages/SignUp';
 import { LeaderboardPage } from '@pages/leaderboard-page';
+import { PrivateRoute } from '@components/PrivateRoute';
 import { routes } from './constants';
 
 export const Routes = () => (
   <Switch>
-    <Route path={routes.game} exact component={Game} />
-    <Route path={routes.forum} exact component={ForumPage} />
+    <PrivateRoute path={routes.game} exact component={Game} />
+    <PrivateRoute path={routes.forum} exact component={ForumPage} />
     <Route path={routes.signIn} exact component={SignInPage} />
     <Route path={routes.signUp} exact component={SignUpPage} />
-    <Route path={routes.userProfile} exact component={UserProfilePage} />
-    <Route path={routes.leaderBoard} exact component={LeaderboardPage} />
+    <PrivateRoute path={routes.userProfile} exact component={UserProfilePage} />
+    <PrivateRoute path={routes.leaderBoard} exact component={LeaderboardPage} />
   </Switch>
 );
