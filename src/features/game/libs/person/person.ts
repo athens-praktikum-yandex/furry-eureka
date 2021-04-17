@@ -10,7 +10,7 @@ import { HERO, ENEMY_ARCHER } from './constants';
 export class Person {
   constructor(
     private readonly personType: PersonType,
-    private readonly action: PersonActions,
+    private action: PersonActions,
     private position: Cell,
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
@@ -42,6 +42,14 @@ export class Person {
     };
 
     return mapping[personType];
+  }
+
+  walk() {
+    this.action = PersonActions.WALK;
+  }
+
+  idle() {
+    this.action = PersonActions.IDLE;
   }
 
   setPosition(position: Cell) {
