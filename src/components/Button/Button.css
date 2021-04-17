@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.button__inner {
+  font-weight: bold;
+}
+
 .button_theme_circle {
   border-radius: 50%;
   min-width: 28px;
@@ -26,7 +30,26 @@
   padding: 0.75rem;
 }
 
-.button__inner {
+.button_text-size_s {
+  font-size: var(--font-size-s);
+}
+
+.button_text-size_m {
+  font-size: var(--font-size-m);
+}
+
+.button_text-size_l {
+  font-size: var(--font-size-l);
+}
+
+.button_text-size_xl {
   font-size: var(--font-size-xl);
-  font-weight: bold;
+}
+
+.button_text-size_xxl {
+  font-size: var(--font-size-xxl);
+}
+
+.button_text-size_xxxl {
+  font-size: var(--font-size-xxxl);
 }
