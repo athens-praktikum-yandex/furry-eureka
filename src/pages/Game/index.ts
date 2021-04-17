@@ -1,1 +1,1 @@
-export * from '../../features/game/Game';
+export * from './GamePage';
