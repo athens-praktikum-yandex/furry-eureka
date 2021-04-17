@@ -25,7 +25,7 @@ export class KeyboardCatcher {
     document.removeEventListener('keydown', this.inputHandler);
   }
 
-  getPositionOffset = (
+  private getPositionOffset = (
     x: number,
     y: number,
     stepSize = this.stepSize,
@@ -36,13 +36,13 @@ export class KeyboardCatcher {
     ArrowDown: { x, y: y + stepSize },
   });
 
-  makeStep = (
+  private makeStep = (
     code: string,
     x: number,
     y: number,
     stepSize = 0,
   ) => {
-    stepSize += 20;
+    stepSize += 10;
 
     if (stepSize > this.stepSize) {
       stepSize = this.stepSize;
@@ -52,15 +52,19 @@ export class KeyboardCatcher {
     const position = positionOffset[code];
 
     setTimeout(() => {
+      this.mainHero.walk();
       this.mainHero.setPosition(position);
 
       if (stepSize !== this.stepSize) {
         this.makeStep(code, x, y, stepSize);
+        return;
       }
+
+      this.mainHero.idle();
     }, 100);
   };
 
-  handleInput(event: KeyboardEvent) {
+  private handleInput(event: KeyboardEvent) {
     const { code } = event;
     const { x, y } = this.mainHero.getPosition();
 
@@ -72,7 +76,7 @@ export class KeyboardCatcher {
     }
   }
 
-  isStepAvailable(position: Cell) {
+  private isStepAvailable(position: Cell) {
     return position
       ? this.scaledCells.some((cell) => cell.x === position.x - this.stepSize / 2
         && cell.y === position.y - this.stepSize / 2)
