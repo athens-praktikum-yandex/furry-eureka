@@ -18,6 +18,8 @@ module.exports = {
 
     'import/prefer-default-export': 0,
     'import/no-cycle': 0,
+    'no-plusplus': 0,
+    'no-param-reassign': 0,
     'class-methods-use-this': 0,
     'no-underscore-dangle': 0,
     'react/prop-types': 0,

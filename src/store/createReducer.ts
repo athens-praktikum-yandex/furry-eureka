@@ -1,5 +1,5 @@
 import type { Reducer } from 'redux';
-import type { Action } from '@store/types';
+import type { Action } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createReducer = <State, ActionsTypes, Actions extends Action<keyof ActionsTypes, any>>(

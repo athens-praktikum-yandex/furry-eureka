@@ -1,8 +1,12 @@
-import { actionTypes } from '@features/SignUpForm/store/actionTypes';
+import { ActionTypes as SignUpActionTypes } from '@features/SignUpForm/store/actionTypes';
+import { ActionTypes as UserProfileActionTypes } from '@features/UserProfileForm/store/actionTypes';
 import { RequestStatus, UIActions, UIState } from './types';
 
 const initialState: UIState = {
-  [actionTypes.SIGN_UP]: RequestStatus.INIT,
+  [SignUpActionTypes.SIGN_UP]: RequestStatus.INIT,
+  [UserProfileActionTypes.GET_USER_PROFILE]: RequestStatus.INIT,
+  [UserProfileActionTypes.CHANGE_USER_PROFILE]: RequestStatus.INIT,
+  [UserProfileActionTypes.CHANGE_PASSWORD]: RequestStatus.INIT,
 };
 
 export default (state: UIState = initialState, action: UIActions): UIState => {

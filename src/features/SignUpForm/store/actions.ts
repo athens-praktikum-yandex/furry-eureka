@@ -1,7 +1,7 @@
 import { SignUpPayload } from '../types/store';
-import { actionTypes } from './actionTypes';
+import { ActionTypes } from './actionTypes';
 
 export const signUp = (payload: SignUpPayload) => ({
-  type: actionTypes.SIGN_UP,
+  type: ActionTypes.SIGN_UP,
   payload,
 });

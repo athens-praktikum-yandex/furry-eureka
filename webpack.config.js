@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -18,6 +19,7 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   devServer: {
+    writeToDisk: true,
     contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true,
   },
@@ -61,6 +63,14 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./www/index.html"
+    }),
+    new GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 10000000,
+      navigateFallback: '/index.html',
     }),
   ]
 };

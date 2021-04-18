@@ -1,15 +1,16 @@
 import React from 'react';
+import { CANVAS_SIZE } from './constants';
+import { useFullscreen } from './hooks/useFullscreen';
 import { useGame } from './hooks/useGame';
 
 export const Game = () => {
   const canvasRef = useGame();
+  useFullscreen(canvasRef);
   return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        width={808}
-        height={808}
-      />
-    </div>
+    <canvas
+      ref={canvasRef}
+      width={CANVAS_SIZE}
+      height={CANVAS_SIZE}
+    />
   );
 };
