@@ -1,6 +1,8 @@
-import type { Action, Reducer } from 'redux';
+import type { Reducer } from 'redux';
+import type { Action } from '@store/types';
 
-const createReducer = <State, ActionsTypes, Actions extends Action<keyof ActionsTypes>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const createReducer = <State, ActionsTypes, Actions extends Action<keyof ActionsTypes, any>>(
   initialState: State,
   handlers: Record<keyof ActionsTypes, Reducer<State, Actions>>,
 ) => (state = initialState, action: Actions) => (

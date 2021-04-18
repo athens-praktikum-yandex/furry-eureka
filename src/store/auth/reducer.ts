@@ -3,7 +3,7 @@ import type { AuthState } from './types';
 import { ACTIONS } from './handlers';
 
 const initialState: AuthState = {
-  isAuth: false,
+  isAuth: true,
 };
-// @ts-ignore
+
 export default createReducer(initialState, ACTIONS);
