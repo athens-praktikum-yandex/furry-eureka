@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { GamePage } from '@pages/GamePage';
 import { ForumPage } from '@pages/ForumPage';
 import { MainPage } from '@pages/MainPage';
@@ -15,8 +15,8 @@ export const Routes = () => (
     <PrivateRoute path={routes.main} exact component={MainPage} />
     <PrivateRoute path={routes.game} exact component={GamePage} />
     <PrivateRoute path={routes.forum} exact component={ForumPage} />
-    <Route path={routes.signIn} exact component={SignInPage} />
-    <Route path={routes.signUp} exact component={SignUpPage} />
+    <PrivateRoute path={routes.signIn} exact component={SignInPage} />
+    <PrivateRoute path={routes.signUp} exact component={SignUpPage} />
     <PrivateRoute path={routes.userProfile} exact component={UserProfilePage} />
     <PrivateRoute path={routes.leaderBoard} exact component={LeaderboardPage} />
   </Switch>
