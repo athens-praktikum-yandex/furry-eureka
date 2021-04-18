@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { GamePage } from '@pages/Game';
+import { GamePage } from '@pages/GamePage';
 import { ForumPage } from '@pages/ForumPage';
+import { MainPage } from '@pages/MainPage';
 import { SignInPage } from '@pages/SignIn';
 import { UserProfilePage } from '@pages/UserProfile';
 import { SignUpPage } from '@pages/SignUp';
@@ -10,6 +11,7 @@ import { routes } from './constants';
 
 export const Routes = () => (
   <Switch>
+    <Route path={routes.main} exact component={MainPage} />
     <Route path={routes.game} exact component={GamePage} />
     <Route path={routes.forum} exact component={ForumPage} />
     <Route path={routes.signIn} exact component={SignInPage} />
