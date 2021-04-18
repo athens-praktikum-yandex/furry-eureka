@@ -1,4 +1,5 @@
 import React from 'react';
+import { CANVAS_SIZE } from './constants';
 import { useFullscreen } from './hooks/useFullscreen';
 import { useGame } from './hooks/useGame';
 
@@ -8,8 +9,8 @@ export const Game = () => {
   return (
     <canvas
       ref={canvasRef}
-      width={808}
-      height={808}
+      width={CANVAS_SIZE}
+      height={CANVAS_SIZE}
     />
   );
 };
