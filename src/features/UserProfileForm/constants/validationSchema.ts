@@ -25,14 +25,11 @@ export const validationSchema = yup.object().shape<Schema>({
     .string()
     .required(ERROR_MESSAGES.required),
   oldPassword: yup
-    .string()
-    .required(ERROR_MESSAGES.required),
+    .string(),
   newPassword: yup
-    .string()
-    .required(ERROR_MESSAGES.required),
+    .string(),
   newPasswordAgain: yup
     .string()
-    .required(ERROR_MESSAGES.required)
     .when('newPassword', {
       is: (password: string) => !!(password?.length),
       then: yup.string().oneOf([yup.ref('newPassword')], ERROR_MESSAGES.passwordNotMatch),

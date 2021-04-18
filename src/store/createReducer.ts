@@ -1,4 +1,5 @@
-import type { Action, Reducer } from 'redux';
+import type { Reducer } from 'redux';
+import type { Action } from './types';
 
 const createReducer = <State, ActionsTypes, Actions extends Action<keyof ActionsTypes>>(
   initialState: State,
