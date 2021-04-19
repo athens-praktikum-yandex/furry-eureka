@@ -8,9 +8,11 @@ export enum PersonType {
 export enum PersonActions {
   IDLE = 'idle',
   WALK = 'walk',
+  ATTACK = 'attack',
 }
 
 export type PersonSprites = {
   idle: Sprite | null;
   walk: Sprite | null;
+  attack: Sprite | null;
 };

@@ -3,6 +3,7 @@ import { Resources } from '../resources';
 import { Sprite } from '../sprite';
 import HeroIdleImg from './img/hero_idle.png';
 import HeroWalkImg from './img/hero_walk.png';
+import HeroAttackImg from './img/hero_attack.png';
 import EnemyArcherIdleImg from './img/enemy_archer_idle.png';
 import { Cell } from '../map-generation';
 import { HERO, ENEMY_ARCHER } from './constants';
@@ -15,14 +16,15 @@ export class Person {
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
   ) {
-    this.resources.load([HeroIdleImg, HeroWalkImg, EnemyArcherIdleImg]);
+    this.resources.load([HeroIdleImg, HeroWalkImg, HeroAttackImg, EnemyArcherIdleImg]);
     this.personSprites = this.personFactory(this.personType);
     this.position = position;
   }
 
-  private readonly personSprites: PersonSprites = {
+  public readonly personSprites: PersonSprites = {
     walk: null,
     idle: null,
+    attack: null,
   };
 
   personFactory(personType: PersonType) {
@@ -32,12 +34,16 @@ export class Person {
           HERO.IDLE.pictureSize, HERO.IDLE.speed, HERO.IDLE.frames),
         walk: new Sprite(HeroWalkImg, HERO.WALK.picturePos, HERO.WALK.frameSize,
           HERO.WALK.pictureSize, HERO.WALK.speed, HERO.WALK.frames),
+        attack: new Sprite(HeroAttackImg, HERO.ATTACK_CLOSE.picturePos,
+          HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
+          HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal', true),
       },
       enemy_archer: {
         idle: new Sprite(EnemyArcherIdleImg, ENEMY_ARCHER.IDLE.picturePos,
           ENEMY_ARCHER.IDLE.frameSize, ENEMY_ARCHER.IDLE.pictureSize, ENEMY_ARCHER.IDLE.speed,
           ENEMY_ARCHER.IDLE.frames),
         walk: null,
+        attack: null,
       },
     };
 
@@ -50,6 +56,13 @@ export class Person {
 
   idle() {
     this.action = PersonActions.IDLE;
+  }
+
+  attack() {
+    if (this.personSprites.attack) {
+      this.personSprites.attack.reset();
+    }
+    this.action = PersonActions.ATTACK;
   }
 
   setPosition(position: Cell) {

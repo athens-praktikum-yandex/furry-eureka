@@ -44,6 +44,10 @@ export class Sprite {
     this.done = false;
   }
 
+  reset() {
+    this.index = 0;
+  }
+
   update(dt: number) {
     if (this.speed !== undefined) {
       this.index += this.speed * dt;
@@ -53,6 +57,7 @@ export class Sprite {
   render(ctx: CanvasRenderingContext2D | null, resources: Resources, position: Cell) {
     if (ctx) {
       let frame;
+      this.done = false;
       if (this.speed && this.speed > 0) {
         const max = Array.isArray(this.frames) ? this.frames.length : 0;
         const idx = Math.floor(this.index);

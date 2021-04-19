@@ -71,6 +71,16 @@ export class KeyboardCatcher {
     const positionOffset = this.getPositionOffset(x, y);
     const position = positionOffset[code];
 
+    if (code === 'Enter') {
+      this.mainHero.attack();
+      const iIndex = setInterval(() => {
+        if (this.mainHero.personSprites.attack?.done) {
+          this.mainHero.idle();
+          clearInterval(iIndex);
+        }
+      }, 100);
+    }
+
     if (this.isStepAvailable(position)) {
       this.makeStep(code, x, y);
     }
