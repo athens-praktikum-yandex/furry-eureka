@@ -22,6 +22,10 @@ export class Sprite {
 
   done: boolean = false;
 
+  inprogress: boolean = false;
+
+  afterAnimationCallback: (() => void) | undefined;
+
   constructor(
     url: string,
     picturePos: number[],
@@ -42,10 +46,13 @@ export class Sprite {
     this.once = once;
     this.index = 0;
     this.done = false;
+    this.inprogress = false;
   }
 
   reset() {
     this.index = 0;
+    this.done = false;
+    this.inprogress = false;
   }
 
   update(dt: number) {
@@ -57,7 +64,6 @@ export class Sprite {
   render(ctx: CanvasRenderingContext2D | null, resources: Resources, position: Cell) {
     if (ctx) {
       let frame;
-      this.done = false;
       if (this.speed && this.speed > 0) {
         const max = Array.isArray(this.frames) ? this.frames.length : 0;
         const idx = Math.floor(this.index);
@@ -65,6 +71,10 @@ export class Sprite {
 
         if (this.once && idx >= max) {
           this.done = true;
+          this.inprogress = false;
+          if (this.afterAnimationCallback) {
+            this.afterAnimationCallback();
+          }
           return;
         }
       } else {

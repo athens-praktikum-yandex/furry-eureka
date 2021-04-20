@@ -87,23 +87,19 @@ export class KeyboardCatcher {
     return (Math.abs(heroPos.x - enemyPos.x) === this.stepSize
       && heroPos.y === enemyPos.y)
       || (Math.abs(heroPos.y - enemyPos.y) === this.stepSize
-      && heroPos.x === enemyPos.x);
+        && heroPos.x === enemyPos.x);
   }
 
   private makeAttack = (
     code: string,
   ) => {
     if (code === 'Enter') {
-      this.mainHero.attack();
-      const iIndex = setInterval(() => {
-        if (this.mainHero.personSprites.attack?.done) {
-          this.mainHero.idle();
-          clearInterval(iIndex);
-        }
-      }, 100);
+      if (!this.mainHero.personSprites.attack?.inprogress) {
+        this.mainHero.attack();
 
-      if (this.isHeroNearEnemy()) {
-        this.enemyArcher.death();
+        if (this.isHeroNearEnemy()) {
+          this.enemyArcher.death();
+        }
       }
     }
   };

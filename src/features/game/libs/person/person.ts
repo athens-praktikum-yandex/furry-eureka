@@ -44,7 +44,8 @@ export class Person {
           HERO.WALK.pictureSize, HERO.WALK.speed, HERO.WALK.frames),
         attack: new Sprite(HeroAttackImg, HERO.ATTACK_CLOSE.picturePos,
           HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
-          HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal', true),
+          HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal',
+          true),
         death: null,
       },
       enemy_archer: {
@@ -73,6 +74,10 @@ export class Person {
   attack() {
     if (this.personSprites.attack) {
       this.personSprites.attack.reset();
+      this.personSprites.attack.inprogress = true;
+      if (typeof this.personSprites.attack.afterAnimationCallback !== 'function') {
+        this.personSprites.attack.afterAnimationCallback = this.idle.bind(this);
+      }
     }
     this.action = PersonActions.ATTACK;
   }
