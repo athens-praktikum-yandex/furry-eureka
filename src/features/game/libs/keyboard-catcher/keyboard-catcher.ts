@@ -7,10 +7,12 @@ export class KeyboardCatcher {
     private readonly stepSize: number,
     private readonly scaledCells: Cell[],
     private readonly mainHero: Person,
+    private readonly enemyArcher: Person,
   ) {
     this.stepSize = stepSize;
     this.scaledCells = scaledCells;
     this.mainHero = mainHero;
+    this.enemyArcher = enemyArcher;
   }
 
   private readonly inputHandler = (e: KeyboardEvent) => {
@@ -71,10 +73,36 @@ export class KeyboardCatcher {
     const positionOffset = this.getPositionOffset(x, y);
     const position = positionOffset[code];
 
+    this.makeAttack(code);
+
     if (this.isStepAvailable(position)) {
       this.makeStep(code, x, y);
     }
   }
+
+  private isHeroNearEnemy() {
+    const heroPos = this.mainHero.getPosition();
+    const enemyPos = this.enemyArcher.getPosition();
+
+    return (Math.abs(heroPos.x - enemyPos.x) === this.stepSize
+      && heroPos.y === enemyPos.y)
+      || (Math.abs(heroPos.y - enemyPos.y) === this.stepSize
+        && heroPos.x === enemyPos.x);
+  }
+
+  private makeAttack = (
+    code: string,
+  ) => {
+    if (code === 'Enter') {
+      if (!this.mainHero.personSprites.attack?.inprogress) {
+        this.mainHero.attack();
+
+        if (this.isHeroNearEnemy()) {
+          this.enemyArcher.death();
+        }
+      }
+    }
+  };
 
   private isStepAvailable(position: Cell) {
     return position

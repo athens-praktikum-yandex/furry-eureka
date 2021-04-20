@@ -3,7 +3,9 @@ import { Resources } from '../resources';
 import { Sprite } from '../sprite';
 import HeroIdleImg from './img/hero_idle.png';
 import HeroWalkImg from './img/hero_walk.png';
+import HeroAttackImg from './img/hero_attack.png';
 import EnemyArcherIdleImg from './img/enemy_archer_idle.png';
+import EnemyArcherDeathImg from './img/enemy_archer_death.png';
 import { Cell } from '../map-generation';
 import { HERO, ENEMY_ARCHER } from './constants';
 
@@ -15,14 +17,22 @@ export class Person {
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
   ) {
-    this.resources.load([HeroIdleImg, HeroWalkImg, EnemyArcherIdleImg]);
+    this.resources.load([
+      HeroIdleImg,
+      HeroWalkImg,
+      HeroAttackImg,
+      EnemyArcherIdleImg,
+      EnemyArcherDeathImg,
+    ]);
     this.personSprites = this.personFactory(this.personType);
     this.position = position;
   }
 
-  private readonly personSprites: PersonSprites = {
+  public readonly personSprites: PersonSprites = {
     walk: null,
     idle: null,
+    attack: null,
+    death: null,
   };
 
   personFactory(personType: PersonType) {
@@ -32,12 +42,21 @@ export class Person {
           HERO.IDLE.pictureSize, HERO.IDLE.speed, HERO.IDLE.frames),
         walk: new Sprite(HeroWalkImg, HERO.WALK.picturePos, HERO.WALK.frameSize,
           HERO.WALK.pictureSize, HERO.WALK.speed, HERO.WALK.frames),
+        attack: new Sprite(HeroAttackImg, HERO.ATTACK_CLOSE.picturePos,
+          HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
+          HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal',
+          true),
+        death: null,
       },
       enemy_archer: {
         idle: new Sprite(EnemyArcherIdleImg, ENEMY_ARCHER.IDLE.picturePos,
           ENEMY_ARCHER.IDLE.frameSize, ENEMY_ARCHER.IDLE.pictureSize, ENEMY_ARCHER.IDLE.speed,
           ENEMY_ARCHER.IDLE.frames),
         walk: null,
+        attack: null,
+        death: new Sprite(EnemyArcherDeathImg, ENEMY_ARCHER.DEATH.picturePos,
+          ENEMY_ARCHER.DEATH.frameSize, ENEMY_ARCHER.DEATH.pictureSize, ENEMY_ARCHER.DEATH.speed,
+          ENEMY_ARCHER.DEATH.frames, 'horizontal', true),
       },
     };
 
@@ -50,6 +69,21 @@ export class Person {
 
   idle() {
     this.action = PersonActions.IDLE;
+  }
+
+  attack() {
+    if (this.personSprites.attack) {
+      this.personSprites.attack.reset();
+      this.personSprites.attack.inprogress = true;
+      if (typeof this.personSprites.attack.afterAnimationCallback !== 'function') {
+        this.personSprites.attack.afterAnimationCallback = this.idle.bind(this);
+      }
+    }
+    this.action = PersonActions.ATTACK;
+  }
+
+  death() {
+    this.action = PersonActions.DEATH;
   }
 
   setPosition(position: Cell) {
