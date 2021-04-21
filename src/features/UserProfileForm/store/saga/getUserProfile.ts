@@ -3,6 +3,7 @@ import { call, put, takeLeading } from '@redux-saga/core/effects';
 import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
+import { setAuth } from '@store/auth/actions';
 import { getUserProfile as getUserProfileAction, getUserProfileSuccess as getUserProfileSuccessAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
@@ -19,6 +20,9 @@ function* getUserProfile({ type }: ReturnType<typeof getUserProfileAction>) {
     yield put(getUserProfileSuccessAction(response.data));
   } catch (e) {
     yield put(uiActions.error(type));
+    if (e.code === 401) {
+      yield put(setAuth({ isAuth: false }));
+    }
     toast.error(`${e.name}: ${e.message}`);
   }
 }

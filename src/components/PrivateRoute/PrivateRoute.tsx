@@ -36,8 +36,7 @@ export const PrivateRoute: Props = (
   if (isAuth && (path === routes.signIn || path === routes.signUp)) {
     return <Redirect to={{ pathname: routes.main }} />;
   }
-
-  if (!isAuth && (path !== routes.signIn || path !== routes.signUp)) {
+  if (!isAuth && (path !== routes.signIn && path !== routes.signUp)) {
     return <Redirect to={{ pathname: routes.signIn }} />;
   }
   return route;

@@ -9,7 +9,7 @@ import { history } from '@libs/history';
 import 'react-toastify/dist/ReactToastify.css';
 import { ErrorBoundary } from '@components/ErrorBoundary';
 
-export const { store } = configureStore();
+const { store } = configureStore();
 
 export const App = () => (
   <Provider store={store}>

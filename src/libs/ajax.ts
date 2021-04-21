@@ -1,5 +1,21 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
-import { store } from '@components/App/App';
+
+type ErrorParameters = {
+  name: string,
+  message: string,
+  code: number
+};
+
+class ErrorWithCode extends Error {
+  code: number;
+
+  constructor({ name, message, code }: ErrorParameters) {
+    super(name || message);
+    this.name = name;
+    this.message = message;
+    this.code = code;
+  }
+}
 
 const validStatuses = [
   200,
@@ -21,16 +37,14 @@ const client: AxiosInstance = axios.create({
 export const ajax = async <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> => {
   const response = await client(config);
 
-  if (response.status === 200 || response.status === 400) {
-    store.dispatch({ type: 'SET_IS_AUTH', payload: { isAuth: true } });
-  }
-
-  if (response.status === 401) {
-    store.dispatch({ type: 'SET_IS_AUTH', payload: { isAuth: false } });
-  }
-
   if (errorStatuses.includes(response.status)) {
-    throw new Error(response.data.reason || response.data.error || response.statusText);
+    throw new ErrorWithCode(
+      {
+        name: response.data.error || 'Error',
+        message: response.data.reason || response.statusText,
+        code: response.status,
+      },
+    );
   }
 
   return response;
