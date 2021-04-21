@@ -3,6 +3,7 @@ import { call, put, takeLeading } from '@redux-saga/core/effects';
 import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
+import { setAuth } from '@store/auth/actions';
 import { changeUserProfile as changeUserProfileAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
@@ -20,6 +21,9 @@ function* changeUserProfile({ type, payload: data }: ReturnType<typeof changeUse
     toast.success('Данные пользователя обновлены');
   } catch (e) {
     yield put(uiActions.error(type));
+    if (e.code === 401) {
+      yield put(setAuth({ isAuth: false }));
+    }
     toast.error(`${e.name}: ${e.message}`);
   }
 }
