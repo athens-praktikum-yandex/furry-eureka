@@ -6,7 +6,7 @@ type ErrorParameters = {
   code: number
 };
 
-class ErrorWithCode extends Error {
+export class ErrorWithCode extends Error {
   code: number;
 
   constructor({ name, message, code }: ErrorParameters) {

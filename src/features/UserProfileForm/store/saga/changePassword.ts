@@ -3,7 +3,7 @@ import { call, put, takeLeading } from '@redux-saga/core/effects';
 import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
-import { setAuth } from '@store/auth/actions';
+import { handleError } from '@store/error/actions';
 import { changePassword as changePasswordAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
@@ -21,10 +21,7 @@ function* changePassword({ type, payload: data }: ReturnType<typeof changePasswo
     toast.success('Пароль обновлен');
   } catch (e) {
     yield put(uiActions.error(type));
-    if (e.code === 401) {
-      yield put(setAuth({ isAuth: false }));
-    }
-    toast.error(`${e.name}: ${e.message}`);
+    yield put(handleError(e));
   }
 }
 
