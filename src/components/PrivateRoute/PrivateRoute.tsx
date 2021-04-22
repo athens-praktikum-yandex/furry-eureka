@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import './PrivateRoute.css';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { routes } from '@components/Routes';
