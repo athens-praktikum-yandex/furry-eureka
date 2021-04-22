@@ -1,5 +1,22 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
 
+type ErrorParameters = {
+  name: string,
+  message: string,
+  code: number
+};
+
+export class ErrorWithCode extends Error {
+  code: number;
+
+  constructor({ name, message, code }: ErrorParameters) {
+    super(name || message);
+    this.name = name;
+    this.message = message;
+    this.code = code;
+  }
+}
+
 const validStatuses = [
   200,
 ];
@@ -21,7 +38,13 @@ export const ajax = async <T>(config: AxiosRequestConfig): Promise<AxiosResponse
   const response = await client(config);
 
   if (errorStatuses.includes(response.status)) {
-    throw new Error(response.data.reason || response.data.error || response.statusText);
+    throw new ErrorWithCode(
+      {
+        name: response.data.error || 'Error',
+        message: response.data.reason || response.statusText,
+        code: response.status,
+      },
+    );
   }
 
   return response;

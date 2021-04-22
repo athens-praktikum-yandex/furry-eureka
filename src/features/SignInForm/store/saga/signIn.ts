@@ -3,6 +3,8 @@ import { call, put, takeLeading } from '@redux-saga/core/effects';
 import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
+import { setAuth } from '@store/auth/actions';
+import { handleError } from '@store/error/actions';
 import { signIn as signInAction } from '../actions';
 import { actionTypes } from '../actionTypes';
 
@@ -17,10 +19,11 @@ function* signIn({ type, payload: data }: ReturnType<typeof signInAction>) {
     });
 
     yield put(uiActions.success(type));
+    yield put(setAuth({ isAuth: true }));
     toast.success('Вы вошли');
   } catch (e) {
     yield put(uiActions.error(type));
-    toast.error(`${e.name}: ${e.message}`);
+    yield put(handleError(e));
   }
 }
 

@@ -8,16 +8,19 @@ import { ToastContainer } from 'react-toastify';
 import { history } from '@libs/history';
 import 'react-toastify/dist/ReactToastify.css';
 import { ErrorBoundary } from '@components/ErrorBoundary';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const { store } = configureStore();
+const { store, persistor } = configureStore();
 
 export const App = () => (
   <Provider store={store}>
-    <ErrorBoundary>
-      <ConnectedRouter history={history}>
-        <Routes />
-        <ToastContainer />
-      </ConnectedRouter>
-    </ErrorBoundary>
+    <PersistGate persistor={persistor}>
+      <ErrorBoundary>
+        <ConnectedRouter history={history}>
+          <Routes />
+          <ToastContainer />
+        </ConnectedRouter>
+      </ErrorBoundary>
+    </PersistGate>
   </Provider>
 );
