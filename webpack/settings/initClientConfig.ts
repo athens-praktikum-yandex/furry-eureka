@@ -48,7 +48,7 @@ export default ({ lang, index }: InputParameters) => (webpackConfig: webpack.Con
       path: join(DIST_DIR, 'client'),
       publicPath: DEV
         ? '/static/'
-        : `https://storage.yandexcloud.net/path/to/S3/${process.env.APP_VERSION}/client/`,
+        : 'https://athens-game.herokuapp.com/',
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.json'],
