@@ -11,13 +11,12 @@ module.exports = {
   ignorePatterns: '*.js',
   rules: {
     'import/no-extraneous-dependencies': ['error', {'devDependencies': true}],
-
     '@typescript-eslint/no-explicit-any': 2,
-
     '@typescript-eslint/ban-types': 1,
-
     'import/prefer-default-export': 0,
     'import/no-cycle': 0,
+    'import/no-dynamic-require': 0,
+    'import/no-mutable-exports': 0,
     'no-plusplus': 0,
     'no-param-reassign': 0,
     'class-methods-use-this': 0,
