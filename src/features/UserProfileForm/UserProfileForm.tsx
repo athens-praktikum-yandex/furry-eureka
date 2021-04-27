@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { Form } from '@components/Form';
 import { FormikField } from '@components/FormikField';
@@ -7,17 +7,13 @@ import { useInitialValues } from '@features/UserProfileForm/hooks/useInitialValu
 import { InitialValues, OwnProps } from './types';
 import { fields } from './constants';
 import { validationSchema } from './constants/validationSchema';
-import { getUserProfile, changePassword, changeUserProfile } from './store/actions';
+import { changePassword, changeUserProfile } from './store/actions';
 
 type Props = FC<OwnProps>;
 
 export const UserProfileForm: Props = ({ className }) => {
   const dispatch = useDispatch();
   const initialValues = useInitialValues();
-
-  useEffect(() => {
-    dispatch(getUserProfile());
-  }, []);
 
   return (
     <Formik

@@ -16,4 +16,12 @@ export type GetLeaderboardSuccessPayload = {
   time: string,
 };
 
+export type ChangeLeaderboardPayload = {
+  data: {
+    username: string,
+    athens_time: number,
+  },
+  ratingFieldName: string
+};
+
 export type LeaderboardState = { leaderboard: GetLeaderboardSuccessPayload[] };

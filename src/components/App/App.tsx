@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ErrorBoundary } from '@components/ErrorBoundary';
 import { PersistGate } from 'redux-persist/integration/react';
 
-const { store, persistor } = configureStore();
+export const { store, persistor } = configureStore();
 
 export const App = () => (
   <Provider store={store}>

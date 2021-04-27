@@ -1,3 +1,4 @@
+import { EventBus } from '@libs/event-bus';
 import { PersonActions, PersonSprites, PersonType } from './types';
 import { Resources } from '../resources';
 import { Sprite } from '../sprite';
@@ -84,6 +85,16 @@ export class Person {
 
   death() {
     this.action = PersonActions.DEATH;
+    if (typeof this.personSprites.death!.afterAnimationCallback !== 'function') {
+      const eventBus = new EventBus();
+      let done = false;
+      this.personSprites.death!.afterAnimationCallback = () => {
+        if (!done) {
+          eventBus.emit('person-death');
+          done = true;
+        }
+      };
+    }
   }
 
   setPosition(position: Cell) {

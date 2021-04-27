@@ -9,6 +9,7 @@ const initialState: UIState = {
   [UserProfileActionTypes.CHANGE_USER_PROFILE]: RequestStatus.INIT,
   [UserProfileActionTypes.CHANGE_PASSWORD]: RequestStatus.INIT,
   [LeaderboardActionTypes.GET_LEADERBOARD]: RequestStatus.INIT,
+  [LeaderboardActionTypes.CHANGE_LEADERBOARD]: RequestStatus.INIT,
 };
 
 export default (state: UIState = initialState, action: UIActions): UIState => {
