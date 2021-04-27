@@ -1,4 +1,7 @@
-import { LeaderboardLineData } from '../../types';
+export type LeaderboardLineData = {
+  username: string;
+  time: string;
+};
 
 export type LeaderboardLineOwnProps = {
   index: number;

@@ -1,4 +1,4 @@
-import { LeaderboardLineData } from '../types';
+import { LeaderboardLineData } from '../components/leaderboard-line/types';
 
 export const leaderboardScores: LeaderboardLineData[] = [
   {

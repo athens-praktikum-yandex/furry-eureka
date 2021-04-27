@@ -10,7 +10,7 @@
     "new": "plop --plopfile generators/index.js",
     "fontello:open": "fontello-cli --config www/assets/fontello/config.json open",
     "fontello:install": "fontello-cli --config www/assets/fontello/config.json install",
-    "build": "npm run build:production",
+    "build": "webpack --mode production",
     "init": "npm install && npm run build:dev:vendors",
     "dev": "better-npm-run dev",
     "build:production:vendors": "better-npm-run build:production:vendors",

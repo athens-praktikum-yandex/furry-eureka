@@ -4,4 +4,6 @@ export const URL = {
   getProfile: '/auth/user',
   changeProfile: '/user/profile',
   changePassword: '/user/password',
+  getLeaderboard: '/leaderboard/all',
+  changeLeaderboard: '/leaderboard',
 };
