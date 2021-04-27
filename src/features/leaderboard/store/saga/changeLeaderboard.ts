@@ -17,6 +17,7 @@ function* changeLeaderboard({ type, payload: data }: ReturnType<typeof changeLea
     });
 
     yield put(uiActions.success(type));
+    window.location.href = '/leaderboard';
   } catch (e) {
     yield put(uiActions.error(type));
     yield put(handleError(e));
