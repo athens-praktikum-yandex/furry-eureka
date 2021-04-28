@@ -1,7 +1,7 @@
 export {
   GetLeaderboardPayload,
-  GetLeaderboardInitialPayload,
   GetLeaderboardSuccessPayload,
+  GetLeaderboardStorePayload,
   ChangeLeaderboardPayload,
   LeaderboardState,
 } from './store';

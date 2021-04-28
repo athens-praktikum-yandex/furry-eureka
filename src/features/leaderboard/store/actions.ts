@@ -1,5 +1,9 @@
 import { Action } from '@store/types';
-import { ChangeLeaderboardPayload, GetLeaderboardPayload, GetLeaderboardSuccessPayload } from '../types/store';
+import {
+  ChangeLeaderboardPayload,
+  GetLeaderboardSuccessPayload,
+  GetLeaderboardPayload,
+} from '../types/store';
 import { ActionTypes } from './actionTypes';
 
 export const getLeaderboard = (payload: GetLeaderboardPayload) => ({

@@ -20,7 +20,7 @@ export class EventBus {
     (<Callback[]> this.listeners[event]).push(callback);
   }
 
-  off(event: string, callback: () => void): void {
+  off(event: string, callback: Callback): void {
     if (!this.listeners[event]) {
       console.log(`Нет события: ${event}`);
     }

@@ -3,7 +3,6 @@ import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { handleError } from '@store/error/actions';
-import { GetLeaderboardInitialPayload } from '@features/leaderboard/types';
 import { getLeaderboard as getLeaderboardAction, getLeaderboardSuccess as getLeaderboardSuccessAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
@@ -18,12 +17,7 @@ function* getLeaderboard({ type, payload: data }: ReturnType<typeof getLeaderboa
     });
 
     yield put(uiActions.success(type));
-    yield put(getLeaderboardSuccessAction(
-      response.data.map((item: GetLeaderboardInitialPayload) => ({
-        time: item.data.athens_time,
-        username: item.data.username,
-      })),
-    ));
+    yield put(getLeaderboardSuccessAction(response.data));
   } catch (e) {
     yield put(uiActions.error(type));
     yield put(handleError(e));

@@ -10,8 +10,12 @@ export const useEndGame = () => {
   const username = useSelector((state: UserProfileState) => state.userProfile.login);
   useEffect(() => {
     const eventBus = new EventBus();
-    eventBus.on('end-game', (score) => {
+    const callback = (score: number) => {
       dispatch(changeLeaderboard(changeLeaderboardPayload(username, score)));
-    });
+    };
+    eventBus.on('end-game', callback);
+    return () => {
+      eventBus.off('end-game', callback);
+    };
   }, []);
 };

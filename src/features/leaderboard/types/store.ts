@@ -4,14 +4,14 @@ export type GetLeaderboardPayload = {
   limit: number,
 };
 
-export type GetLeaderboardInitialPayload = {
+export type GetLeaderboardSuccessPayload = {
   data: {
-    athens_time: string,
     username: string,
+    athens_time: string,
   }
 };
 
-export type GetLeaderboardSuccessPayload = {
+export type GetLeaderboardStorePayload = {
   username: string,
   time: string,
 };
@@ -24,4 +24,4 @@ export type ChangeLeaderboardPayload = {
   ratingFieldName: string
 };
 
-export type LeaderboardState = { leaderboard: GetLeaderboardSuccessPayload[] };
+export type LeaderboardState = { leaderboard: GetLeaderboardStorePayload[] };

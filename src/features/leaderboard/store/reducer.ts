@@ -1,6 +1,6 @@
 import createReducer from '@store/createReducer';
-import type { GetLeaderboardSuccessPayload } from '../types';
 import { ACTIONS } from './handlers';
+import { GetLeaderboardStorePayload } from '../types';
 
-const initialState: GetLeaderboardSuccessPayload[] = [];
+const initialState: GetLeaderboardStorePayload[] = [];
 export default createReducer(initialState, ACTIONS);
