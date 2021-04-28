@@ -30,6 +30,10 @@ export class EventBus {
     );
   }
 
+  offAll(): void {
+    this.listeners = {};
+  }
+
   emit(event: string, ...args: number[]): void {
     if (!this.listeners[event]) {
       console.log(`Нет события: ${event}`);

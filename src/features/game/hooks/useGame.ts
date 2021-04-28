@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { EventBus } from '@libs/event-bus';
 import { startGame } from '../start-game';
 import { KeyboardCatcher } from '../libs/keyboard-catcher';
 
@@ -13,6 +14,9 @@ export const useGame = () => {
     }
 
     return () => {
+      const eventBus = new EventBus();
+      eventBus.offAll();
+
       if (keyboardCatcher) {
         keyboardCatcher.exit();
       }
