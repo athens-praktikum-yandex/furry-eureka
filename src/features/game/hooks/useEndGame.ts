@@ -3,7 +3,7 @@ import { EventBus } from '@libs/event-bus';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLeaderboard } from '@features/leaderboard/store/actions';
 import { UserProfileState } from '@features/UserProfileForm';
-import { changeLeaderboardPayload } from '@features/leaderboard/constants';
+import { changeLeaderboardAC } from '@features/leaderboard/store/actionCreators';
 
 export const useEndGame = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export const useEndGame = () => {
   useEffect(() => {
     const eventBus = new EventBus();
     const callback = (score: number) => {
-      dispatch(changeLeaderboard(changeLeaderboardPayload(username, score)));
+      dispatch(changeLeaderboard(changeLeaderboardAC(username, score)));
     };
     eventBus.on('end-game', callback);
     return () => {
