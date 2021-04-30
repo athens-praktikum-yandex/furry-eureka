@@ -11,6 +11,8 @@ import { Cell } from '../map-generation';
 import { HERO, ENEMY_ARCHER } from './constants';
 
 export class Person {
+  private eventBus: EventBus;
+
   constructor(
     private readonly personType: PersonType,
     private action: PersonActions,
@@ -27,6 +29,7 @@ export class Person {
     ]);
     this.personSprites = this.personFactory(this.personType);
     this.position = position;
+    this.eventBus = new EventBus();
   }
 
   public readonly personSprites: PersonSprites = {
@@ -46,7 +49,9 @@ export class Person {
         attack: new Sprite(HeroAttackImg, HERO.ATTACK_CLOSE.picturePos,
           HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
           HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal',
-          true),
+          true, () => {
+            this.idle();
+          }),
         death: null,
       },
       enemy_archer: {
@@ -57,7 +62,10 @@ export class Person {
         attack: null,
         death: new Sprite(EnemyArcherDeathImg, ENEMY_ARCHER.DEATH.picturePos,
           ENEMY_ARCHER.DEATH.frameSize, ENEMY_ARCHER.DEATH.pictureSize, ENEMY_ARCHER.DEATH.speed,
-          ENEMY_ARCHER.DEATH.frames, 'horizontal', true),
+          ENEMY_ARCHER.DEATH.frames, 'horizontal', true, () => {
+            this.eventBus.emit('person-death');
+            mapping.enemy_archer.death.stopAnimation();
+          }),
       },
     };
 
@@ -76,25 +84,12 @@ export class Person {
     if (this.personSprites.attack) {
       this.personSprites.attack.reset();
       this.personSprites.attack.inprogress = true;
-      if (typeof this.personSprites.attack.afterAnimationCallback !== 'function') {
-        this.personSprites.attack.afterAnimationCallback = this.idle.bind(this);
-      }
     }
     this.action = PersonActions.ATTACK;
   }
 
   death() {
     this.action = PersonActions.DEATH;
-    if (typeof this.personSprites.death!.afterAnimationCallback !== 'function') {
-      const eventBus = new EventBus();
-      let done = false;
-      this.personSprites.death!.afterAnimationCallback = () => {
-        if (!done) {
-          eventBus.emit('person-death');
-          done = true;
-        }
-      };
-    }
   }
 
   setPosition(position: Cell) {
