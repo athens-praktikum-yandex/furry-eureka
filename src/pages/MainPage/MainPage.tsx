@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from '@components/Button';
-import { history } from '@libs/history';
 import './MainPage.css';
 import { getUserProfile } from '@features/UserProfileForm/store/actions';
 import { useDispatch } from 'react-redux';
+import { navTo } from '@components/Routes/libs/redirect';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export const MainPage = () => {
     <div className="main-page">
       <Button
         value="Начать игру"
-        onClick={() => history.push('/game')}
+        onClick={() => { navTo('game'); }}
       />
     </div>
   );

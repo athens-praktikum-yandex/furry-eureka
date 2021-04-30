@@ -1,4 +1,4 @@
-export const routes = {
+export const routes: Record<string, string> = {
   forum: '/forum',
   main: '/',
   signIn: '/sign-in',
