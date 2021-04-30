@@ -18,7 +18,7 @@ function* changeLeaderboard({ type, payload: data }: ReturnType<typeof changeLea
     });
 
     yield put(uiActions.success(type));
-    yield call(navTo.bind(null, 'leaderBoard'));
+    yield call(navTo, 'leaderBoard');
   } catch (e) {
     yield put(uiActions.error(type));
     yield put(handleError(e));
