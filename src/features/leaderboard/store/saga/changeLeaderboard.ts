@@ -3,7 +3,6 @@ import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { handleError } from '@store/error/actions';
-import { navTo } from '@components/Routes/libs/redirect';
 import { changeLeaderboard as changeLeaderboardAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
@@ -18,7 +17,7 @@ function* changeLeaderboard({ type, payload: data }: ReturnType<typeof changeLea
     });
 
     yield put(uiActions.success(type));
-    yield call(navTo, 'leaderBoard');
+    yield call(data.navToLeaderboard);
   } catch (e) {
     yield put(uiActions.error(type));
     yield put(handleError(e));

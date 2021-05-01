@@ -17,11 +17,12 @@ export type GetLeaderboardStorePayload = {
 };
 
 export type ChangeLeaderboardPayload = {
+  ratingFieldName: string,
   data: {
     username: string,
     athens_time: number,
   },
-  ratingFieldName: string
+  navToLeaderboard: () => void,
 };
 
 export type LeaderboardState = { leaderboard: GetLeaderboardStorePayload[] };

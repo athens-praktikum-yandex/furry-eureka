@@ -1,4 +1,8 @@
-export const changeLeaderboardAC = (username: string, score: number) => {
+export const changeLeaderboardAC = (
+  username: string,
+  score: number,
+  navToLeaderboard: () => void,
+) => {
   const FIELD_NAME = 'athens_time';
   return {
     ratingFieldName: FIELD_NAME,
@@ -6,5 +10,6 @@ export const changeLeaderboardAC = (username: string, score: number) => {
       username,
       [FIELD_NAME]: score,
     },
+    navToLeaderboard,
   };
 };
