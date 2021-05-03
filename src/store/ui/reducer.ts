@@ -1,5 +1,6 @@
 import { ActionTypes as SignUpActionTypes } from '@features/SignUpForm/store/actionTypes';
 import { ActionTypes as UserProfileActionTypes } from '@features/UserProfileForm/store/actionTypes';
+import { ActionTypes as LeaderboardActionTypes } from '@features/leaderboard/store/actionTypes';
 import { RequestStatus, UIActions, UIState } from './types';
 
 const initialState: UIState = {
@@ -7,6 +8,8 @@ const initialState: UIState = {
   [UserProfileActionTypes.GET_USER_PROFILE]: RequestStatus.INIT,
   [UserProfileActionTypes.CHANGE_USER_PROFILE]: RequestStatus.INIT,
   [UserProfileActionTypes.CHANGE_PASSWORD]: RequestStatus.INIT,
+  [LeaderboardActionTypes.GET_LEADERBOARD]: RequestStatus.INIT,
+  [LeaderboardActionTypes.CHANGE_LEADERBOARD]: RequestStatus.INIT,
 };
 
 export default (state: UIState = initialState, action: UIActions): UIState => {

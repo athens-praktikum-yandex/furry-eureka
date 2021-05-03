@@ -24,7 +24,9 @@ export class Sprite {
 
   inprogress: boolean = false;
 
-  afterAnimationCallback: (() => void) | undefined;
+  private readonly afterAnimationCallback: (() => void) | undefined;
+
+  private isAllowAnimation: boolean = true;
 
   constructor(
     url: string,
@@ -35,6 +37,7 @@ export class Sprite {
     frames?: number[],
     dir?: string,
     once?: boolean,
+    afterAnimationCallback?: () => void,
   ) {
     this.url = url;
     this.picturePos = picturePos;
@@ -47,12 +50,21 @@ export class Sprite {
     this.index = 0;
     this.done = false;
     this.inprogress = false;
+    this.afterAnimationCallback = afterAnimationCallback;
   }
 
   reset() {
     this.index = 0;
     this.done = false;
     this.inprogress = false;
+  }
+
+  startAnimation() {
+    this.isAllowAnimation = true;
+  }
+
+  stopAnimation() {
+    this.isAllowAnimation = false;
   }
 
   update(dt: number) {
@@ -72,7 +84,7 @@ export class Sprite {
         if (this.once && idx >= max) {
           this.done = true;
           this.inprogress = false;
-          if (this.afterAnimationCallback) {
+          if (this.isAllowAnimation && this.afterAnimationCallback) {
             this.afterAnimationCallback();
           }
           return;
@@ -89,17 +101,19 @@ export class Sprite {
       } else {
         x += frame * this.frameSize[0];
       }
-      ctx.drawImage(
-        resources.get(this.url),
-        x,
-        y,
-        this.pictureSize[0],
-        this.pictureSize[1],
-        position.x - Math.floor(this.pictureSize[0] / 2),
-        position.y - Math.floor(this.pictureSize[1] / 2),
-        this.pictureSize[0],
-        this.pictureSize[1],
-      );
+      if (this.isAllowAnimation) {
+        ctx.drawImage(
+          resources.get(this.url),
+          x,
+          y,
+          this.pictureSize[0],
+          this.pictureSize[1],
+          position.x - Math.floor(this.pictureSize[0] / 2),
+          position.y - Math.floor(this.pictureSize[1] / 2),
+          this.pictureSize[0],
+          this.pictureSize[1],
+        );
+      }
     }
   }
 }

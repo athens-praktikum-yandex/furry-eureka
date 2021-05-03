@@ -18,6 +18,7 @@ export const startGame = (canvas: HTMLCanvasElement) => {
   const keyboardCatcher = new KeyboardCatcher(map.cellSideSize, map.scaledCells,
     mainHero, enemyArcher);
   const gameEngine = new GameEngine([mainHero, enemyArcher], map);
+
   keyboardCatcher.init();
   gameEngine.startGame();
 
