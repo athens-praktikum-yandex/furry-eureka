@@ -6,7 +6,7 @@ import { uiActions } from '@store/ui/actions';
 import { setAuth } from '@store/auth/actions';
 import { handleError } from '@store/error/actions';
 import { signIn as signInAction } from '../actions';
-import { actionTypes } from '../actionTypes';
+import { ActionTypes } from '../actionTypes';
 
 function* signIn({ type, payload: data }: ReturnType<typeof signInAction>) {
   try {
@@ -28,5 +28,5 @@ function* signIn({ type, payload: data }: ReturnType<typeof signInAction>) {
 }
 
 export function* signInListener() {
-  yield takeLeading(actionTypes.SIGN_IN, signIn);
+  yield takeLeading(ActionTypes.SIGN_IN, signIn);
 }

@@ -1,5 +1,4 @@
-const SIGN_IN: 'SIGN_IN' = 'SIGN_IN';
-
-export const actionTypes = {
-  SIGN_IN,
-};
+export enum ActionTypes {
+  SIGN_IN = 'SIGN_IN',
+  OAUTH_REDIRECT = 'OAUTH_REDIRECT',
+}

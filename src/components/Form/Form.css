@@ -17,7 +17,7 @@
 }
 
 .form__submit {
-  margin: auto auto 1rem;
+  margin: auto auto 0.5rem;
   position: relative;
   width: 100%;
   font-size: var(--font-size-l);
@@ -32,4 +32,14 @@
 
 .form__content {
   margin-bottom: 1.5rem;
+}
+
+.form__link {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.form__button {
+  color: var(--color-white);
+  font-size: var(--font-size-m);
 }

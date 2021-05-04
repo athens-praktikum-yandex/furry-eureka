@@ -6,4 +6,5 @@ export const routes = {
   userProfile: '/user-profile',
   leaderBoard: '/leaderboard',
   game: '/game',
+  oAuth: '/oauth',
 };
