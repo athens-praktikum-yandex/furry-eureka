@@ -14,7 +14,7 @@ export const startGame = (canvas: HTMLCanvasElement) => {
   const mainHero = new Person(PersonType.HERO, PersonActions.IDLE,
     randomPosition(map), resources, canvas, 30);
   const enemyArcher = new Person(PersonType.ENEMY_ARCHER, PersonActions.IDLE,
-    randomPosition(map), resources, canvas, 10);
+    randomPosition(map), resources, canvas, 20);
   const gameEngine = new GameEngine([mainHero, enemyArcher], map, resources, canvas);
   const keyboardCatcher = new KeyboardCatcher(map.cellSideSize, map.scaledCells,
     mainHero, enemyArcher);

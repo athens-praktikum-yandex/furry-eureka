@@ -44,14 +44,19 @@ export class GameEngine {
   startFight() {
     const [hero, enemy] = this.characters;
     this._isFight = true;
-    this.eventBus.on('hero-attack', () => {
+    this.eventBus.on('hero-attack-end', () => {
       enemy.setHealth(enemy.getHealth() - hero.getStrength());
+      if (enemy.getHealth() <= 0) {
+        enemy.death();
+      } else {
+        enemy.attack();
+      }
     });
-    this.eventBus.on('enemy-attack', () => {
+    this.eventBus.on('enemy-attack-end', () => {
       hero.setHealth(hero.getHealth() - enemy.getStrength());
     });
-    hero.setPosition({ x: 150, y: 250 });
-    enemy.setPosition({ x: 450, y: 250 });
+    hero.setPosition({ x: 245, y: 250 });
+    enemy.setPosition({ x: 355, y: 250 });
   }
 
   fight() {
@@ -63,10 +68,13 @@ export class GameEngine {
       ctx.drawImage(this.resources.get(FightBackground), 50, 0);
       ctx.fillStyle = '#FF0000';
       ctx.font = '24px Arial';
-      ctx.fillText(hero.getHealth().toString(), 5, 180);
-      ctx.fillRect(20, 200, 10, hero.getHealth() * 2);
-      ctx.fillText(enemy.getHealth().toString(), 555, 180);
-      ctx.fillRect(570, 200, 10, enemy.getHealth() * 2);
+      ctx.fillText(hero.getHealth().toString(), 5, 150);
+      ctx.fillRect(20, 170, 10, hero.getHealth() * 2);
+      ctx.fillText(enemy.getHealth().toString(), 555, 150);
+      ctx.fillRect(570, 170, 10, enemy.getHealth() * 2);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '16px Arial';
+      ctx.fillText('Hit - Press Enter key', 230, 450);
     }
   }
 
