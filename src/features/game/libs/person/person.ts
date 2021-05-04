@@ -13,12 +13,15 @@ import { HERO, ENEMY_ARCHER } from './constants';
 export class Person {
   private eventBus: EventBus;
 
+  private health: number = 100;
+
   constructor(
     private readonly personType: PersonType,
     private action: PersonActions,
     private position: Cell,
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
+    private strength: number,
   ) {
     this.resources.load([
       HeroIdleImg,
@@ -50,6 +53,7 @@ export class Person {
           HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
           HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal',
           true, () => {
+            this.eventBus.emit('hero-attack');
             this.idle();
           }),
         death: null,
@@ -98,6 +102,28 @@ export class Person {
 
   getPosition() {
     return this.position;
+  }
+
+  getHealth() {
+    return this.health;
+  }
+
+  setHealth(health: number) {
+    if (health <= 0) {
+      health = 0;
+      this.death();
+    }
+    this.health = health;
+    return this.health;
+  }
+
+  getStrength() {
+    return this.strength;
+  }
+
+  setStrength(strength: number) {
+    this.strength = strength;
+    return this.strength;
   }
 
   updateCanvas(time: number) {

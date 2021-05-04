@@ -1,8 +1,11 @@
+import { EventBus } from '@libs/event-bus';
 import { Cell } from '../map-generation';
 import { Person } from '../person';
 import { PositionOffset } from './types';
 
 export class KeyboardCatcher {
+  private eventBus: EventBus;
+
   constructor(
     private readonly stepSize: number,
     private readonly scaledCells: Cell[],
@@ -13,6 +16,7 @@ export class KeyboardCatcher {
     this.scaledCells = scaledCells;
     this.mainHero = mainHero;
     this.enemyArcher = enemyArcher;
+    this.eventBus = new EventBus();
   }
 
   private readonly inputHandler = (e: KeyboardEvent) => {
@@ -95,10 +99,10 @@ export class KeyboardCatcher {
   ) => {
     if (code === 'Enter') {
       if (!this.mainHero.personSprites.attack?.inprogress) {
-        this.mainHero.attack();
-
         if (this.isHeroNearEnemy()) {
-          this.enemyArcher.death();
+          this.eventBus.emit('start-fight');
+        } else {
+          this.mainHero.attack();
         }
       }
     }
