@@ -14,15 +14,15 @@ import { HERO, ENEMY_ARCHER } from './constants';
 export class Person {
   private eventBus: EventBus;
 
-  private health: number = 100;
+  private _health: number = 100;
 
   constructor(
     private readonly personType: PersonType,
     private action: PersonActions,
-    private position: Cell,
+    public position: Cell,
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
-    private strength: number,
+    public strength: number,
   ) {
     this.resources.load([
       HeroIdleImg,
@@ -103,33 +103,15 @@ export class Person {
     this.action = PersonActions.DEATH;
   }
 
-  setPosition(position: Cell) {
-    this.position = position;
+  get health() {
+    return this._health;
   }
 
-  getPosition() {
-    return this.position;
-  }
-
-  getHealth() {
-    return this.health;
-  }
-
-  setHealth(health: number) {
+  set health(health: number) {
     if (health <= 0) {
       health = 0;
     }
-    this.health = health;
-    return this.health;
-  }
-
-  getStrength() {
-    return this.strength;
-  }
-
-  setStrength(strength: number) {
-    this.strength = strength;
-    return this.strength;
+    this._health = health;
   }
 
   updateCanvas(time: number) {

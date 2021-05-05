@@ -59,7 +59,7 @@ export class KeyboardCatcher {
 
     setTimeout(() => {
       this.mainHero.walk();
-      this.mainHero.setPosition(position);
+      this.mainHero.position = position;
 
       if (stepSize !== this.stepSize) {
         this.makeStep(code, x, y, stepSize);
@@ -72,7 +72,7 @@ export class KeyboardCatcher {
 
   private handleInput(event: KeyboardEvent) {
     const { code } = event;
-    const { x, y } = this.mainHero.getPosition();
+    const { x, y } = this.mainHero.position;
 
     const positionOffset = this.getPositionOffset(x, y);
     const position = positionOffset[code];
@@ -85,8 +85,8 @@ export class KeyboardCatcher {
   }
 
   private isHeroNearEnemy() {
-    const heroPos = this.mainHero.getPosition();
-    const enemyPos = this.enemyArcher.getPosition();
+    const heroPos = this.mainHero.position;
+    const enemyPos = this.enemyArcher.position;
 
     return (Math.abs(heroPos.x - enemyPos.x) === this.stepSize
       && heroPos.y === enemyPos.y)
