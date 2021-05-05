@@ -12,12 +12,12 @@ export const startGame = (canvas: HTMLCanvasElement) => {
   const resources = new Resources();
   const map = new MapView(cellCoordinates, canvas);
   const mainHero = new Person(PersonType.HERO, PersonActions.IDLE,
-    randomPosition(map), resources, canvas);
+    randomPosition(map), resources, canvas, 30);
   const enemyArcher = new Person(PersonType.ENEMY_ARCHER, PersonActions.IDLE,
-    randomPosition(map), resources, canvas);
+    randomPosition(map), resources, canvas, 20);
+  const gameEngine = new GameEngine([mainHero, enemyArcher], map, resources, canvas);
   const keyboardCatcher = new KeyboardCatcher(map.cellSideSize, map.scaledCells,
     mainHero, enemyArcher);
-  const gameEngine = new GameEngine([mainHero, enemyArcher], map);
 
   keyboardCatcher.init();
   gameEngine.startGame();

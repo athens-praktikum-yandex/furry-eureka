@@ -1,4 +1,5 @@
 import { EventBus } from '@libs/event-bus';
+import { EVENTS } from '@constants/events';
 import { PersonActions, PersonSprites, PersonType } from './types';
 import { Resources } from '../resources';
 import { Sprite } from '../sprite';
@@ -7,18 +8,22 @@ import HeroWalkImg from './img/hero_walk.png';
 import HeroAttackImg from './img/hero_attack.png';
 import EnemyArcherIdleImg from './img/enemy_archer_idle.png';
 import EnemyArcherDeathImg from './img/enemy_archer_death.png';
+import EnemyArcherAttackImg from './img/enemy_archer_attack.png';
 import { Cell } from '../map-generation';
 import { HERO, ENEMY_ARCHER } from './constants';
 
 export class Person {
   private eventBus: EventBus;
 
+  private _health: number = 100;
+
   constructor(
     private readonly personType: PersonType,
     private action: PersonActions,
-    private position: Cell,
+    public position: Cell,
     private readonly resources: Resources,
     private readonly canvas: HTMLCanvasElement,
+    public strength: number,
   ) {
     this.resources.load([
       HeroIdleImg,
@@ -26,6 +31,7 @@ export class Person {
       HeroAttackImg,
       EnemyArcherIdleImg,
       EnemyArcherDeathImg,
+      EnemyArcherAttackImg,
     ]);
     this.personSprites = this.personFactory(this.personType);
     this.position = position;
@@ -50,6 +56,7 @@ export class Person {
           HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
           HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal',
           true, () => {
+            this.eventBus.emit(EVENTS.HERO_ATTACK_END);
             this.idle();
           }),
         death: null,
@@ -59,11 +66,16 @@ export class Person {
           ENEMY_ARCHER.IDLE.frameSize, ENEMY_ARCHER.IDLE.pictureSize, ENEMY_ARCHER.IDLE.speed,
           ENEMY_ARCHER.IDLE.frames),
         walk: null,
-        attack: null,
+        attack: new Sprite(EnemyArcherAttackImg, ENEMY_ARCHER.ATTACK.picturePos,
+          ENEMY_ARCHER.ATTACK.frameSize, ENEMY_ARCHER.ATTACK.pictureSize, ENEMY_ARCHER.ATTACK.speed,
+          ENEMY_ARCHER.ATTACK.frames, 'horizontal', true, () => {
+            this.eventBus.emit(EVENTS.ENEMY_ATTACK_END);
+            this.idle();
+          }),
         death: new Sprite(EnemyArcherDeathImg, ENEMY_ARCHER.DEATH.picturePos,
           ENEMY_ARCHER.DEATH.frameSize, ENEMY_ARCHER.DEATH.pictureSize, ENEMY_ARCHER.DEATH.speed,
           ENEMY_ARCHER.DEATH.frames, 'horizontal', true, () => {
-            this.eventBus.emit('person-death');
+            this.eventBus.emit(EVENTS.PERSON_DEATH);
             mapping.enemy_archer.death.stopAnimation();
           }),
       },
@@ -92,12 +104,15 @@ export class Person {
     this.action = PersonActions.DEATH;
   }
 
-  setPosition(position: Cell) {
-    this.position = position;
+  get health() {
+    return this._health;
   }
 
-  getPosition() {
-    return this.position;
+  set health(health: number) {
+    if (health <= 0) {
+      health = 0;
+    }
+    this._health = health;
   }
 
   updateCanvas(time: number) {

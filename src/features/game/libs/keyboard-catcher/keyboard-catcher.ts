@@ -1,8 +1,12 @@
+import { EventBus } from '@libs/event-bus';
+import { EVENTS } from '@constants/events';
 import { Cell } from '../map-generation';
 import { Person } from '../person';
 import { PositionOffset } from './types';
 
 export class KeyboardCatcher {
+  private eventBus: EventBus;
+
   constructor(
     private readonly stepSize: number,
     private readonly scaledCells: Cell[],
@@ -13,6 +17,7 @@ export class KeyboardCatcher {
     this.scaledCells = scaledCells;
     this.mainHero = mainHero;
     this.enemyArcher = enemyArcher;
+    this.eventBus = new EventBus();
   }
 
   private readonly inputHandler = (e: KeyboardEvent) => {
@@ -55,7 +60,7 @@ export class KeyboardCatcher {
 
     setTimeout(() => {
       this.mainHero.walk();
-      this.mainHero.setPosition(position);
+      this.mainHero.position = position;
 
       if (stepSize !== this.stepSize) {
         this.makeStep(code, x, y, stepSize);
@@ -68,7 +73,7 @@ export class KeyboardCatcher {
 
   private handleInput(event: KeyboardEvent) {
     const { code } = event;
-    const { x, y } = this.mainHero.getPosition();
+    const { x, y } = this.mainHero.position;
 
     const positionOffset = this.getPositionOffset(x, y);
     const position = positionOffset[code];
@@ -81,8 +86,8 @@ export class KeyboardCatcher {
   }
 
   private isHeroNearEnemy() {
-    const heroPos = this.mainHero.getPosition();
-    const enemyPos = this.enemyArcher.getPosition();
+    const heroPos = this.mainHero.position;
+    const enemyPos = this.enemyArcher.position;
 
     return (Math.abs(heroPos.x - enemyPos.x) === this.stepSize
       && heroPos.y === enemyPos.y)
@@ -95,10 +100,10 @@ export class KeyboardCatcher {
   ) => {
     if (code === 'Enter') {
       if (!this.mainHero.personSprites.attack?.inprogress) {
-        this.mainHero.attack();
-
         if (this.isHeroNearEnemy()) {
-          this.enemyArcher.death();
+          this.eventBus.emit(EVENTS.START_FIGHT);
+        } else {
+          this.mainHero.attack();
         }
       }
     }
