@@ -1,6 +1,7 @@
 import { EventBus } from '@libs/event-bus';
 import { Resources } from '@features/game/libs/resources';
 import FightBackground from '@features/game/img/bg.gif';
+import { EVENTS } from '@constants/events';
 import { Person } from '../person';
 import { MapView } from '../map-view/map-view';
 
@@ -28,10 +29,11 @@ export class GameEngine {
   startGame() {
     this.startTime = Date.now();
     this.lastTime = Date.now();
-    this.eventBus.on('person-death', () => {
-      this.eventBus.emit('end-game', Math.floor(10000 / ((this.lastTime - this.startTime) / 1000)));
+    this.eventBus.on(EVENTS.PERSON_DEATH, () => {
+      this.eventBus.emit(EVENTS.END_GAME,
+        Math.floor(10000 / ((this.lastTime - this.startTime) / 1000)));
     });
-    this.eventBus.on('start-fight', () => {
+    this.eventBus.on(EVENTS.START_FIGHT, () => {
       this.startFight();
     });
     this.loop();
@@ -44,7 +46,7 @@ export class GameEngine {
   startFight() {
     const [hero, enemy] = this.characters;
     this._isFight = true;
-    this.eventBus.on('hero-attack-end', () => {
+    this.eventBus.on(EVENTS.HERO_ATTACK_END, () => {
       enemy.health -= hero.strength;
       if (enemy.health <= 0) {
         enemy.death();
@@ -52,7 +54,7 @@ export class GameEngine {
         enemy.attack();
       }
     });
-    this.eventBus.on('enemy-attack-end', () => {
+    this.eventBus.on(EVENTS.ENEMY_ATTACK_END, () => {
       hero.health -= enemy.strength;
     });
     hero.position = { x: 245, y: 250 };

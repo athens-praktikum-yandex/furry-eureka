@@ -1,4 +1,5 @@
 import { EventBus } from '@libs/event-bus';
+import { EVENTS } from '@constants/events';
 import { Cell } from '../map-generation';
 import { Person } from '../person';
 import { PositionOffset } from './types';
@@ -100,7 +101,7 @@ export class KeyboardCatcher {
     if (code === 'Enter') {
       if (!this.mainHero.personSprites.attack?.inprogress) {
         if (this.isHeroNearEnemy()) {
-          this.eventBus.emit('start-fight');
+          this.eventBus.emit(EVENTS.START_FIGHT);
         } else {
           this.mainHero.attack();
         }

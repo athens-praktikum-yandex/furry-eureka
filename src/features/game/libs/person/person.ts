@@ -1,4 +1,5 @@
 import { EventBus } from '@libs/event-bus';
+import { EVENTS } from '@constants/events';
 import { PersonActions, PersonSprites, PersonType } from './types';
 import { Resources } from '../resources';
 import { Sprite } from '../sprite';
@@ -55,7 +56,7 @@ export class Person {
           HERO.ATTACK_CLOSE.frameSize, HERO.ATTACK_CLOSE.pictureSize,
           HERO.ATTACK_CLOSE.speed, HERO.ATTACK_CLOSE.frames, 'horizontal',
           true, () => {
-            this.eventBus.emit('hero-attack-end');
+            this.eventBus.emit(EVENTS.HERO_ATTACK_END);
             this.idle();
           }),
         death: null,
@@ -68,13 +69,13 @@ export class Person {
         attack: new Sprite(EnemyArcherAttackImg, ENEMY_ARCHER.ATTACK.picturePos,
           ENEMY_ARCHER.ATTACK.frameSize, ENEMY_ARCHER.ATTACK.pictureSize, ENEMY_ARCHER.ATTACK.speed,
           ENEMY_ARCHER.ATTACK.frames, 'horizontal', true, () => {
-            this.eventBus.emit('enemy-attack-end');
+            this.eventBus.emit(EVENTS.ENEMY_ATTACK_END);
             this.idle();
           }),
         death: new Sprite(EnemyArcherDeathImg, ENEMY_ARCHER.DEATH.picturePos,
           ENEMY_ARCHER.DEATH.frameSize, ENEMY_ARCHER.DEATH.pictureSize, ENEMY_ARCHER.DEATH.speed,
           ENEMY_ARCHER.DEATH.frames, 'horizontal', true, () => {
-            this.eventBus.emit('person-death');
+            this.eventBus.emit(EVENTS.PERSON_DEATH);
             mapping.enemy_archer.death.stopAnimation();
           }),
       },
