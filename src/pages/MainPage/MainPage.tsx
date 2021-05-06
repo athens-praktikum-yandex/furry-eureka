@@ -8,6 +8,7 @@ import { Routes } from '@components/Routes/types';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
+
   dispatch(getUserProfile());
 
   return (

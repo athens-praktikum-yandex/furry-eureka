@@ -8,13 +8,15 @@ import { fields, initialValues } from './constants';
 import { validationSchema } from './constants/validationSchema';
 import { signIn } from './store/actions';
 import { useLinks } from './hooks';
+import { useOAuth } from './hooks/useOAuth';
 
 type Props = FC<OwnProps>;
 
 export const SignInForm: Props = ({ className }) => {
   const dispatch = useDispatch();
-
   const links = useLinks();
+
+  useOAuth();
 
   return (
     <Formik

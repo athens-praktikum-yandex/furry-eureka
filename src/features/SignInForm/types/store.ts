@@ -2,7 +2,14 @@ import { InitialValues } from './initialValues';
 
 export type SignInPayload = InitialValues;
 
-export type OAuthPayload = {
+type OAuthCommonPayload = {
   redirectUri: string,
-  redirectCallback: (clientId: string) => void,
 };
+
+export type OAuthRedirectPayload = {
+  redirectCallback: (clientId: string) => void,
+} & OAuthCommonPayload;
+
+export type OAuthConfirmPayload = {
+  code: string,
+} & OAuthCommonPayload;

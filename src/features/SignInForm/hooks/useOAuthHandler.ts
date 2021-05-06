@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { oAuth as oAuthAction } from '../store/actions';
+import { oAuthRedirect as oAuthRedirectAction } from '../store/actions';
 
 export const useOAuthHandler = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const useOAuthHandler = () => {
   }, [redirectUri]);
 
   const oAuthHandler = useCallback(() => {
-    dispatch(oAuthAction({
+    dispatch(oAuthRedirectAction({
       redirectCallback,
       redirectUri,
     }));

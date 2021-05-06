@@ -1,4 +1,4 @@
-import { OAuthPayload, SignInPayload } from '../types/store';
+import { OAuthRedirectPayload, OAuthConfirmPayload, SignInPayload } from '../types/store';
 import { ActionTypes } from './actionTypes';
 
 export const signIn = (payload: SignInPayload) => ({
@@ -6,7 +6,12 @@ export const signIn = (payload: SignInPayload) => ({
   payload,
 });
 
-export const oAuth = (payload: OAuthPayload) => ({
+export const oAuthRedirect = (payload: OAuthRedirectPayload) => ({
   type: ActionTypes.OAUTH_REDIRECT,
+  payload,
+});
+
+export const oAuthConfirm = (payload: OAuthConfirmPayload) => ({
+  type: ActionTypes.OAUTH_CONFIRM,
   payload,
 });

@@ -3,10 +3,10 @@ import { call, put, takeLeading } from '@redux-saga/core/effects';
 import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
-import { oAuth as oAuthAction } from '../actions';
+import { oAuthRedirect as oAuthRedirectAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
-function* oAuthRedirect({ type, payload }: ReturnType<typeof oAuthAction>) {
+function* oAuthRedirect({ type, payload }: ReturnType<typeof oAuthRedirectAction>) {
   try {
     const { redirectCallback, ...params } = payload;
 
