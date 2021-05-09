@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { Button } from '@components/Button';
-import { ExtendedOwnProps } from './types';
+import { Button, ButtonTheme } from '@components/Button';
+import { ExtendedOwnProps, FormLinkType } from './types';
 import './Form.css';
 
 export const Form: FC<ExtendedOwnProps> = ({
   children,
   title,
   submitText,
-  link,
+  links,
   className,
   ...props
 }) => (
@@ -27,9 +27,25 @@ export const Form: FC<ExtendedOwnProps> = ({
         className="form__submit"
         value={submitText}
       />
-      {link && (
-        <Link to={link.to}>{link.value}</Link>
-      )}
+      {links?.length && links.map((link) => (
+        link.type === FormLinkType.LINK ? (
+          <Link
+            key={link.value}
+            to={link.to}
+            className="form__link"
+          >
+            {link.value}
+          </Link>
+        ) : (
+          <Button
+            key={link.value}
+            value={link.value}
+            theme={ButtonTheme.transparent}
+            onClick={link.onClick}
+            className="form__button"
+          />
+        )
+      ))}
     </div>
   </form>
 );

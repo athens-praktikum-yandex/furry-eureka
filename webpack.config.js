@@ -22,6 +22,7 @@ module.exports = {
         writeToDisk: true,
         contentBase: path.join(__dirname, 'build'),
         historyApiFallback: true,
+        port: 3000,
     },
     output: {
         path: path.join(__dirname, "/dist"),
