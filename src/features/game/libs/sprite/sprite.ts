@@ -101,9 +101,12 @@ export class Sprite {
       } else {
         x += frame * this.frameSize[0];
       }
-      if (this.isAllowAnimation) {
+
+      const img = resources.get(this.url);
+
+      if (this.isAllowAnimation && img) {
         ctx.drawImage(
-          resources.get(this.url),
+          img,
           x,
           y,
           this.pictureSize[0],

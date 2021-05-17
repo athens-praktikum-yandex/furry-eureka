@@ -2,8 +2,9 @@ import { Action } from '@store/types';
 import { ChangeUserProfilePayload, ChangePasswordPayload, GetUserProfileSuccessPayload } from '../types/store';
 import { ActionTypes } from './actionTypes';
 
-export const getUserProfile = () => ({
+export const getUserProfile = (cookie?: string) => ({
   type: ActionTypes.GET_USER_PROFILE,
+  cookie,
 });
 
 export const getUserProfileSuccess = (payload: GetUserProfileSuccessPayload):

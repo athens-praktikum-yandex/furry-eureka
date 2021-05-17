@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLeaderboard } from '@features/leaderboard/store/actions';
-import { LeaderboardState } from '@features/leaderboard/types';
-
-import { headers, getLeaderboardPayload } from './constants';
+import { State } from '@store/types';
+import { getLeaderboardPayload, headers } from './constants';
 import { LeaderboardLine, LeaderboardLineHeader } from './components/leaderboard-line';
 import './leaderboard.css';
+import { getLeaderboard } from './store/actions';
 
 export const Leaderboard = () => {
+  const leaderboardScores = useSelector((state: State) => state.leaderboard.data);
   const dispatch = useDispatch();
-  const leaderboardScores = useSelector((state: LeaderboardState) => state.leaderboard);
+
   useEffect(() => {
-    dispatch(getLeaderboard(getLeaderboardPayload));
+    if (!leaderboardScores.length) {
+      dispatch(getLeaderboard(getLeaderboardPayload));
+    }
   }, []);
 
   return (

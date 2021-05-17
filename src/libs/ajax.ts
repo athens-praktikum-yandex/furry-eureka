@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
+import { isServer } from './isServer';
 
 type ErrorParameters = {
   name: string,
@@ -34,8 +35,22 @@ const client: AxiosInstance = axios.create({
   validateStatus: (status) => [...validStatuses, ...errorStatuses].includes(status),
 });
 
-export const ajax = async <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> => {
-  const response = await client(config);
+export const ajax = async <T>(
+  config: AxiosRequestConfig,
+  cookie?: string,
+): Promise<AxiosResponse<T>> => {
+  let axiosConfig = config;
+
+  if (isServer) {
+    axiosConfig = {
+      ...config,
+      headers: {
+        cookie,
+      },
+    };
+  }
+
+  const response = await client(axiosConfig);
 
   if (errorStatuses.includes(response.status)) {
     throw new ErrorWithCode(

@@ -6,3 +6,8 @@ export const setAuth = (payload: AuthState): Action<ActionTypes.SET_IS_AUTH, Aut
   type: ActionTypes.SET_IS_AUTH,
   payload,
 });
+
+export const checkAuth = (cookie?: string) => ({
+  type: ActionTypes.CHECK_AUTH,
+  cookie,
+});

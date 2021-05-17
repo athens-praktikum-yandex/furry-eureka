@@ -2,7 +2,7 @@ import createReducer from '@store/createReducer';
 import type { InitialState } from '../types';
 import { ACTIONS } from './handlers';
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   id: 0,
   avatar: '',
   email: '',
@@ -12,4 +12,5 @@ const initialState: InitialState = {
   display_name: '',
   phone: '',
 };
+
 export default createReducer(initialState, ACTIONS);

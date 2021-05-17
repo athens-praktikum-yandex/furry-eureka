@@ -1,5 +1,4 @@
 export const changeLeaderboardAC = (
-  username: string,
   score: number,
   navToLeaderboard: () => void,
 ) => {
@@ -7,7 +6,6 @@ export const changeLeaderboardAC = (
   return {
     ratingFieldName: FIELD_NAME,
     data: {
-      username,
       [FIELD_NAME]: score,
     },
     navToLeaderboard,

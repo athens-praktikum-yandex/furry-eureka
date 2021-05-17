@@ -4,7 +4,7 @@ import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { setAuth } from '@store/auth/actions';
-import { handleError } from '@store/error/actions';
+import { errorHandlerSaga } from '@libs/errorHandlerSaga';
 import { signUp as signUpAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
@@ -23,7 +23,7 @@ function* signUp({ type, payload: data }: ReturnType<typeof signUpAction>) {
     toast.success('Регистрация прошла успешно');
   } catch (e) {
     yield put(uiActions.error(type));
-    yield put(handleError(e));
+    yield call(errorHandlerSaga, e);
   }
 }
 

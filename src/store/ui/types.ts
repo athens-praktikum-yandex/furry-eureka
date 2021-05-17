@@ -1,3 +1,6 @@
+import { ActionTypes as SignUpActionTypes } from '@features/SignUpForm/store/actionTypes';
+import { ActionTypes as UserProfileActionTypes } from '@features/UserProfileForm/store/actionTypes';
+import { ActionTypes as LeaderboardActionTypes } from '@features/leaderboard/store/actionTypes';
 import {
   error, request, reset, success,
 } from './actions';
@@ -16,4 +19,12 @@ export type Error = ReturnType<typeof error>;
 export type Reset = ReturnType<typeof reset>;
 export type UIActions = Request | Success | Error | Reset;
 
-export type UIState = Record<string, RequestStatus>;
+type StatusesKeys =
+  | SignUpActionTypes.SIGN_UP
+  | UserProfileActionTypes.GET_USER_PROFILE
+  | UserProfileActionTypes.CHANGE_USER_PROFILE
+  | UserProfileActionTypes.CHANGE_PASSWORD
+  | LeaderboardActionTypes.GET_LEADERBOARD
+  | LeaderboardActionTypes.CHANGE_LEADERBOARD;
+
+export type UIState = Record<StatusesKeys, RequestStatus>;

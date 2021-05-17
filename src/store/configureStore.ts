@@ -1,45 +1,27 @@
-import {
-  createStore, applyMiddleware, compose, combineReducers,
-} from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import createSagaMiddleware, { END } from 'redux-saga';
+import { isServer } from '@libs/isServer';
 import { rootReducer as reducers } from './rootReducer';
 import { rootSaga } from './rootSaga';
+import { AppStore, State } from './types';
+import { getComposeEnhancers } from './getComposeEnhancers';
 
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: typeof compose;
-    __REDUX_DEVTOOLS_EXTENSION__: typeof compose;
-  }
-}
-
-const sagaMiddleware = createSagaMiddleware();
-
-const persistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['auth', 'userProfile'],
-};
-
-const pReducer = persistReducer(persistConfig, combineReducers(reducers));
-
-export const configureStore = (initialState: { [key: string]: never } = {}) => {
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    || window.__REDUX_DEVTOOLS_EXTENSION__
-    || compose;
-
+export const configureStore = (initialState: Partial<State> = {}) => {
+  const sagaMiddleware = createSagaMiddleware();
+  const composedEnhancers = getComposeEnhancers()(applyMiddleware(sagaMiddleware));
+  const rootReducer = combineReducers(reducers);
   const store = createStore(
-    pReducer,
+    rootReducer,
     initialState,
-    composeEnhancers(
-      applyMiddleware(sagaMiddleware),
-    ),
-  );
+    composedEnhancers,
+  ) as AppStore;
 
-  const persistor = persistStore(store);
+  store.runSaga = sagaMiddleware.run;
+  store.close = () => store.dispatch(END);
 
-  sagaMiddleware.run(rootSaga);
+  if (!isServer) {
+    sagaMiddleware.run(rootSaga);
+  }
 
-  return { store, persistor };
+  return { store };
 };

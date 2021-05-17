@@ -4,7 +4,7 @@ import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { setAuth } from '@store/auth/actions';
-import { handleError } from '@store/error/actions';
+import { errorHandlerSaga } from '@libs/errorHandlerSaga';
 import { signIn as signInAction } from '../actions';
 import { actionTypes } from '../actionTypes';
 
@@ -23,7 +23,7 @@ function* signIn({ type, payload: data }: ReturnType<typeof signInAction>) {
     toast.success('Вы вошли');
   } catch (e) {
     yield put(uiActions.error(type));
-    yield put(handleError(e));
+    yield call(errorHandlerSaga, e);
   }
 }
 

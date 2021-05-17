@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { UserProfileState } from '@features/UserProfileForm';
+import { State } from '@store/types';
 
 export const useInitialValues = () => {
-  const userProfile = useSelector((state: UserProfileState) => state.userProfile);
+  const userProfile = useSelector((state: State) => state.userProfile);
   return {
     email: userProfile.email || '',
     login: userProfile.login || '',

@@ -19,10 +19,11 @@ export type GetLeaderboardStorePayload = {
 export type ChangeLeaderboardPayload = {
   ratingFieldName: string,
   data: {
-    username: string,
     athens_time: number,
   },
   navToLeaderboard: () => void,
 };
 
-export type LeaderboardState = { leaderboard: GetLeaderboardStorePayload[] };
+export type LeaderboardState = {
+  data: GetLeaderboardStorePayload[]
+};

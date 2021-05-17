@@ -3,7 +3,7 @@ import { ActionTypes as UserProfileActionTypes } from '@features/UserProfileForm
 import { ActionTypes as LeaderboardActionTypes } from '@features/leaderboard/store/actionTypes';
 import { RequestStatus, UIActions, UIState } from './types';
 
-const initialState: UIState = {
+export const initialState: UIState = {
   [SignUpActionTypes.SIGN_UP]: RequestStatus.INIT,
   [UserProfileActionTypes.GET_USER_PROFILE]: RequestStatus.INIT,
   [UserProfileActionTypes.CHANGE_USER_PROFILE]: RequestStatus.INIT,

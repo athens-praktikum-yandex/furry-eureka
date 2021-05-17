@@ -21,7 +21,7 @@ export const useGame = () => {
         keyboardCatcher.exit();
       }
     };
-  }, [canvasRef.current]);
+  }, []);
 
   return canvasRef;
 };

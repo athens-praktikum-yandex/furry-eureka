@@ -6,9 +6,10 @@ import {
 } from '../types/store';
 import { ActionTypes } from './actionTypes';
 
-export const getLeaderboard = (payload: GetLeaderboardPayload) => ({
+export const getLeaderboard = (payload: GetLeaderboardPayload, cookie?: string) => ({
   type: ActionTypes.GET_LEADERBOARD,
   payload,
+  cookie,
 });
 
 export const getLeaderboardSuccess = (payload: GetLeaderboardSuccessPayload[]):
