@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "9.0.2",
+    "express": "4.17.1",
+    "pg": "^8.6.0",
+    "postgres": "1.0.2"
+  },
+  "devDependencies": {
+    "@types/pg": "^7.14.11"
+  }
+}
