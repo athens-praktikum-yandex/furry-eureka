@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
-import { isServer } from './isServer';
 
 type ErrorParameters = {
   name: string,
@@ -39,15 +38,10 @@ export const ajax = async <T>(
   config: AxiosRequestConfig,
   cookie?: string,
 ): Promise<AxiosResponse<T>> => {
-  let axiosConfig = config;
+  const axiosConfig = { ...config };
 
-  if (isServer) {
-    axiosConfig = {
-      ...config,
-      headers: {
-        cookie,
-      },
-    };
+  if (cookie) {
+    axiosConfig.headers = { cookie };
   }
 
   const response = await client(axiosConfig);
