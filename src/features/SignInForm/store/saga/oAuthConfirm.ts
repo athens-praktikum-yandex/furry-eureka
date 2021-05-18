@@ -4,17 +4,16 @@ import { URL } from '@constants/url';
 import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { setAuth } from '@store/auth/actions';
-import { errorHandlerSaga } from '@libs/errorHandlerSaga';
-import { signIn as signInAction } from '../actions';
+import { oAuthConfirm as oAuthConfirmAction } from '../actions';
 import { ActionTypes } from '../actionTypes';
 
-function* signIn({ type, payload: data }: ReturnType<typeof signInAction>) {
+function* oAuthConfirm({ type, payload: data }: ReturnType<typeof oAuthConfirmAction>) {
   try {
     yield put(uiActions.request(type));
 
     yield call(ajax, {
       method: 'POST',
-      url: URL.signIn,
+      url: URL.oAuthYandex,
       data,
     });
 
@@ -23,10 +22,10 @@ function* signIn({ type, payload: data }: ReturnType<typeof signInAction>) {
     toast.success('Вы вошли');
   } catch (e) {
     yield put(uiActions.error(type));
-    yield call(errorHandlerSaga, e);
+    toast.error(e.message || e);
   }
 }
 
-export function* signInListener() {
-  yield takeLeading(ActionTypes.SIGN_IN, signIn);
+export function* oAuthConfirmListener() {
+  yield takeLeading(ActionTypes.OAUTH_CONFIRM, oAuthConfirm);
 }

@@ -4,7 +4,7 @@ import { Formik, FormikProps } from 'formik';
 import { Form } from '@components/Form';
 import { FormikField } from '@components/FormikField';
 import { InitialValues, OwnProps } from './types';
-import { fields, initialValues } from './constants';
+import { fields, initialValues, links } from './constants';
 import { validationSchema } from './constants/validationSchema';
 import { signUp } from './store/actions';
 
@@ -26,10 +26,7 @@ export const SignUpForm: Props = ({ className }) => {
           className={className}
           title="Регистрация"
           submitText="Зарегистрироваться"
-          link={{
-            to: '/sign-in',
-            value: 'Войти',
-          }}
+          links={links}
           onSubmit={props.handleSubmit}
         >
           {Object.entries(fields).map(([name, { label, type }]) => (

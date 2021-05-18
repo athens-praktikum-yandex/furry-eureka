@@ -7,4 +7,6 @@ export const URL = {
   changePassword: '/user/password',
   getLeaderboard: '/leaderboard/all',
   changeLeaderboard: '/leaderboard',
+  oAuthServiceId: '/oauth/yandex/service-id',
+  oAuthYandex: '/oauth/yandex',
 };

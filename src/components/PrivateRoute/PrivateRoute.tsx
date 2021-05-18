@@ -19,6 +19,7 @@ export const PrivateRoute: Props = (
   },
 ) => {
   const isAuth = useSelector(authSelectors.getProp('isAuth'));
+
   const route = (
     <Route
       location={location}
@@ -32,11 +33,14 @@ export const PrivateRoute: Props = (
       {children}
     </Route>
   );
+
   if (isAuth && (path === routes.signIn || path === routes.signUp)) {
     return <Redirect to={{ pathname: routes.main }} />;
   }
+
   if (!isAuth && (path !== routes.signIn && path !== routes.signUp)) {
-    return <Redirect to={{ pathname: routes.signIn }} />;
+    return <Redirect to={{ pathname: routes.signIn, search: location?.search }} />;
   }
+
   return route;
 };
