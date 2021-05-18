@@ -1,4 +1,4 @@
-import {AllowNull, Column, DataType, ForeignKey, Model, PrimaryKey, Table} from "sequelize-typescript";
+import {AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {Comments} from "./Comments";
 import {Users} from "./Users";
 
@@ -6,20 +6,23 @@ import {Users} from "./Users";
   paranoid: true,   // add 'deleted_at'
   tableName: 'replies'
 })
-export class Replies extends Model {
-  @PrimaryKey
-  @Column(DataType.INTEGER)
-  id!: number;
-
-  @ForeignKey(() => Comments)
-  @Column
-  comment_id!: number;
-
-  @ForeignKey(() => Users)
-  @Column
-  owner_id!: number;
-
+export class Replies extends Model<Replies> {
   @AllowNull(false)
   @Column(DataType.STRING)
   message!: string;
+
+  @ForeignKey(() => Comments)
+  @AllowNull(false)
+  @Column
+  commentId!: number;
+
+  @BelongsTo(() => Comments)
+  comment!: Comments;
+
+  @ForeignKey(() => Users)
+  @Column
+  ownerId!: number;
+
+  @BelongsTo(() => Users)
+  owner!: Users;
 }

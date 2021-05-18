@@ -15,11 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '5mb'}));
 
 // enable cors for all origins
-app.use((
-  req: Record<string, unknown>,
-  res: { header: (arg0: string, arg1: string) => void; },
-  next: () => void) =>
-{
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Expose-Headers", "x-total-count");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
