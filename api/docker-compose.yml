@@ -1,5 +1,22 @@
 version: "3"
 services:
+  server-app:
+    container_name: server-app
+    build:
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:newPassword@postgres:5432/athensdb
+      NODE_ENV: development
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./shared:/var/www/shared
+    restart: always
+    networks:
+      - awesome
   postgres:
     container_name: postgres
     image: postgres:12
@@ -28,23 +45,6 @@ services:
       - pgadmin-data:/var/lib/pgadmin
     depends_on:
       - postgres
-    networks:
-      - awesome
-  server-app:
-    container_name: server-app
-    build:
-      context: .
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://postgres:newPassword@postgres:5432/athensdb
-      NODE_ENV: development
-      PORT: 5000
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./shared:/var/www/shared
-    restart: always
     networks:
       - awesome
 

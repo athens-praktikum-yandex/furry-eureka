@@ -1,6 +1,6 @@
 FROM node:alpine
+COPY /app /app
 WORKDIR /app
-COPY ./ ./
-RUN npm install && tsc
+RUN npm install
 EXPOSE 5000
-CMD node app/dist/server.js
+CMD npm start
