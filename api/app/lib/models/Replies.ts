@@ -1,10 +1,12 @@
-import {AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
-import {Comments} from "./Comments";
-import {Users} from "./Users";
+import {
+  AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table,
+} from 'sequelize-typescript';
+import { Comments } from './Comments';
+import { Users } from './Users';
 
 @Table({
-  paranoid: true,   // add 'deleted_at'
-  tableName: 'replies'
+  paranoid: true, // add 'deleted_at'
+  tableName: 'replies',
 })
 export class Replies extends Model<Replies> {
   @AllowNull(false)

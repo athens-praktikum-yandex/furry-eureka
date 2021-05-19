@@ -1,6 +1,6 @@
-import {Router} from 'express';
-import {Emoji} from '../models/Emoji';
-import {ScopeOptions} from "sequelize";
+import { Router } from 'express';
+import { ScopeOptions } from 'sequelize';
+import { Emoji } from '../models/Emoji';
 
 export const emoji = Router();
 
@@ -15,7 +15,7 @@ emoji.post('/', async (req, res, next) => {
 
 emoji.get('', async (req, res, next) => {
   try {
-    res.json(await Emoji.scope(req.query['scope'] as unknown as ScopeOptions).findAll());
+    res.json(await Emoji.scope(req.query.scope as unknown as ScopeOptions).findAll());
   } catch (e) {
     next(e);
   }
@@ -23,8 +23,8 @@ emoji.get('', async (req, res, next) => {
 
 emoji.get('/:id', async (req, res, next) => {
   try {
-    const emoj = await Emoji.scope(req.query['scope'] as unknown as ScopeOptions)
-      .findByPk(req.params['id']);
+    const emoj = await Emoji.scope(req.query.scope as unknown as ScopeOptions)
+      .findByPk(req.params.id);
     res.json(emoj);
   } catch (e) {
     next(e);
@@ -33,7 +33,7 @@ emoji.get('/:id', async (req, res, next) => {
 
 emoji.put('/:id', async (req, res, next) => {
   try {
-    await Emoji.update<Emoji>(req.body, {where: {id: req.params['id']}});
+    await Emoji.update<Emoji>(req.body, { where: { id: req.params.id } });
     res.sendStatus(200);
   } catch (e) {
     next(e);
