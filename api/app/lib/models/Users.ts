@@ -1,11 +1,13 @@
-import {AllowNull, Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
-import {Topics} from "./Topics";
-import {Comments} from "./Comments";
-import {Replies} from "./Replies";
+import {
+  AllowNull, Column, DataType, HasMany, Model, Table,
+} from 'sequelize-typescript';
+import { Topics } from './Topics';
+import { Comments } from './Comments';
+import { Replies } from './Replies';
 
 @Table({
-  paranoid: true,   // add 'deleted_at'
-  tableName: 'users'
+  paranoid: true, // add 'deleted_at'
+  tableName: 'users',
 })
 export class Users extends Model<Users> {
   @AllowNull(false)
@@ -13,11 +15,11 @@ export class Users extends Model<Users> {
   name!: string;
 
   @HasMany(() => Topics)
-  topics!: Topics[]
+  topics!: Topics[];
 
   @HasMany(() => Comments)
-  comments!: Comments[]
+  comments!: Comments[];
 
   @HasMany(() => Replies)
-  replies!: Replies[]
+  replies!: Replies[];
 }

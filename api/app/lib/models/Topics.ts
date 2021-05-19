@@ -3,14 +3,14 @@ import {
   Column,
   DataType, ForeignKey, HasMany,
   Model,
-  Table
-} from "sequelize-typescript";
-import {Users} from "./Users";
-import {Comments} from "./Comments";
+  Table,
+} from 'sequelize-typescript';
+import { Users } from './Users';
+import { Comments } from './Comments';
 
 @Table({
-  paranoid: true,   // add 'deleted_at'
-  tableName: 'topics'
+  paranoid: true, // add 'deleted_at'
+  tableName: 'topics',
 })
 export class Topics extends Model<Topics> {
   @AllowNull(false)
@@ -26,5 +26,5 @@ export class Topics extends Model<Topics> {
   owner!: Users;
 
   @HasMany(() => Comments)
-  comments!: Comments[]
+  comments!: Comments[];
 }

@@ -7,5 +7,5 @@ export const sequelize = new Sequelize({
   password: 'newPassword',
   database: 'athensdb',
   dialect: 'postgres',
-  models: [__dirname + '/models']
+  models: [`${__dirname}/models`],
 });
