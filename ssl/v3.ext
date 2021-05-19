@@ -4,4 +4,4 @@ keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 = local.ya-praktikum.tech
+DNS.1 = https://athens-furry-eureka-04.ya-praktikum.tech

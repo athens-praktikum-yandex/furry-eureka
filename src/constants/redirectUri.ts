@@ -1,1 +1,1 @@
-export const redirectUri = 'http://local.ya-praktikum.tech';
+export const redirectUri = 'https://athens-furry-eureka-04.ya-praktikum.tech';
