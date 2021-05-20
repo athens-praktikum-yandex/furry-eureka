@@ -10,4 +10,4 @@ export type GetUserProfileSuccessPayload = ChangeUserProfilePayload & {
   id: number
 };
 
-export type UserProfileState = { userProfile: InitialState };
+export type UserProfileState = InitialState;

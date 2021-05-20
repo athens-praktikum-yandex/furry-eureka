@@ -1,6 +1,9 @@
 import createReducer from '@store/createReducer';
 import { ACTIONS } from './handlers';
-import { GetLeaderboardStorePayload } from '../types';
+import { LeaderboardState } from '../types';
 
-const initialState: GetLeaderboardStorePayload[] = [];
+export const initialState: LeaderboardState = {
+  data: [],
+};
+
 export default createReducer(initialState, ACTIONS);

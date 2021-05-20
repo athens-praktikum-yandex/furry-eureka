@@ -3,7 +3,6 @@ import { signUpSaga } from '@features/SignUpForm/store/saga';
 import { userProfileSaga } from '@features/UserProfileForm/store/saga';
 import { leaderboardSaga } from '@features/leaderboard/store/saga';
 import { authSaga } from '@store/auth/saga';
-import { errorSaga } from '@store/error/saga';
 import { fork } from 'redux-saga/effects';
 
 export function* rootSaga() {
@@ -12,5 +11,4 @@ export function* rootSaga() {
   yield fork(userProfileSaga);
   yield fork(leaderboardSaga);
   yield fork(authSaga);
-  yield fork(errorSaga);
 }

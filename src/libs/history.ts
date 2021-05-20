@@ -1,3 +1,6 @@
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createMemoryHistory } from 'history';
+import { isServer } from './isServer';
 
-export const history = createBrowserHistory();
+export const history = isServer
+  ? createMemoryHistory({ initialEntries: ['/'] })
+  : createBrowserHistory();

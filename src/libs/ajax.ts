@@ -34,8 +34,17 @@ const client: AxiosInstance = axios.create({
   validateStatus: (status) => [...validStatuses, ...errorStatuses].includes(status),
 });
 
-export const ajax = async <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> => {
-  const response = await client(config);
+export const ajax = async <T>(
+  config: AxiosRequestConfig,
+  cookie?: string,
+): Promise<AxiosResponse<T>> => {
+  const axiosConfig = { ...config };
+
+  if (cookie) {
+    axiosConfig.headers = { cookie };
+  }
+
+  const response = await client(axiosConfig);
 
   if (errorStatuses.includes(response.status)) {
     throw new ErrorWithCode(

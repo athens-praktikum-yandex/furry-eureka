@@ -1,25 +1,15 @@
-const cfg = require('../../lib/cfg').default;
-
-const filenameRegexp = /^(?!.*\.inline).*\.(jpe?g|png|gif|eot|woff2?|ttf)$/;
+const fileRegex = /\.(png|jpe?g|gif|jp2|webp)$/;
 
 export default {
   client: {
+    test: fileRegex,
     loader: 'file-loader',
-    test: filenameRegexp,
     options: {
-      name: '[hash].[ext]',
-      outputPath: './',
-      publicPath: cfg.static.baseUrl,
+      name: '[name].[ext]',
     },
   },
-
-  ssr: {
-    loader: 'file-loader',
-    test: filenameRegexp,
-    options: {
-      name: '[hash].[ext]',
-      outputPath: './client/',
-      publicPath: cfg.static.baseUrl,
-    },
+  server: {
+    test: fileRegex,
+    loader: 'null-loader',
   },
 };

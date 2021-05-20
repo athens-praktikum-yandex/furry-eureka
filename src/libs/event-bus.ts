@@ -25,7 +25,7 @@ export class EventBus {
       console.log(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = (<Callback[]> this.listeners[event]).filter(
+    this.listeners[event] = (<Callback[]> this.listeners?.[event])?.filter(
       (listener) => listener !== callback,
     );
   }

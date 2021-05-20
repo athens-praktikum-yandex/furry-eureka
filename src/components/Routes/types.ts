@@ -1,3 +1,6 @@
+import { Dispatch } from 'react';
+import { Action } from 'redux';
+
 export enum Routes {
   FORUM = 'forum',
   MAIN = 'main',
@@ -7,3 +10,8 @@ export enum Routes {
   LEADERBOARD = 'leaderBoard',
   GAME = 'game',
 }
+
+export type RouterFetchDataArgs = {
+  dispatch: Dispatch<Action>;
+  cookie?: string,
+};

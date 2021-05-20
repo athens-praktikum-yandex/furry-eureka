@@ -1,6 +1,13 @@
+import { PageMeta } from '@components/PageMeta';
 import { Forum } from '@features/Forum';
 import React from 'react';
 
 export const ForumPage = () => (
-  <Forum />
+  <>
+    <PageMeta
+      title="Forum"
+      description="Talk about the game"
+    />
+    <Forum />
+  </>
 );
