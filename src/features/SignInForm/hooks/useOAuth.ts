@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import { redirectUri } from '@constants/redirectUri';
+import { redirect_uri } from '@constants/redirectUri';
 import { oAuthConfirm as oAuthConfirmAction } from '../store/actions';
 
 export const useOAuth = () => {
@@ -14,7 +14,7 @@ export const useOAuth = () => {
   useEffect(() => {
     if (typeof code === 'string') {
       dispatch(oAuthConfirmAction({
-        redirectUri,
+        redirect_uri,
         code,
       }));
     }

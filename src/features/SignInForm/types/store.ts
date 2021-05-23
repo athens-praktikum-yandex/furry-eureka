@@ -3,7 +3,7 @@ import { InitialValues } from './initialValues';
 export type SignInPayload = InitialValues;
 
 type OAuthCommonPayload = {
-  redirectUri: string,
+  redirect_uri: string,
 };
 
 export type OAuthRedirectPayload = {

@@ -39,6 +39,7 @@
     "./node_modules/@types"
   ],
   "exclude": [
-    "**/*.js"
+    "**/*.js",
+    "./api"
   ]
 }
