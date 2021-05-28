@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useMemo, useState, useCallback,
+} from 'react';
 import './Forum.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '@store/types';
+import { getUserProfile } from '@features/UserProfileForm/store/actions';
+import { userProfileSelector } from '@features/UserProfileForm/store/selectors';
 import { Sidebar } from './components/Sidebar';
-import { topicList, topicMessageList } from './mocks';
-import { Topic } from './components/Topic';
+import { topicMessageList } from './mocks';
 import {
-  getComments, getReplies, getTopics, getUsers,
+  createTopic, createUser, getComments,
+  getReplies, getTopics, getUsers,
 } from './store/actions';
+import { forumSelectors } from './store/selectors';
+import { ForumUser, Topic as TopicType } from './types';
+import { Topic } from './components/Topic';
 
 export const Forum = () => {
   const dispatch = useDispatch();
+
+  const topics = useSelector<State, TopicType[]>((state) => forumSelectors.getTopics(state));
+  const users = useSelector<State, ForumUser[]>((state) => forumSelectors.getUsers(state));
+  const login = useSelector<State, string>((state) => userProfileSelector.getLogin(state));
+  const ownerId = useMemo(() => {
+    const currentUser = users.find((item) => item.name === login);
+    return currentUser?.id;
+  }, [users, login]);
+
+  const [addInputValue, setAddInputValue] = useState<string>('');
   const [selectedTopicIdx, setSelectedTopicIdx] = useState<number>(0);
 
   useEffect(() => {
@@ -17,12 +35,30 @@ export const Forum = () => {
     dispatch(getReplies());
     dispatch(getTopics());
     dispatch(getUsers());
+    dispatch(getUserProfile());
   }, []);
+
+  useEffect(() => {
+    const userIsExist = users.find((item) => item.name === login);
+
+    if (login && !userIsExist) {
+      dispatch(createUser({ name: login }));
+    }
+  }, [login]);
+
+  const addHandler = useCallback(() => {
+    if (addInputValue && ownerId) {
+      dispatch(createTopic({ name: addInputValue, ownerId }));
+    }
+  }, [addInputValue, ownerId]);
 
   return (
     <div className="forum">
       <Sidebar
-        topicList={topicList}
+        addHandler={addHandler}
+        addInputValue={addInputValue}
+        setAddInputValue={setAddInputValue}
+        topicList={topics}
         selectedTopicIdx={selectedTopicIdx}
         setSelectedTopicIdx={setSelectedTopicIdx}
       />

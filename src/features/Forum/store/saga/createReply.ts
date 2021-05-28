@@ -5,20 +5,21 @@ import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { BASE_URL } from '@constants/baseUrl';
 import { CreateReplyResponse } from '@features/Forum/types';
+import { AxiosResponse } from 'axios';
 import { ActionTypes } from '../actionTypes';
-import { createReply as createReplyAction, createReplySuccess } from '../actions';
+import { createReply as createReplyAction, createReplySetState } from '../actions';
 
 function* createReply({ type, payload: data }: ReturnType<typeof createReplyAction>) {
   try {
     yield put(uiActions.request(type));
 
-    const reply: CreateReplyResponse = yield call(ajax, {
+    const { data: reply }: AxiosResponse<CreateReplyResponse> = yield call(ajax, {
       method: 'POST',
       url: FURRY_EUREKA_URL.replies,
       data,
     }, undefined, BASE_URL.furryEureka);
 
-    yield put(createReplySuccess(reply));
+    yield put(createReplySetState(reply));
     yield put(uiActions.success(type));
   } catch (e) {
     yield put(uiActions.error(type));

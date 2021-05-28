@@ -13,8 +13,8 @@ export const createUser = (payload: CreateUserRequest) => ({
   payload,
 });
 
-export const createUserSuccess = (payload: CreateUserResponse) => ({
-  type: ActionTypes.CREATE_USER_SUCCESS,
+export const createUserSetState = (payload: CreateUserResponse) => ({
+  type: ActionTypes.CREATE_USER_SET_STATE,
   payload,
 });
 
@@ -22,8 +22,8 @@ export const getUsers = () => ({
   type: ActionTypes.GET_USERS,
 });
 
-export const getUsersSuccess = (payload: GetUsersResponse) => ({
-  type: ActionTypes.GET_USERS_SUCCESS,
+export const getUsersSetState = (payload: GetUsersResponse) => ({
+  type: ActionTypes.GET_USERS_SET_STATE,
   payload,
 });
 
@@ -34,8 +34,8 @@ export const createTopic = (payload: CreateTopicRequest) => ({
   payload,
 });
 
-export const createTopicSuccess = (payload: CreateTopicResponse) => ({
-  type: ActionTypes.CREATE_TOPIC_SUCCESS,
+export const createTopicSetState = (payload: CreateTopicResponse) => ({
+  type: ActionTypes.CREATE_TOPIC_SET_STATE,
   payload,
 });
 
@@ -43,8 +43,8 @@ export const getTopics = () => ({
   type: ActionTypes.GET_TOPICS,
 });
 
-export const getTopicsSuccess = (payload: GetTopicsResponse) => ({
-  type: ActionTypes.GET_TOPICS_SUCCESS,
+export const getTopicsSetState = (payload: GetTopicsResponse) => ({
+  type: ActionTypes.GET_TOPICS_SET_STATE,
   payload,
 });
 
@@ -55,8 +55,8 @@ export const createComment = (payload: CreateCommentRequest) => ({
   payload,
 });
 
-export const createCommentSuccess = (payload: CreateCommentResponse) => ({
-  type: ActionTypes.CREATE_COMMENT_SUCCESS,
+export const createCommentSetState = (payload: CreateCommentResponse) => ({
+  type: ActionTypes.CREATE_COMMENT_SET_STATE,
   payload,
 });
 
@@ -64,8 +64,8 @@ export const getComments = () => ({
   type: ActionTypes.GET_COMMENTS,
 });
 
-export const getCommentsSuccess = (payload: GetCommentsResponse) => ({
-  type: ActionTypes.GET_COMMENTS_SUCCESS,
+export const getCommentsSetState = (payload: GetCommentsResponse) => ({
+  type: ActionTypes.GET_COMMENTS_SET_STATE,
   payload,
 });
 
@@ -76,8 +76,8 @@ export const createReply = (payload: CreateReplyRequest) => ({
   payload,
 });
 
-export const createReplySuccess = (payload: CreateReplyResponse) => ({
-  type: ActionTypes.CREATE_REPLY_SUCCESS,
+export const createReplySetState = (payload: CreateReplyResponse) => ({
+  type: ActionTypes.CREATE_REPLY_SET_STATE,
   payload,
 });
 
@@ -85,7 +85,7 @@ export const getReplies = () => ({
   type: ActionTypes.GET_REPLIES,
 });
 
-export const getRepliesSuccess = (payload: GetRepliesResponse) => ({
-  type: ActionTypes.GET_REPLIES_SUCCESS,
+export const getRepliesSetState = (payload: GetRepliesResponse) => ({
+  type: ActionTypes.GET_REPLIES_SET_STATE,
   payload,
 });

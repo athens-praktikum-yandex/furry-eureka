@@ -4,9 +4,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import { TopicItem } from './TopicItem';
 
 storiesOf('Forum', module).add('TopicItem', () => {
-  const title = text('title', 'Topic theme');
-  const time = text('time', '10:00');
-  const textValue = text('text', 'Last message in topic');
+  const name = text('name', 'Topic theme');
   const isSelected = boolean('isSelected', false);
 
   return (
@@ -18,9 +16,7 @@ storiesOf('Forum', module).add('TopicItem', () => {
       }}
     >
       <TopicItem
-        title={title}
-        time={time}
-        text={textValue}
+        name={name}
         isSelected={isSelected}
       />
     </div>

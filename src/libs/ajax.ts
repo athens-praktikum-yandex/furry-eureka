@@ -20,6 +20,7 @@ export class ErrorWithCode extends Error {
 
 const validStatuses = [
   200,
+  201,
 ];
 
 const errorStatuses = [

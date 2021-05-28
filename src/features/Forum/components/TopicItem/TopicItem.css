@@ -29,15 +29,3 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.topic-item__message {
-  display: block;
-  font-size: var(--font-size-m);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.topic-item__time {
-  font-size: var(--font-size-m);
-}

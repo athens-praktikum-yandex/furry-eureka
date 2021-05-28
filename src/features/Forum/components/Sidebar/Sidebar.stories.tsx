@@ -11,6 +11,9 @@ storiesOf('Forum', module).add('Sidebar', () => {
 
   return (
     <Sidebar
+      addHandler={() => {}}
+      addInputValue=""
+      setAddInputValue={() => {}}
       topicList={topicList}
       selectedTopicIdx={selectedTopicIdx}
       setSelectedTopicIdx={setSelectedTopicIdx}

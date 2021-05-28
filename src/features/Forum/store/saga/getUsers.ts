@@ -5,19 +5,20 @@ import { ajax } from '@libs/ajax';
 import { uiActions } from '@store/ui/actions';
 import { BASE_URL } from '@constants/baseUrl';
 import { GetUsersResponse } from '@features/Forum/types';
+import { AxiosResponse } from 'axios';
 import { ActionTypes } from '../actionTypes';
-import { getUsers as getUsersAction, getUsersSuccess } from '../actions';
+import { getUsers as getUsersAction, getUsersSetState } from '../actions';
 
 function* getUsers({ type }: ReturnType<typeof getUsersAction>) {
   try {
     yield put(uiActions.request(type));
 
-    const users: GetUsersResponse = yield call(ajax, {
+    const { data: users }: AxiosResponse<GetUsersResponse> = yield call(ajax, {
       method: 'GET',
       url: FURRY_EUREKA_URL.users,
     }, undefined, BASE_URL.furryEureka);
 
-    yield put(getUsersSuccess(users));
+    yield put(getUsersSetState(users));
     yield put(uiActions.success(type));
   } catch (e) {
     yield put(uiActions.error(type));
