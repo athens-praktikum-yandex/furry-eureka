@@ -1,6 +1,6 @@
 FROM node:alpine
-COPY /app /app
-WORKDIR /app
-RUN npm install
+COPY /app /api
+WORKDIR /api
+RUN yarn install
 EXPOSE 5000
-CMD npm start
+CMD yarn start

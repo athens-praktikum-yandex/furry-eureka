@@ -14,4 +14,6 @@ const options = {
 
 https.createServer(options, app).listen(port, () => {
   console.log("Express server listening on port " + port);
+  console.log("local:https://athens-furry-eureka-04.ya-praktikum.tech/");
+  console.log("docker:https://localhost:4430/");
 });
