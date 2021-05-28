@@ -3,6 +3,7 @@ import { UserProfileState } from '@features/UserProfileForm';
 import { RouterState } from 'connected-react-router';
 import { Store } from 'redux';
 import { SagaMiddleware } from '@redux-saga/core';
+import { ForumState } from '@features/Forum';
 import { AuthState } from './auth/types';
 import { UIState } from './ui/types';
 
@@ -17,6 +18,7 @@ export type State = {
   ui: UIState,
   userProfile: UserProfileState,
   leaderboard: LeaderboardState
+  forum: ForumState
 };
 
 export type Action<T = string, P = unknown> = {
