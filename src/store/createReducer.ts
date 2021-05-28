@@ -1,4 +1,4 @@
-import type { Reducer } from 'redux';
+import type { Reducer } from '@store/types';
 import type { Action } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

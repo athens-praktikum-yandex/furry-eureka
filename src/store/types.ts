@@ -23,3 +23,5 @@ export type Action<T = string, P = unknown> = {
   type: T,
   payload: P,
 };
+
+export type Reducer<S, A> = (state: S, action: A) => S;

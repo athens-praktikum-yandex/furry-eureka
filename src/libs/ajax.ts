@@ -1,3 +1,4 @@
+import { BASE_URL } from '@constants/baseUrl';
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
 
 type ErrorParameters = {
@@ -29,16 +30,19 @@ const errorStatuses = [
 ];
 
 const client: AxiosInstance = axios.create({
-  baseURL: 'https://ya-praktikum.tech/api/v2',
-  withCredentials: true,
   validateStatus: (status) => [...validStatuses, ...errorStatuses].includes(status),
 });
 
 export const ajax = async <T>(
   config: AxiosRequestConfig,
   cookie?: string,
+  baseUrl = BASE_URL.praktikum,
 ): Promise<AxiosResponse<T>> => {
-  const axiosConfig = { ...config };
+  const axiosConfig: AxiosRequestConfig = {
+    ...config,
+    baseURL: baseUrl,
+    withCredentials: baseUrl === BASE_URL.praktikum,
+  };
 
   if (cookie) {
     axiosConfig.headers = { cookie };
