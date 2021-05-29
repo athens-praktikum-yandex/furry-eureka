@@ -9,11 +9,11 @@ type Props = FC<OwnProps>;
 
 export const Sidebar: Props = ({
   topicList,
-  selectedTopicIdx,
-  setSelectedTopicIdx,
-  addHandler,
+  selectedTopicId,
+  setSelectedTopicId,
+  addClickHandler,
   addInputValue,
-  setAddInputValue,
+  addInputHandler,
 }) => (
   <div className="sidebar">
     <div className="sidebar__header">
@@ -22,26 +22,26 @@ export const Sidebar: Props = ({
         placeholder="New topic name"
         name="addInput"
         value={addInputValue}
-        onChange={(e) => setAddInputValue(e.currentTarget.value)}
+        onChange={addInputHandler}
       />
       <Button
         theme={ButtonTheme.square}
         value="Add"
         className="sidebar__new-button"
         textSize={ButtonTextSize.l}
-        onClick={addHandler}
+        onClick={addClickHandler}
       />
     </div>
 
     <ul>
       {topicList.map(({
         id, name,
-      }, idx) => (
+      }) => (
         <TopicItem
           name={name}
           key={id}
-          isSelected={idx === selectedTopicIdx}
-          onClick={() => setSelectedTopicIdx(idx)}
+          isSelected={id === selectedTopicId}
+          onClick={() => setSelectedTopicId(id)}
         />
       ))}
     </ul>

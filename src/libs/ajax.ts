@@ -1,5 +1,6 @@
 import { BASE_URL } from '@constants/baseUrl';
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
+import { isServer } from './isServer';
 
 type ErrorParameters = {
   name: string,
@@ -44,6 +45,17 @@ export const ajax = async <T>(
     baseURL: baseUrl,
     withCredentials: baseUrl === BASE_URL.praktikum,
   };
+
+  if (baseUrl === BASE_URL.furryEureka && isServer) {
+    // eslint-disable-next-line global-require
+    const https = require('https');
+
+    const agent = new https.Agent({
+      rejectUnauthorized: false,
+    });
+
+    axiosConfig.httpsAgent = agent;
+  }
 
   if (cookie) {
     axiosConfig.headers = { cookie };
