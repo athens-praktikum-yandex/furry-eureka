@@ -7,9 +7,9 @@ export const useAddTopic = (ownerId: number) => {
 
   const [addInputValue, setAddInputValue] = useState<string>('');
 
-  const addInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const addInputHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setAddInputValue(e.currentTarget.value);
-  };
+  }, []);
 
   const addClickHandler = useCallback(() => {
     if (addInputValue && ownerId) {
