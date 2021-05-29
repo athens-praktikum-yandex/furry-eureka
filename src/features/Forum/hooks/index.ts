@@ -1,5 +1,5 @@
-export * from './useForum';
-export * from './useAddInput';
-export * from './useFilteredComments';
-export * from './useOwnerId';
-export * from './useSending';
+export { useForum } from './useForum';
+export { useAddTopic } from './useAddInput';
+export { useFilteredComments } from './useFilteredComments';
+export { useOwnerId } from './useOwnerId';
+export { useSending } from './useSending';
