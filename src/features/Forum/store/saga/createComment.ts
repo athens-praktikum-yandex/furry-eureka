@@ -23,7 +23,7 @@ function* createComment({ type, payload: data }: ReturnType<typeof createComment
     yield put(uiActions.success(type));
   } catch (e) {
     yield put(uiActions.error(type));
-    toast.error(e.message || e);
+    yield call(toast.error, e.message || e);
   }
 }
 
