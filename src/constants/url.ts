@@ -16,4 +16,6 @@ export const FURRY_EUREKA_URL = {
   topics: '/topics',
   comments: '/comments',
   replies: '/replies',
+  siteThemes: '/site-themes',
+  userThemes: '/user-themes',
 };

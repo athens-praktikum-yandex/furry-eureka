@@ -6,6 +6,7 @@ import { SagaMiddleware } from '@redux-saga/core';
 import { ForumState } from '@features/Forum';
 import { AuthState } from './auth/types';
 import { UIState } from './ui/types';
+import { ThemeState } from './theme/types';
 
 export type AppStore = Store & {
   runSaga: SagaMiddleware['run'];
@@ -19,6 +20,7 @@ export type State = {
   userProfile: UserProfileState,
   leaderboard: LeaderboardState
   forum: ForumState
+  theme: ThemeState
 };
 
 export type Action<T = string, P = unknown> = {
