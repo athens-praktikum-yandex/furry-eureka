@@ -14,7 +14,12 @@ storiesOf('Forum', module).add('Topic', () => {
         height: 600,
       }}
     >
-      <Topic topicMessageList={topicListMessage} />
+      <Topic
+        topicMessageList={topicListMessage}
+        sendMessage={() => {}}
+        replies={[]}
+        replyHandler={() => {}}
+      />
     </div>
   );
 });

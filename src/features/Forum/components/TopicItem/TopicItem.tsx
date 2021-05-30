@@ -6,9 +6,7 @@ import './TopicItem.css';
 type Props = FC<ExtendedOwnProps>;
 
 export const TopicItem: Props = ({
-  title,
-  time,
-  text,
+  name,
   isSelected = false,
   ...props
 }) => (
@@ -21,13 +19,8 @@ export const TopicItem: Props = ({
   >
     <div className="topic-item__content">
       <div className="topic-item__header">
-        <span className="topic-item__name">{title}</span>
-        <time className="topic-item__time">{time}</time>
+        <span className="topic-item__name">{name}</span>
       </div>
-
-      <span className="topic-item__message">
-        {text}
-      </span>
     </div>
   </li>
 );

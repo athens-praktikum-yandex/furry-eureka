@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': ['error', {'devDependencies': true}],
     '@typescript-eslint/no-explicit-any': 2,
+    '@typescript-eslint/naming-convention': 0,
     '@typescript-eslint/ban-types': 1,
     'import/prefer-default-export': 0,
     'import/no-cycle': 0,

@@ -6,14 +6,17 @@ import { topicList as topicListMock } from '@features/Forum/mocks';
 import { Sidebar } from './Sidebar';
 
 storiesOf('Forum', module).add('Sidebar', () => {
-  const [selectedTopicIdx, setSelectedTopicIdx] = useState(0);
+  const [selectedTopicId, setSelectedTopicId] = useState(0);
   const topicList = object('topicList', topicListMock);
 
   return (
     <Sidebar
+      addClickHandler={() => {}}
+      addInputValue=""
+      addInputHandler={() => {}}
       topicList={topicList}
-      selectedTopicIdx={selectedTopicIdx}
-      setSelectedTopicIdx={setSelectedTopicIdx}
+      selectedTopicId={selectedTopicId}
+      setSelectedTopicId={setSelectedTopicId}
     />
   );
 });

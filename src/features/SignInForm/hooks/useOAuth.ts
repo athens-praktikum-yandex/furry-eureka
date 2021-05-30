@@ -14,7 +14,7 @@ export const useOAuth = () => {
   useEffect(() => {
     if (typeof code === 'string') {
       dispatch(oAuthConfirmAction({
-        redirectUri,
+        redirect_uri: redirectUri,
         code,
       }));
     }

@@ -1,7 +1,12 @@
-import { OwnProps as TopicProps } from '../TopicItem';
+import { ExtendedOwnProps as ButtonProps } from '@components/Button';
+import { ExtendedOwnProps as InputProps } from '@components/Input';
+import { Topic } from '@features/Forum/types';
 
 export type OwnProps = {
-  topicList: TopicProps[],
-  selectedTopicIdx: number,
-  setSelectedTopicIdx: (selectedTopicIdx: number) => void,
+  topicList: Topic[],
+  selectedTopicId: number,
+  setSelectedTopicId: (selectedTopicIdx: number) => void,
+  addClickHandler: ButtonProps['onClick'],
+  addInputValue: string,
+  addInputHandler: InputProps['onChange'],
 };
