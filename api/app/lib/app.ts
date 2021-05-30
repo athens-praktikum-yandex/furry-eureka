@@ -31,5 +31,5 @@ app.use('/comments', comments);
 app.use('/users', users);
 app.use('/replies', replies);
 app.use('/emoji', emoji);
-app.use('/user-theme', userTheme);
-app.use('/site-theme', siteTheme);
+app.use('/user-themes', userTheme);
+app.use('/site-themes', siteTheme);
