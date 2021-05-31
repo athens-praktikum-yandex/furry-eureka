@@ -3,17 +3,12 @@
   line-height: 1.75rem;
   padding: 0.5rem 1rem;
   list-style-type: none;
-}
-
-.topic-message_type_incoming {
   background: var(--color-secondary);
   border-radius: 0 5px 5px;
 }
 
-.topic-message_type_outgoing {
-  background: var(--color-thirdly);
-  border-radius: 5px 5px 0;
-  font-weight: bold;
+.topic-message__reply {
+  margin: -1.5rem 2rem 2rem 3rem;
 }
 
 .topic-message__header {

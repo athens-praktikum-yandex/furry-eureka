@@ -22,7 +22,7 @@ function* oAuthConfirm({ type, payload: data }: ReturnType<typeof oAuthConfirmAc
     toast.success('Вы вошли');
   } catch (e) {
     yield put(uiActions.error(type));
-    toast.error(e.message || e);
+    yield call(toast.error, e.message || e);
   }
 }
 

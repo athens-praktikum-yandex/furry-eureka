@@ -1,6 +1,7 @@
 import { initialState as leaderboard } from '@features/leaderboard/store/reducer';
 import { initialState as userProfile } from '@features/UserProfileForm/store/reducer';
 import { initialState as ui } from '@store/ui/reducer';
+import { initialState as forum } from '@features/Forum/store/reducer';
 import { initialState as auth } from './auth/reducer';
 import { State } from './types';
 
@@ -20,4 +21,5 @@ export const getInitialState = (): State => ({
   auth,
   userProfile,
   leaderboard,
+  forum,
 });

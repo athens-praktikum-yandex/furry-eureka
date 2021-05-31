@@ -1,4 +1,6 @@
+import { BASE_URL } from '@constants/baseUrl';
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
+import { isServer } from './isServer';
 
 type ErrorParameters = {
   name: string,
@@ -19,6 +21,7 @@ export class ErrorWithCode extends Error {
 
 const validStatuses = [
   200,
+  201,
 ];
 
 const errorStatuses = [
@@ -29,16 +32,30 @@ const errorStatuses = [
 ];
 
 const client: AxiosInstance = axios.create({
-  baseURL: 'https://ya-praktikum.tech/api/v2',
-  withCredentials: true,
   validateStatus: (status) => [...validStatuses, ...errorStatuses].includes(status),
 });
 
 export const ajax = async <T>(
   config: AxiosRequestConfig,
   cookie?: string,
+  baseUrl = BASE_URL.praktikum,
 ): Promise<AxiosResponse<T>> => {
-  const axiosConfig = { ...config };
+  const axiosConfig: AxiosRequestConfig = {
+    ...config,
+    baseURL: baseUrl,
+    withCredentials: baseUrl === BASE_URL.praktikum,
+  };
+
+  if (baseUrl === BASE_URL.furryEureka && isServer) {
+    // eslint-disable-next-line global-require
+    const https = require('https');
+
+    const agent = new https.Agent({
+      rejectUnauthorized: false,
+    });
+
+    axiosConfig.httpsAgent = agent;
+  }
 
   if (cookie) {
     axiosConfig.headers = { cookie };

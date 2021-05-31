@@ -10,3 +10,10 @@ export const URL = {
   oAuthServiceId: '/oauth/yandex/service-id',
   oAuthYandex: '/oauth/yandex',
 };
+
+export const FURRY_EUREKA_URL = {
+  users: '/users',
+  topics: '/topics',
+  comments: '/comments',
+  replies: '/replies',
+};
