@@ -1,0 +1,9 @@
+.theme-switcher {
+  position: absolute;
+  z-index: 1000;
+  margin: 1rem;
+}
+
+.theme-switcher__input {
+  margin-left: 0.5rem;
+}

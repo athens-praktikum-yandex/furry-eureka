@@ -1,6 +1,7 @@
 import { ActionTypes as SignUpActionTypes } from '@features/SignUpForm/store/actionTypes';
 import { ActionTypes as UserProfileActionTypes } from '@features/UserProfileForm/store/actionTypes';
 import { ActionTypes as LeaderboardActionTypes } from '@features/leaderboard/store/actionTypes';
+import { ActionTypes as ThemeActionTypes } from '@store/theme/actionTypes';
 import {
   error, request, reset, success,
 } from './actions';
@@ -25,6 +26,7 @@ type StatusesKeys =
   | UserProfileActionTypes.CHANGE_USER_PROFILE
   | UserProfileActionTypes.CHANGE_PASSWORD
   | LeaderboardActionTypes.GET_LEADERBOARD
-  | LeaderboardActionTypes.CHANGE_LEADERBOARD;
+  | LeaderboardActionTypes.CHANGE_LEADERBOARD
+  | ThemeActionTypes.GET_USER_THEMES;
 
 export type UIState = Record<StatusesKeys, RequestStatus>;

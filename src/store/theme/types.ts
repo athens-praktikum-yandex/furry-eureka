@@ -12,11 +12,11 @@ export type UserTheme = {
 };
 
 export type SiteThemesState = SiteTheme[];
-export type UserThemeState = UserTheme;
+export type UserThemesState = UserTheme[];
 export type GetUserThemePayload = { userId: number };
-export type PutUserThemePayload = Omit<UserTheme, 'theme'>;
+export type PutUserThemePayload = UserTheme;
 
 export type ThemeState = {
   siteThemes: SiteTheme[],
-  userTheme: UserTheme,
+  userThemes: UserTheme[],
 };

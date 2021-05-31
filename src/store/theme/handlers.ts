@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Reducer } from '@store/types';
-import { siteThemesSetState, userThemeSetState } from './actions';
+import { siteThemesSetState, userThemesSetState } from './actions';
 import { ActionTypes } from './actionTypes';
 import { ThemeState } from './types';
 
@@ -8,20 +8,18 @@ type HandlerFn<F extends (...args: any) => any> = Reducer<ThemeState, ReturnType
 
 const setSiteThemesState: HandlerFn<typeof siteThemesSetState> = (
   state,
-  { payload },
+  { payload: siteThemes },
 ) => ({
   ...state,
-  siteThemes: {
-    ...payload,
-  },
+  siteThemes,
 });
 
-const setUserThemeState: HandlerFn<typeof userThemeSetState> = (
+const setUserThemeState: HandlerFn<typeof userThemesSetState> = (
   state,
-  { payload: userTheme },
+  { payload: userThemes },
 ) => ({
   ...state,
-  userTheme,
+  userThemes,
 });
 
 export const ACTIONS = {

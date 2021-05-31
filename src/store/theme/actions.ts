@@ -1,7 +1,5 @@
 import { ActionTypes } from './actionTypes';
-import {
-  GetUserThemePayload, PutUserThemePayload, SiteThemesState, UserThemeState,
-} from './types';
+import { PutUserThemePayload, SiteThemesState, UserThemesState } from './types';
 
 export const getSiteThemes = () => ({
   type: ActionTypes.GET_SITE_THEMES,
@@ -12,12 +10,11 @@ export const siteThemesSetState = (payload: SiteThemesState) => ({
   payload,
 });
 
-export const getUserTheme = (payload: GetUserThemePayload) => ({
-  type: ActionTypes.GET_USER_THEME,
-  payload,
+export const getUserThemes = () => ({
+  type: ActionTypes.GET_USER_THEMES,
 });
 
-export const userThemeSetState = (payload: UserThemeState) => ({
+export const userThemesSetState = (payload: UserThemesState) => ({
   type: ActionTypes.USER_THEME_SET_STATE,
   payload,
 });
