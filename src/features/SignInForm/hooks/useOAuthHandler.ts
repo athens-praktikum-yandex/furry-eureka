@@ -13,7 +13,7 @@ export const useOAuthHandler = () => {
   const oAuthHandler = useCallback(() => {
     dispatch(oAuthRedirectAction({
       redirectCallback,
-      redirectUri,
+      redirect_uri: redirectUri,
     }));
   }, [redirectCallback, redirectUri]);
 

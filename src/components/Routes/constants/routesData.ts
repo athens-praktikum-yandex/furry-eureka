@@ -1,3 +1,6 @@
+import {
+  getComments, getReplies, getTopics, getUsers,
+} from '@features/Forum/store/actions';
 import { getLeaderboardPayload } from '@features/leaderboard/constants';
 import { getLeaderboard } from '@features/leaderboard/store/actions';
 import { getUserProfile } from '@features/UserProfileForm/store/actions';
@@ -26,6 +29,13 @@ export const routesData = [
     path: routes.forum,
     component: ForumPage,
     exact: true,
+    fetchData({ dispatch, cookie }: RouterFetchDataArgs) {
+      dispatch(getComments());
+      dispatch(getReplies());
+      dispatch(getTopics());
+      dispatch(getUsers());
+      dispatch(getUserProfile(cookie));
+    },
   },
   {
     path: routes.signIn,

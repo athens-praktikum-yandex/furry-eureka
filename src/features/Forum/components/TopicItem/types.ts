@@ -1,10 +1,7 @@
 import { LiHTMLAttributes } from 'react';
 
 export type OwnProps = {
-  title: string,
-  time: string,
-  text: string,
-  id?: number,
+  name: string,
   isSelected?: boolean,
 };
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Configuration, node } from 'webpack';
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
@@ -42,10 +44,8 @@ const config: Configuration = {
   },
 
   plugins: [
-    // @ts-ignore
     new MiniCssExtractPlugin(),
 
-    // @ts-ignore
     new CopyWebpackPlugin({
       patterns: [
         {

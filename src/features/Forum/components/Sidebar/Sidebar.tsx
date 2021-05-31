@@ -7,29 +7,41 @@ import './Sidebar.css';
 
 type Props = FC<OwnProps>;
 
-export const Sidebar: Props = ({ topicList, selectedTopicIdx, setSelectedTopicIdx }) => (
+export const Sidebar: Props = ({
+  topicList,
+  selectedTopicId,
+  setSelectedTopicId,
+  addClickHandler,
+  addInputValue,
+  addInputHandler,
+}) => (
   <div className="sidebar">
     <div className="sidebar__header">
-      <Input classNameWrapper="sidebar__search" placeholder="Search topic" name="" />
+      <Input
+        classNameWrapper="sidebar__search"
+        placeholder="New topic name"
+        name="addInput"
+        value={addInputValue}
+        onChange={addInputHandler}
+      />
       <Button
         theme={ButtonTheme.square}
-        value="New"
+        value="Add"
         className="sidebar__new-button"
         textSize={ButtonTextSize.l}
+        onClick={addClickHandler}
       />
     </div>
 
     <ul>
       {topicList.map(({
-        text, time, title, id,
-      }, idx) => (
+        id, name,
+      }) => (
         <TopicItem
-          text={text}
-          time={time}
-          title={title}
+          name={name}
           key={id}
-          isSelected={idx === selectedTopicIdx}
-          onClick={() => setSelectedTopicIdx(idx)}
+          isSelected={id === selectedTopicId}
+          onClick={() => setSelectedTopicId(id)}
         />
       ))}
     </ul>
