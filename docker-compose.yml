@@ -52,6 +52,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    extra_hosts:
+      - "athens-furry-eureka-04.ya-praktikum.tech:127.0.0.1"
     ports:
       - "4430:443"
     environment:
