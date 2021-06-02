@@ -4,4 +4,3 @@ COPY . .
 RUN yarn install
 RUN yarn build
 CMD yarn docker_start
-EXPOSE 443
