@@ -3,6 +3,7 @@ import { initialState as userProfile } from '@features/UserProfileForm/store/red
 import { initialState as ui } from '@store/ui/reducer';
 import { initialState as forum } from '@features/Forum/store/reducer';
 import { initialState as auth } from './auth/reducer';
+import { initialState as theme } from './theme/reducer';
 import { State } from './types';
 
 export const getInitialState = (): State => ({
@@ -22,4 +23,5 @@ export const getInitialState = (): State => ({
   userProfile,
   leaderboard,
   forum,
+  theme,
 });

@@ -15,6 +15,11 @@
   --z-index-3: 1008;
 }
 
+.blue {
+  --color-primary: #141c24;
+  --color-secondary: #34475b;
+}
+
 body {
   background: var(--color-primary);
   color: var(--color-white);
