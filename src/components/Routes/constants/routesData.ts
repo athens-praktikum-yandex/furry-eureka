@@ -11,6 +11,7 @@ import { MainPage } from '@pages/MainPage';
 import { SignInPage } from '@pages/SignIn';
 import { SignUpPage } from '@pages/SignUp';
 import { UserProfilePage } from '@pages/UserProfile';
+import { getSiteThemes, getUserThemes } from '@store/theme/actions';
 import { RouterFetchDataArgs } from '../types';
 import { routes } from './routes';
 
@@ -30,11 +31,13 @@ export const routesData = [
     component: ForumPage,
     exact: true,
     fetchData({ dispatch, cookie }: RouterFetchDataArgs) {
+      dispatch(getUserProfile(cookie));
+      dispatch(getSiteThemes());
+      dispatch(getUserThemes());
       dispatch(getComments());
       dispatch(getReplies());
       dispatch(getTopics());
       dispatch(getUsers());
-      dispatch(getUserProfile(cookie));
     },
   },
   {

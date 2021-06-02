@@ -6,6 +6,8 @@ import { comments } from './routes/comments';
 import { users } from './routes/users';
 import { replies } from './routes/replies';
 import { emoji } from './routes/emoji';
+import { userTheme } from './routes/userTheme';
+import { siteTheme } from './routes/siteTheme';
 
 export const app = express();
 
@@ -29,3 +31,5 @@ app.use('/comments', comments);
 app.use('/users', users);
 app.use('/replies', replies);
 app.use('/emoji', emoji);
+app.use('/user-themes', userTheme);
+app.use('/site-themes', siteTheme);
