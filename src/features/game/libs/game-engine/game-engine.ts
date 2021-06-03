@@ -8,8 +8,6 @@ import { MapView } from '../map-view/map-view';
 export class GameEngine {
   private lastTime: number = 0;
 
-  private startTime: number = 0;
-
   private eventBus: EventBus;
 
   private _isFight: boolean = false;
@@ -27,11 +25,10 @@ export class GameEngine {
   }
 
   startGame() {
-    this.startTime = Date.now();
     this.lastTime = Date.now();
-    this.eventBus.on(EVENTS.PERSON_DEATH, () => {
-      this.eventBus.emit(EVENTS.END_GAME,
-        Math.floor(10000 / ((this.lastTime - this.startTime) / 1000)));
+    this.eventBus.on(EVENTS.PERSON_DEATH, (person) => {
+      const remainHealth = (person !== undefined) ? this.characters[person].health : 0;
+      this.eventBus.emit(EVENTS.END_GAME, Math.floor(remainHealth * 100));
     });
     this.eventBus.on(EVENTS.START_FIGHT, () => {
       this.startFight();
@@ -47,7 +44,7 @@ export class GameEngine {
     const [hero, enemy] = this.characters;
     this._isFight = true;
     this.eventBus.on(EVENTS.HERO_ATTACK_END, () => {
-      enemy.health -= hero.strength;
+      enemy.health -= Math.floor(hero.strength * Math.random());
       if (enemy.health <= 0) {
         enemy.death();
       } else {
@@ -55,7 +52,10 @@ export class GameEngine {
       }
     });
     this.eventBus.on(EVENTS.ENEMY_ATTACK_END, () => {
-      hero.health -= enemy.strength;
+      hero.health -= Math.floor(enemy.strength * Math.random());
+      if (hero.health <= 0) {
+        hero.death();
+      }
     });
     hero.position = { x: 245, y: 250 };
     enemy.position = { x: 355, y: 250 };
