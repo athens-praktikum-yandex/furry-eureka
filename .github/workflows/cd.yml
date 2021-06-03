@@ -18,5 +18,7 @@ jobs:
             pwd
             ls
             git pull
+            echo "!!! docker-compose build !!!"
             sudo docker-compose build
+            echo "!!! docker-compose up !!!"
             sudo docker-compose up
