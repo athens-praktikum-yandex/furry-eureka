@@ -11,6 +11,7 @@ import { State } from '@store/types';
 import { rootSaga } from '@store/rootSaga';
 import { routesData } from '@components/Routes/constants/routesData';
 import { checkAuth } from '@store/auth/actions';
+import * as queryString from 'query-string';
 import { App } from './components/App/App';
 
 function getHtml(reactHtml: string, reduxState: State, helmetData: HelmetData) {
@@ -38,7 +39,7 @@ function getHtml(reactHtml: string, reduxState: State, helmetData: HelmetData) {
 }
 
 export default (req: Request, res: Response) => {
-  const location = req.url;
+  const location = req.path;
   const context: StaticRouterContext = {};
   const { cookie } = req.headers;
 
@@ -59,7 +60,8 @@ export default (req: Request, res: Response) => {
     const helmetData = Helmet.renderStatic();
 
     if (context.url) {
-      res.redirect(context.url);
+      const url = req.query ? `${context.url}?${queryString.stringify(req.query)}` : context.url;
+      res.redirect(url);
       return;
     }
 
