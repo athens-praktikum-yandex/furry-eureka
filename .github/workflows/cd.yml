@@ -21,7 +21,5 @@ jobs:
             git pull
             docker container prune -f
             docker image prune -f
-            echo "!!! docker-compose build !!!"
-            sudo docker-compose build
             echo "!!! docker-compose up !!!"
-            sudo docker-compose up
+            sudo docker-compose --build up
