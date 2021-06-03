@@ -17,7 +17,10 @@ jobs:
             cd furry-eureka
             pwd
             ls
+            git checkout sprint5
             git pull
+            docker container prune -f
+            docker image prune -f
             echo "!!! docker-compose build !!!"
             sudo docker-compose build
             echo "!!! docker-compose up !!!"
