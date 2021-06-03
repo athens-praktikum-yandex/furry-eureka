@@ -5,6 +5,7 @@ import { leaderboardSaga } from '@features/leaderboard/store/saga';
 import { forumSaga } from '@features/Forum/store/saga';
 import { authSaga } from '@store/auth/saga';
 import { fork } from 'redux-saga/effects';
+import { themeSaga } from './theme/saga';
 
 export function* rootSaga() {
   yield fork(signUpSaga);
@@ -13,4 +14,5 @@ export function* rootSaga() {
   yield fork(leaderboardSaga);
   yield fork(authSaga);
   yield fork(forumSaga);
+  yield fork(themeSaga);
 }
