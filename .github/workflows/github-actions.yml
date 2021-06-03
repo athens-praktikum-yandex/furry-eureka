@@ -1,5 +1,7 @@
-name: CD
-on: [ push ]
+name: CI/CD
+on:
+  pull_request:
+    branches: [ sprint5 ]
 
 jobs:
   build:
