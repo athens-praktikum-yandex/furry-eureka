@@ -16,4 +16,7 @@ jobs:
           script: |
             cd furry-eureka
             pwd
-            sudo git pull
+            ls
+            git pull
+            sudo docker-compose build
+            sudo docker-compose up
