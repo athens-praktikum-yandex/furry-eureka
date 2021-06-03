@@ -1,0 +1,21 @@
+name: CD
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: multiple command
+        uses: ./
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            whoami
+            pwd
+            ls
