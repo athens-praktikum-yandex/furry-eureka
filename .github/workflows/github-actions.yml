@@ -3,10 +3,20 @@ on: [ push ]
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x, 15.x ]
+
     steps:
-      - name: executing remote ssh commands using password
+      - name: CI with Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        - run: yarn
+        - run: yarn build
+        - run: yarn test
+      - name: CD executing remote ssh commands
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -15,11 +25,8 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd furry-eureka
-            pwd
-            ls
             git checkout sprint5
             git pull
             docker container prune -f
             docker image prune -f
-            echo "!!! docker-compose up !!!"
             sudo docker-compose up -d
