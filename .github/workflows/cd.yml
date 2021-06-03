@@ -14,6 +14,8 @@ jobs:
           key: ${{ secrets.SSH }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            whoami
-            pwd
+            cd furry-eureka
             ls
+            git pull
+            docker-compose build
+            docker-compose up
