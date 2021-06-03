@@ -15,7 +15,4 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd furry-eureka
-            ls
-            git pull
-            docker-compose build
-            docker-compose up
+            sudo git pull
