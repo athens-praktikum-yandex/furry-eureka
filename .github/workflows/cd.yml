@@ -15,4 +15,5 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd furry-eureka
+            pwd
             sudo git pull
