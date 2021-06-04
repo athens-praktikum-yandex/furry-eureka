@@ -6,6 +6,7 @@ import { Sprite } from '../sprite';
 import HeroIdleImg from './img/hero_idle.png';
 import HeroWalkImg from './img/hero_walk.png';
 import HeroAttackImg from './img/hero_attack.png';
+import HeroDeathImg from './img/hero_death.png';
 import EnemyArcherIdleImg from './img/enemy_archer_idle.png';
 import EnemyArcherDeathImg from './img/enemy_archer_death.png';
 import EnemyArcherAttackImg from './img/enemy_archer_attack.png';
@@ -29,6 +30,7 @@ export class Person {
       HeroIdleImg,
       HeroWalkImg,
       HeroAttackImg,
+      HeroDeathImg,
       EnemyArcherIdleImg,
       EnemyArcherDeathImg,
       EnemyArcherAttackImg,
@@ -59,7 +61,12 @@ export class Person {
             this.eventBus.emit(EVENTS.HERO_ATTACK_END);
             this.idle();
           }),
-        death: null,
+        death: new Sprite(HeroDeathImg, HERO.DEATH.picturePos,
+          HERO.DEATH.frameSize, HERO.DEATH.pictureSize, HERO.DEATH.speed,
+          HERO.DEATH.frames, 'horizontal', true, () => {
+            this.eventBus.emit(EVENTS.PERSON_DEATH);
+            mapping.hero.death.stopAnimation();
+          }),
       },
       enemy_archer: {
         idle: new Sprite(EnemyArcherIdleImg, ENEMY_ARCHER.IDLE.picturePos,
@@ -75,7 +82,7 @@ export class Person {
         death: new Sprite(EnemyArcherDeathImg, ENEMY_ARCHER.DEATH.picturePos,
           ENEMY_ARCHER.DEATH.frameSize, ENEMY_ARCHER.DEATH.pictureSize, ENEMY_ARCHER.DEATH.speed,
           ENEMY_ARCHER.DEATH.frames, 'horizontal', true, () => {
-            this.eventBus.emit(EVENTS.PERSON_DEATH);
+            this.eventBus.emit(EVENTS.PERSON_DEATH, 0);
             mapping.enemy_archer.death.stopAnimation();
           }),
       },

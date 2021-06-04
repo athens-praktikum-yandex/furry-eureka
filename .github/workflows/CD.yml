@@ -1,6 +1,6 @@
-name: CI/CD
+name: CD
 on:
-  pull_request:
+  push:
     branches: [ sprint5 ]
 
 jobs:
@@ -9,16 +9,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - name: Install dependencies
-        run: yarn
-      - name: Build project
-        run: yarn build
-      - name: Test project
-        run: yarn test
       - name: CD executing remote ssh commands
         uses: appleboy/ssh-action@master
         with:
@@ -32,4 +22,4 @@ jobs:
             git pull
             docker container prune -f
             docker image prune -f
-            sudo docker-compose up -d
+            sudo docker-compose up --build -d
